@@ -1,0 +1,149 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+@import "bootstrap";
+
+@import './node_modules/bulma/bulma.sass';
+
+// Bootstrap
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+.table-logo {
+  width: 100px;
+}
+
+.card-specs {
+  max-width: 100%;
+  height: 300px;
+}
+
+// .card-image {
+//   height: 300px;
+//   width: 100%;
+//   background-size: contain;
+//   background-repeat: no-repeat;
+//   background-position: center;
+// }
+
+.margin-bottom {
+  margin-bottom: 30px;
+}
+
+.hero-margin-bottom {
+  margin-bottom: 48px;
+}
+
+.kazkas {
+  width: auto;
+}
+
+a:not([href]):not([tabindex]) {
+  color: white;
+}
+
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
+  color: white;
+  cursor: default;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.panel a:not([href]):not([tabindex]) {
+  color: inherit;
+}
+
+// span.left {
+//   margin-right: 5px;
+// }
+
+.button .icon:first-child:last-child {
+  margin-right: 0;
+}
+
+.restaurant-card:hover .card {
+  -webkit-box-shadow: 0 2px 3px rgba(255, 56, 96, 0.8), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  box-shadow: 0 2px 3px rgba(255, 56, 96, 0.8), 0 0 0 1px rgba(10, 10, 10, 0.1);
+
+  -webkit-transition: box-shadow ease-in-out 0.2s; /* Safari */
+  transition: box-shadow ease-in-out 0.2s;
+}
+
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.rotate {
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+}
+
+.results {
+  h3 {
+    font-size: 1.2em;
+  }
+
+  div {
+    width: 100%;
+  }
+
+  img {
+    width: 200px;
+  }
+}
+
+.navbar-filter {
+  margin-bottom: 30px;
+}
+
+.button-weekday {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 10px;
+}
+
+.button-price {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 10px;
+}
+
+.content-title {
+  height: 50px;
+}
+
+.image-centered {
+  display: flex;
+  justify-content: center;
+  // width: 200px;
+}
+
+.hero-flex {
+  flex-direction: column;
+  align-items: center;
+}
+
+textarea {
+  height: 60px;
+}
+
+.delete-deal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
