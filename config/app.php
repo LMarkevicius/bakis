@@ -52,8 +52,8 @@ return [
     |
     */
 
-    // 'url' => env('APP_URL', 'http://localhost'),
-    'url' => env('APP_URL', 'https://enigmatic-waters-75887.herokuapp.com'),
+    'url' => env('APP_URL', 'http://localhost'),
+    // 'url' => env('APP_URL', 'https://enigmatic-waters-75887.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------
