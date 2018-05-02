@@ -59,7 +59,7 @@
                 'Wednesday' => 'Wednesday',
                 'Thursday' => 'Thursday',
                 'Friday' => 'Friday',
-              ], date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l')) }}
+              ], $lunch->weekday) }}
             </div>
           </div>
         </div>

@@ -421,9 +421,9 @@
           console.log(images);
           for (var i = 0; i < images.length; i++) {
             $(images[i]).filter(function () {
+              console.log(images[i].src);
               if (images[i].src.match(/^https:\/\/www/)) {
                 specimg.push($(images[i]));
-
                 temp_xpath_image = getElementXPath($(images[i])).split('/');
                 temp_xpath_image[2] = "html/body";
                 temp_image = temp_xpath_image.join('/');
@@ -436,7 +436,7 @@
                 // console.log('praeina');
               } else if (images[i].src.match(/^http:\/\/www/)) {
                 specimg.push($(images[i]));
-
+                console.log("http");
                 temp_xpath_image = getElementXPath($(images[i])).split('/');
                 temp_xpath_image[2] = "html/body";
                 temp_image = temp_xpath_image.join('/');

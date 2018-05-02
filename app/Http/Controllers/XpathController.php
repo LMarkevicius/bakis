@@ -60,7 +60,7 @@ class XpathController extends Controller
          $fixed_title = trim($decode_title);
          $fixed_title = str_replace('"', "'", $fixed_title);
 
-         // dd($fixed_title);
+         // dd([$fixed_title, $request->lunch_title]);
 
          if ($fixed_title == $request->lunch_title && $sutvarkytas_price == $request->lunch_price) {
           // Jei sutampa tos pacios dienos patiekalas

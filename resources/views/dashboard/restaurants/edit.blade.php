@@ -339,11 +339,11 @@
             modal += '<div class="field"><label name="title" class="label">Lunch Title</label><div class="control"><input type="text" name="title" value="' + msg['new_lunchdeal']['title'] + '" class="input field-title" /></div></div>';
             modal += '<div class="field"><label name="price" class="label">Meal Price</label><div class="control"><input type="number" name="price" step="0.01" value="' + msg['new_lunchdeal']['price'] + '" class="input field-price" /></div></div>';
             // modal += '<div class="field"><label name="weekday" class="label">Weekday</label><div class="control"><input type="text" name="weekday" value="' + msg['new_lunchdeal']['weekday'] + '" class="input" /></div></div>';
-            modal += '<div class="field"><label name="weekday" class="label">Weekday</label><div class="control"><div class="select"><select id="weekday" name="weekday"><option value"Monday">Monday</option><option value"Tuesday">Tuesday</option><option value"Wednesday">Wednesday</option><option value"Thursday">Thursday</option><option value"Friday">Friday</option></select></div></div></div>';
+            modal += '<div class="field"><label name="weekday" class="label">Weekday</label><div class="control"><div class="select">{{ Form::select('weekday', ["Monday" => "Monday", "Tuesday" => "Tuesday", "Wednesday" => "Wednesday", "Thursday" => "Thursday", "Friday" => "Friday"], date("l") == "Saturday" || date("l") == "Sunday" ? "Monday" : date("l")) }}</div></div></div>';
             // modal += '<input type="hidden" name="lunch_id" id="lunch_id" value="' + lunch_id + '" />';
             var todaysdate = "{{ date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l') }}";
             // console.log(todaysdate);
-            $('option[value="' + todaysdate + '"]').attr('selected', 'selected');
+            // $('option[value="' + todaysdate + '"]').attr('selected', 'selected');
 
             modal += '</div></div>';
             modal += '</section><footer class="modal-card-foot"><button type="submit" class="button is-success">Add New Deal</button><button class="button cancel-modal">Cancel</button></footer>';
