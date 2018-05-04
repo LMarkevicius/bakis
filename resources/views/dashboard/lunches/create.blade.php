@@ -400,9 +400,9 @@
               lunchwrap += '<div class="card-content"><div class="content"><div class="field">{{ Form::label('title[]', 'Lunch Title', ['class' => 'label']) }}<div class="control">{{ Form::textarea('title[]', null, ['class' => 'input field-title new-title', 'style' => 'height: 60px;']) }}</div></div></div>';
               lunchwrap += '<div class="content-weekday"></div>';
               lunchwrap += '<div class="field">{{ Form::label('price[]', 'Meal Price', ['class' => 'label']) }}<div class="control">{{ Form::number('price[]', null, ['class' => 'input field-price new-price', 'step' => '0.01']) }}</div></div>';
-              lunchwrap += '{{ Form::text('image_xpath[]', null, ['class' => 'image-xpath new-image-xpath']) }}';
-              lunchwrap += '{{ Form::text('title_xpath[]', null, ['class' => 'title-xpath new-title-xpath']) }}';
-              lunchwrap += '{{ Form::text('price_xpath[]', null, ['class' => 'price-xpath new-price-xpath']) }}';
+              lunchwrap += '{{ Form::hidden('image_xpath[]', null, ['class' => 'image-xpath new-image-xpath']) }}';
+              lunchwrap += '{{ Form::hidden('title_xpath[]', null, ['class' => 'title-xpath new-title-xpath']) }}';
+              lunchwrap += '{{ Form::hidden('price_xpath[]', null, ['class' => 'price-xpath new-price-xpath']) }}';
               lunchwrap += '</div></div></div>';
 
           var wrapper = document.createElement('div');

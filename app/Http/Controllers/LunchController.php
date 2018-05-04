@@ -118,7 +118,7 @@ class LunchController extends Controller
         case 1:
 
           $this->validate($request, [
-            'title.0'         => 'required|max:255',
+            'title.0'         => 'required|max:255|unique:lunches,title',
             'image.0'         => 'sometimes',
             'price.0'         => 'required',
             'weekday.0'       => 'required|max:255'
@@ -131,7 +131,7 @@ class LunchController extends Controller
           // if ($request->dataurl) {
           //   $lunch->price = $request->price[0];
           // } else {
-            $lunch->price = $request->price[0];
+          $lunch->price = $request->price[0];
           // }
           $lunch->price = $request->price[0];
           $lunch->weekday = $request->weekday[0];
@@ -207,7 +207,7 @@ class LunchController extends Controller
               "title.$i"          => 'required|max:255|unique:lunches,title',
               "image.$i"          => 'sometimes',
               "price.$i"          => 'required',
-              "weekday.0"        => 'required|max:255'
+              "weekday.0"         => 'required|max:255'
             ]);
 
             // $fixed_title = str_replace('""', "''", $request->title[$i]);
