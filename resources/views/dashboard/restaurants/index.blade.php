@@ -37,6 +37,18 @@
 
   <div class="row">
     <div class="col-sm-12 col-md-8 col-md-offset-2">
+      <h2 class="subtitle">Results</h2>
+
+      
+      {{-- {{ preg_match("/\d{4}\-\d{2}\-\d{2} ([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?/", $content, $matches) }} --}}
+      {{-- @foreach ($matches as $m)
+        {{ $m }}
+      @endforeach --}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-md-offset-2">
       <table class="table is-striped is-fullwidth">
         <thead>
           <tr>

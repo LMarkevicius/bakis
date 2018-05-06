@@ -9,6 +9,7 @@ use App\Contact;
 use Storage;
 use Session;
 use Image;
+use File;
 
 class AdminController extends Controller
 {
@@ -20,6 +21,15 @@ class AdminController extends Controller
     public function index()
     {
       $restaurants = Restaurant::withCount('lunches')->orderBy('lunches_count', 'desc')->get();
+
+      $log = File::get("images/check_lunches_log.txt");
+
+      $exploded = explode("**", $log);
+      $last = $exploded[count($exploded) - 1];
+      dd($last);
+      $count = substr_count($last, "Match");
+
+      dd($count);
 
       return view('dashboard.restaurants.index')->withRestaurants($restaurants);
     }
@@ -287,7 +297,7 @@ class AdminController extends Controller
       $this->validate($request, [
         'name'    => 'required|max:255',
         'website' => 'required|max:255',
-        'logo'    => 'required|image'
+        'logo'    => 'sometimes|image'
       ]);
 
       $restaurant = Restaurant::find($id);
@@ -295,16 +305,19 @@ class AdminController extends Controller
       $restaurant->name = $request->name;
       $restaurant->website = $request->website;
 
-      $logo = $request->file('logo');
-      $filename = time() . '.' . $logo->getClientOriginalExtension();
-      $location = public_path('images/') . $filename;
-      Image::make($logo)->save($location);
+      if ($request->has('logo')) {
+        $logo = $request->file('logo');
+        $filename = time() . '.' . $logo->getClientOriginalExtension();
+        $location = public_path('images/') . $filename;
+        Image::make($logo)->save($location);
 
-      $oldFilename = $restaurant->logo;
+        $oldFilename = $restaurant->logo;
 
-      $restaurant->logo = $filename;
+        $restaurant->logo = $filename;
 
-      Storage::delete($oldFilename);
+        Storage::delete($oldFilename);
+      }
+
 
       $restaurant->save();
 

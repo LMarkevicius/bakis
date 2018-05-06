@@ -118,7 +118,7 @@ class LunchController extends Controller
         case 1:
 
           $this->validate($request, [
-            'title.0'         => 'required|max:255|unique:lunches,title',
+            'title.0'         => 'required|max:255',
             'image.0'         => 'sometimes',
             'price.0'         => 'required',
             'weekday.0'       => 'required|max:255'
@@ -147,7 +147,7 @@ class LunchController extends Controller
 
             $lunch->image = $filename;
           } elseif (!empty($request->photo_url[0])) {
-            // dd($request->photo_url);
+            // dd($request->photo_url[0]);
             // dd(str_replace('.', '', strstr(basename($request->photo_url[0]), '.')));
             $extension = str_replace('.', '', strstr(basename($request->photo_url[0]), '.'));
             $filename = time() . '.' . $extension;
@@ -159,8 +159,8 @@ class LunchController extends Controller
             array_pop($exploded);
             array_push($exploded, $last);
 
-            // dd($exploded);
             $imploded = implode('/', $exploded);
+            // dd($imploded);
 
             Image::make($imploded)->save($location);
 
