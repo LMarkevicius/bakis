@@ -30,7 +30,7 @@ class AdminController extends Controller
       $count = substr_count($last, "Match");
 
       dd($count);
-
+      // asdasdasdasd
       return view('dashboard.restaurants.index')->withRestaurants($restaurants);
     }
 
