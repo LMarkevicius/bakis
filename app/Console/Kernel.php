@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('CheckForNewLunches')->runInBackground()->everyMinute();
+        $schedule->command('CheckForNewLunches')->runInBackground()->hourly();
     }
 
     /**
