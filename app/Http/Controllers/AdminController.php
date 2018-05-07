@@ -22,14 +22,14 @@ class AdminController extends Controller
     {
       $restaurants = Restaurant::withCount('lunches')->orderBy('lunches_count', 'desc')->get();
 
-      $log = File::get("images/check_lunches_log.txt");
+      // $log = File::get("images/check_lunches_log.txt");
+      //
+      // $exploded = explode("**", $log);
+      // $last = $exploded[count($exploded) - 1];
+      // // dd($last);
+      // $count = substr_count($last, "Match");
 
-      $exploded = explode("**", $log);
-      $last = $exploded[count($exploded) - 1];
-      dd($last);
-      $count = substr_count($last, "Match");
-
-      dd($count);
+      // dd($count);
       // asdasdasdasd
       return view('dashboard.restaurants.index')->withRestaurants($restaurants);
     }
