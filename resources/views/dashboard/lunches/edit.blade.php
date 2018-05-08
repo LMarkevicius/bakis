@@ -34,8 +34,11 @@
             <div class="field">
               {{ Form::label('title', 'Lunch Title', ['class' => 'label']) }}
 
-              <div class="control">
-                {{ Form::text('title', null, ['class' => 'input']) }}
+              <div class="control is-expanded has-icons-left">
+                {{ Form::text('title', null, ['class' => 'input', 'placeholder' => 'Lietiniai su varške']) }}
+                <span class="icon is-small is-left">
+                  <i class="fas fa-utensils"></i>
+                </span>
               </div>
             </div>
 
@@ -58,15 +61,18 @@
             <div class="field">
               {{ Form::label('price', 'Meal Price', ['class' => 'label']) }}
 
-              <div class="control">
-                {{ Form::number('price', null, ['class' => 'input', 'step' => '0.01']) }}
+              <div class="control is-expanded has-icons-left">
+                {{ Form::number('price', null, ['class' => 'input', 'step' => '0.01', 'placeholder' => '3.99']) }}
+                <span class="icon is-small is-left">
+                  <i class="fas fa-dollar-sign"></i>
+                </span>
               </div>
             </div>
 
             <div class="field">
               {{ Form::label('weekday', 'Week Day', ['class' => 'label']) }}
 
-              <div class="control">
+              <div class="control has-icons-left">
                 <div class="select">
                   {{-- {{ Form::text('a', date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l'), ['class' => 'input']) }} --}}
                   {{ Form::select('weekday', [
@@ -77,6 +83,10 @@
                     'Friday' => 'Friday',
                   ], $lunch->weekday) }}
                 </div>
+
+                <span class="icon is-small is-left">
+                  <i class="fas fa-calendar-alt"></i>
+                </span>
               </div>
             </div>
 

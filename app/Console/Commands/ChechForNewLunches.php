@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Config;
 use App\Lunch;
 use App\Xpath;
 use App\Restaurant;
+use App\Settings;
 use Image;
 use Storage;
 // use Log;
@@ -270,6 +271,10 @@ class ChechForNewLunches extends Command
 
 
         }
+
+        $settings = Settings::find(1);
+        Storage::append('check_lunches_log.txt', date('H:m:s'));
+        sleep($settings->sleep);
       }
     }
 }

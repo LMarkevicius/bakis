@@ -34,24 +34,33 @@
             <div class="field">
               {{ Form::label('address', 'Restaurant Address', ['class' => 'label']) }}
 
-              <div class="control">
-                {{ Form::text('address', null, ['class' => 'input']) }}
+              <div class="control is-expanded has-icons-left">
+                {{ Form::text('address', null, ['class' => 'input', 'placeholder' => 'Žirmūnų g. 15']) }}
+                <span class="icon is-small is-left">
+                  <i class="fas fa-map-marker"></i>
+                </span>
               </div>
             </div>
 
             <div class="field">
               {{ Form::label('city', 'Restaurant City', ['class' => 'label']) }}
 
-              <div class="control">
-                {{ Form::text('city', null, ['class' => 'input']) }}
+              <div class="control is-expanded has-icons-left">
+                {{ Form::text('city', null, ['class' => 'input', 'placeholder' => 'Vilnius']) }}
+                <span class="icon is-small is-left">
+                  <i class="fas fa-building"></i>
+                </span>
               </div>
             </div>
 
             <div class="field">
               {{ Form::label('phone', 'Phone Number', ['class' => 'label']) }}
 
-              <div class="control">
-                {{ Form::text('phone', null, ['class' => 'input']) }}
+              <div class="control is-expanded has-icons-left">
+                {{ Form::number('phone', null, ['class' => 'input', 'placeholder' => '+37067500000']) }}
+                <span class="icon is-small is-left">
+                  <i class="fas fa-building"></i>
+                </span>
               </div>
             </div>
 

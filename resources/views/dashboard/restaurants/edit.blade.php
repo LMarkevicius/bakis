@@ -33,16 +33,22 @@
             <div class="field">
               {{ Form::label('name', 'Website Name', ['class' => 'label']) }}
 
-              <div class="control">
+              <div class="control is-expanded has-icons-left">
                 {{ Form::text('name', null, ['class' => 'input']) }}
+                <span class="icon is-small is-left">
+                  <i class="fas fa-utensils"></i>
+                </span>
               </div>
             </div>
 
             <div class="field">
               {{ Form::label('website', 'Website URL', ['class' => 'label']) }}
 
-              <div class="control">
+              <div class="control is-expanded has-icons-left">
                 {{ Form::text('website', null, ['class' => 'input']) }}
+                <span class="icon is-small is-left">
+                  <i class="fas fa-globe"></i>
+                </span>
               </div>
             </div>
 
@@ -346,18 +352,18 @@
             modal += '<div class="row"><div class="col-md-6">';
             modal += '<h2>Old Lunch Deal</h2>'
 
-            modal += '<div class="field"><label class="label">Lunch Title</label><div class="control"><input type="text" value="' + lunch_title + '" class="input field-title" readonly="readonly" /></div></div>';
-            modal += '<div class="field"><label class="label">Meal Price</label><div class="control"><input type="number" step="0.01" value="' + lunch_price + '" class="input field-price" readonly="readonly" /></div></div>';
-            modal += '<div class="field"><label class="label">Weekday</label><div class="control"><input type="text" value="' + lunch_weekday + '" class="input" readonly="readonly" /></div></div>';
+            modal += '<div class="field"><label class="label">Lunch Title</label><div class="control is-expanded has-icons-left"><input type="text" value="' + lunch_title + '" class="input field-title" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div>';
+            modal += '<div class="field"><label class="label">Meal Price</label><div class="control is-expanded has-icons-left"><input type="number" step="0.01" value="' + lunch_price + '" class="input field-price" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
+            modal += '<div class="field"><label class="label">Weekday</label><div class="control is-expanded has-icons-left"><input type="text" value="' + lunch_weekday + '" class="input" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
             modal += '<input type="hidden" name="lunch_id" value="' + lunch_id + '" />';
 
             modal += '</div><div class="col-md-6">';
             modal += '<h2>New Lunch Deal</h2>';
 
-            modal += '<div class="field"><label name="title" class="label">Lunch Title</label><div class="control"><input type="text" name="title" value="' + msg['new_lunchdeal']['title'] + '" class="input field-title" /></div></div>';
-            modal += '<div class="field"><label name="price" class="label">Meal Price</label><div class="control"><input type="number" name="price" step="0.01" value="' + msg['new_lunchdeal']['price'] + '" class="input field-price" /></div></div>';
+            modal += '<div class="field"><label name="title" class="label">Lunch Title</label><div class="control is-expanded has-icons-left"><input type="text" name="title" value="' + msg['new_lunchdeal']['title'] + '" class="input field-title" placeholder="Lietiniai su varške" /><span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div>';
+            modal += '<div class="field"><label name="price" class="label">Meal Price</label><div class="control is-expanded has-icons-left"><input type="number" name="price" step="0.01" value="' + msg['new_lunchdeal']['price'] + '" class="input field-price" placeholder="3.99" /><span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
             modal += "<input type='hidden' name='image' value='" + msg['new_lunchdeal']['image'] + "' />";
-            modal += '<div class="field"><label name="weekday" class="label">Weekday</label><div class="control"><div class="select">{{ Form::select('weekday', ["Monday" => "Monday", "Tuesday" => "Tuesday", "Wednesday" => "Wednesday", "Thursday" => "Thursday", "Friday" => "Friday"], date("l") == "Saturday" || date("l") == "Sunday" ? "Monday" : date("l")) }}</div></div></div>';
+            modal += '<div class="field"><label name="weekday" class="label">Weekday</label><div class="control has-icons-left"><div class="select">{{ Form::select('weekday', ["Monday" => "Monday", "Tuesday" => "Tuesday", "Wednesday" => "Wednesday", "Thursday" => "Thursday", "Friday" => "Friday"], date("l") == "Saturday" || date("l") == "Sunday" ? "Monday" : date("l")) }}</div><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
             // modal += '<input type="hidden" name="lunch_id" id="lunch_id" value="' + lunch_id + '" />';
             var todaysdate = "{{ date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l') }}";
             // console.log(todaysdate);

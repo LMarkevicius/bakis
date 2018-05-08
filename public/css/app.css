@@ -13252,6 +13252,14 @@ label.panel-block:hover {
   height: 300px;
 }
 
+.has-margin-top {
+  margin-top: 40px;
+}
+
+.has-margin-top-little {
+  margin-top: 20px;
+}
+
 .margin-bottom {
   margin-bottom: 30px;
 }

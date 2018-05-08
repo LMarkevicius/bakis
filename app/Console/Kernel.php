@@ -5,6 +5,8 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+use App\Settings;
+
 class Kernel extends ConsoleKernel
 {
     /**
@@ -24,7 +26,21 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('CheckForNewLunches')->runInBackground()->hourly();
+      $settings = Settings::find(1);
+
+      if (!empty($settings->daily)) {
+        dd("ol");
+        $schedule->command('CheckForNewLunches')->runInBackground()->dailyAt($settings->daily)->timezone('Europe/Vilnius');
+      }
+
+      if (!empty($settings->hourly)) {
+        $hour = "0 */" . $settings->hourly . " * * *";
+        // dd($hour);
+
+        $schedule->command('CheckForNewLunches')->runInBackground()->timezone('Europe/Vilnius')->cron($hour);
+      }
+
+        // $schedule->command('CheckForNewLunches')->runInBackground()->hourly();
     }
 
     /**

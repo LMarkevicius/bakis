@@ -36,7 +36,7 @@
 
           <div class="field is-grouped is-grouped-centered">
             <p class="control">
-              <a href="#" class="button is-primary is-small is-active" id="automatic">
+              <a href="#" class="button is-danger is-small" id="automatic">
                 <span class="icon">
                   <i class="fas fa-magic"></i>
                 </span>
@@ -45,7 +45,7 @@
             </p>
 
             <p class="control">
-              <a href="#" class="button is-primary is-small" id="manual">
+              <a href="#" class="button is-light is-small" id="manual">
                 <span class="icon">
                   <i class="fas fa-pencil-alt"></i>
                 </span>
@@ -70,8 +70,11 @@
                   <div class="field">
                     {{ Form::label('dataurl', 'Website Data URL', ['class' => 'label']) }}
 
-                    <div class="control">
-                      {{ Form::text('dataurl', null, ['class' => 'input', 'id' => 'dataurl']) }}
+                    <div class="control is-expanded has-icons-left">
+                      {{ Form::text('dataurl', null, ['class' => 'input', 'id' => 'dataurl', 'placeholder' => 'https://www.lacrepe.lt/lt/dienos-pietus']) }}
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-globe"></i>
+                      </span>
                     </div><!--.control -->
                   </div> <!-- .field -->
 
@@ -126,7 +129,7 @@
                     <div class="field">
                       {{ Form::label('weekday[]', 'Week Day', ['class' => 'label']) }}
 
-                      <div class="control">
+                      <div class="control has-icons-left">
                         <div class="select">
                           {{-- {{ Form::text('a', date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l'), ['class' => 'input']) }} --}}
                           {{ Form::select('weekday[]', [
@@ -137,6 +140,10 @@
                             'Friday' => 'Friday',
                           ], date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l')) }}
                         </div>
+
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-calendar-alt"></i>
+                        </span>
 
                       </div> <!-- .control -->
                     </div> <!-- .field -->
@@ -170,7 +177,7 @@
             </div> <!-- .automatic-lunch-container -->
 
             <div class="field">
-              <a href="#" id="add-more" class="button is-primary is-small is-hidden">
+              <a href="#" id="add-more" class="button is-primary is-small is-hidden has-margin-top-little">
                 <span class="icon">
                   <i class="fas fa-plus"></i>
                 </span>
@@ -217,6 +224,8 @@
 
   <script type="text/javascript">
     $(document).ready(function(e) {
+
+
       // var content = document.querySelectorAll(".fetch-container");
 
       // $('#xpath').on('click', function(e) {
@@ -308,13 +317,13 @@
 
       $('.lunch-container #fetch_count').val(fetch_count);
 
-      var lunchfields = '<div class="field">{{ Form::label('title[]', 'Lunch Title', ['class' => 'label']) }}<div class="control">{{ Form::text('title[]', null, ['class' => 'input field-title']) }}</div></div>';
-          lunchfields += '<div class="file has-name"><label class="file-label"><input type="file" name="image[]" class="file-input" id="logo-file"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Choose an image...</span></span><span class="file-name" id="file-name"></span></label></div>';
-          lunchfields += '<div class="field">{{ Form::label('price[]', 'Meal Price', ['class' => 'label']) }}<div class="control">{{ Form::number('price[]', null, ['class' => 'input field-price', 'step' => '0.01']) }}</div></div>';
+      var lunchfields = '<div class="field">{{ Form::label('title[]', 'Lunch Title', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::text('title[]', null, ['class' => 'input field-title', 'placeholder' => 'Lietiniai su varške']) }}<span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div>';
+          lunchfields += '<div class="field file has-name"><label class="file-label"><input type="file" name="image[]" class="file-input" id="logo-file"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Choose an image...</span></span><span class="file-name" id="file-name"></span></label></div>';
+          lunchfields += '<div class="field">{{ Form::label('price[]', 'Meal Price', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::number('price[]', null, ['class' => 'input field-price', 'step' => '0.01', 'placeholder' => '3.99']) }}<span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
 
-          weekdayfield = '<div class="field">{{ Form::label('weekday[]', 'Week Day', ['class' => 'label']) }}<div class="control"><div class="select">{{ Form::select('weekday[]', ["Monday" => "Monday", "Tuesday" => "Tuesday", "Wednesday" => "Wednesday", "Thursday" => "Thursday", "Friday" => "Friday"], date("l") == "Saturday" || date("l") == "Sunday" ? "Monday" : date("l")) }}</div></div></div>';
+          weekdayfield = '<div class="field">{{ Form::label('weekday[]', 'Week Day', ['class' => 'label']) }}<div class="control has-icons-left"><div class="select">{{ Form::select('weekday[]', ["Monday" => "Monday", "Tuesday" => "Tuesday", "Wednesday" => "Wednesday", "Thursday" => "Thursday", "Friday" => "Friday"], date("l") == "Saturday" || date("l") == "Sunday" ? "Monday" : date("l")) }}</div><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
 
-      var removebutton = '<a href="#" class="remove-meal button is-danger is-small"><span class="icon"><i class="fas fa-trash-alt"></i></span>Remove Deal</a>';
+      var removebutton = '<a href="#" class="remove-meal button is-danger is-small is-rounded"><span class="icon"><i class="fas fa-times-circle"></i></span>Remove</a>';
 
       $('.lunch-deals #count-deals').val(x);
 
@@ -325,17 +334,25 @@
 
         var lunchdeal = lunchfields;
             lunchdeal += weekdayfield;
-            lunchdeal += removebutton;
+            // lunchdeal += removebutton;
 
-        $('.lunch-deals').append('<div><h2 class="subtitle is-5">' + x + ' meal</h2>' + lunchdeal + '</div>');
+        $('.lunch-deals').append('<div class="field has-margin-top"><h2 class="subtitle is-5">' + x + ' meal ' + removebutton + '</h2>' + lunchdeal + '</div>');
 
         $('.lunch-deals #count-deals').val(x);
+
+        $('.file-input').on('change', function () {
+          // console.log($(this)[0].files[0].length);
+          // console.log($(this).siblings('.file-name'));
+          // if($(this)[0].files[0].length > 0) {
+          $(this).siblings('.file-name').text($(this)[0].files[0].name);
+          // }
+        });
       });
 
       $('.lunch-container').on('click', '.remove-meal', function(e) {
         e.preventDefault();
 
-        $(this).parent('div').remove();
+        $(this).parent('h2').parent('div').remove();
 
         x--;
         $('.lunch-deals #count-deals').val(x);
@@ -367,13 +384,31 @@
 
           $('#add-more').removeClass('is-hidden');
 
-          $('#manual').addClass('is-active');
-          $('#automatic').removeClass('is-active');
+          $('#manual').addClass('is-danger');
+          $('#manual').removeClass('is-light');
+          $('#automatic').removeClass('is-danger');
+          $('#automatic').addClass('is-light');
 
           if ($('.manual-lunch-container .lunch-deals').length == 0) {
             $('.manual-lunch-container').prepend(content);
             $('.automatic-lunch-container .lunch-deals').remove();
             x = 1;
+
+            // var file = document.getElementsByClassName("file-input");
+            $('.file-input').on('change', function () {
+              // console.log($(this)[0].files[0].length);
+              // console.log($(this).siblings('.file-name'));
+              // if($(this)[0].files[0].length > 0) {
+              $(this).siblings('.file-name').text($(this)[0].files[0].name);
+              // }
+            });
+            // console.log(file);
+            // file.onchange = function(){
+            //   console.log("YRA");
+            //   if(file.files.length > 0) {
+            //     document.getElementById('file-name').innerHTML = file.files[0].name;
+            //   }
+            // };
           }
         }
       });
@@ -394,8 +429,10 @@
 
           $('#add-more').addClass('is-hidden');
 
-          $('#manual').removeClass('is-active');
-          $('#automatic').addClass('is-active');
+          $('#manual').addClass('is-light');
+          $('#manual').removeClass('is-danger');
+          $('#automatic').removeClass('is-light');
+          $('#automatic').addClass('is-danger');
 
           if ($('.automatic-lunch-container .lunch-deals').length == 0) {
             $('.automatic-lunch-container .auto-lunch-cont').append(auto_content);
@@ -430,9 +467,9 @@
           var lunchwrap = '<div class="col-xs-12 col-sm-6 margin-bottom"><div class="card">';
               lunchwrap += '<div class="card-image new-image"><button class="delete-deal button is-danger is-rounded"><span class="icon"><i class="fas fa-times"></i></span></button><figure class="image is-4by3"><img src=""></figure></div>';
               lunchwrap += '{{ Form::hidden('photo_url[]', null, ['class' => 'photo-url new-photo-url']) }}';
-              lunchwrap += '<div class="card-content"><div class="content"><div class="field">{{ Form::label('title[]', 'Lunch Title', ['class' => 'label']) }}<div class="control">{{ Form::textarea('title[]', null, ['class' => 'input field-title new-title', 'style' => 'height: 60px;']) }}</div></div></div>';
+              lunchwrap += '<div class="card-content"><div class="content"><div class="field">{{ Form::label('title[]', 'Lunch Title', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::textarea('title[]', null, ['class' => 'input field-title new-title', 'style' => 'height: 60px;', 'placeholder' => 'Lietiniai su varške']) }}<span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div></div>';
               lunchwrap += '<div class="content-weekday"></div>';
-              lunchwrap += '<div class="field">{{ Form::label('price[]', 'Meal Price', ['class' => 'label']) }}<div class="control">{{ Form::number('price[]', null, ['class' => 'input field-price new-price', 'step' => '0.01']) }}</div></div>';
+              lunchwrap += '<div class="field">{{ Form::label('price[]', 'Meal Price', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::number('price[]', null, ['class' => 'input field-price new-price', 'step' => '0.01', 'placeholder' => '3.99']) }}<span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
               lunchwrap += '{{ Form::hidden('image_xpath[]', null, ['class' => 'image-xpath new-image-xpath']) }}';
               lunchwrap += '{{ Form::hidden('title_xpath[]', null, ['class' => 'title-xpath new-title-xpath']) }}';
               lunchwrap += '{{ Form::hidden('price_xpath[]', null, ['class' => 'price-xpath new-price-xpath']) }}';

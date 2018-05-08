@@ -42,6 +42,10 @@
             Dashboard
           </a>
 
+          <a class="navbar-item {{ Request::is('dashboard/settings') ? 'is-active' : '' }}" href="{{ route('settings.edit') }}">
+            Settings
+          </a>
+
           <hr class="navbar-divider">
 
           <div class="navbar-item">
