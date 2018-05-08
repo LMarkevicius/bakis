@@ -4,172 +4,199 @@
 
 @section('section')
 
-  <section class="hero">
-    <div class="hero-body has-text-centered">
-      <h1 class="title">
-        Add New Lunch Deal(s)
-      </h1>
+  <section class="hero is-dark">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Add New Lunch Deal(s)
+        </h1>
 
-      <div class="field is-grouped is-grouped-centered">
-        <p class="control">
-          <a href="#" class="button is-primary is-small" id="automatic">
-            <span class="icon">
-              <i class="fas fa-magic"></i>
-            </span>
-            Automatically
-          </a>
-        </p>
-
-        <p class="control">
-          <a href="#" class="button is-primary is-small" id="manual">
-            <span class="icon">
-              <i class="fas fa-pencil-alt"></i>
-            </span>
-            Manually
-          </a>
-        </p>
+        <h2 class="subtitle">
+          <nav class="breadcrumb is-medium" aria-label="breadcrumbs">
+            <ul>
+              <li><a href="{{ route('dashboard.index') }}">Admin Dashboard</a></li>
+              <li><a href="{{ route('dashboard.edit', $restaurantId) }}">Edit Restaurant</a></li>
+              <li class="is-active"><a href="" aria-current="page">Add Lunches</a></li>
+            </ul>
+          </nav>
+        </h2>
       </div>
     </div>
   </section>
 
-  <div class="row">
-    <div class="col-xs-12 lunch-container">
-      {!! Form::open(['route' => ['lunch.store', $restaurantId], 'files' => true]) !!}
-        <div class="manual-lunch-container is-hidden">
+  <section class="section">
 
-        </div> <!-- .manual-lunch-container -->
+    <div class="container">
 
-        <div class="automatic-lunch-container">
-          <div class="row">
+      <section class="hero">
+        <div class="hero-body has-text-centered">
+          <h1 class="title">
+            Choose a method
+          </h1>
 
-            <div class="col-md-4 auto-lunch-cont">
-              <div class="field">
-                {{ Form::label('dataurl', 'Website Data URL', ['class' => 'label']) }}
+          <div class="field is-grouped is-grouped-centered">
+            <p class="control">
+              <a href="#" class="button is-primary is-small is-active" id="automatic">
+                <span class="icon">
+                  <i class="fas fa-magic"></i>
+                </span>
+                Automatically
+              </a>
+            </p>
 
-                <div class="control">
-                  {{ Form::text('dataurl', null, ['class' => 'input', 'id' => 'dataurl']) }}
-                </div><!--.control -->
-              </div> <!-- .field -->
+            <p class="control">
+              <a href="#" class="button is-primary is-small" id="manual">
+                <span class="icon">
+                  <i class="fas fa-pencil-alt"></i>
+                </span>
+                Manually
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
 
-              <div class="field">
-                <a href="#" class="button is-primary" id="fetch">
-                  <span class="icon left">
+      <div class="row">
+        <div class="col-xs-12 lunch-container">
+          {!! Form::open(['route' => ['lunch.store', $restaurantId], 'files' => true]) !!}
+            <div class="manual-lunch-container is-hidden">
 
-                  </span>
-                  Fetch
-                </a>
-              </div> <!-- .field -->
+            </div> <!-- .manual-lunch-container -->
 
-              {{-- <div class="field">
-                <a href="#" class="button is-primary" id="xpath">
-                  XPath
-                </a>
-              </div> <!-- .field --> --}}
+            <div class="automatic-lunch-container">
+              <div class="row">
 
-              <div class="lunch-deals">
-                {{-- <div class="field">
-                  {{ Form::label('title[]', 'Lunch Title', ['class' => 'label']) }}
+                <div class="col-md-4 auto-lunch-cont">
+                  <div class="field">
+                    {{ Form::label('dataurl', 'Website Data URL', ['class' => 'label']) }}
 
-                  <div class="control">
-                    {{ Form::text('title[]', null, ['class' => 'input field-title']) }}
-                  </div> <!-- .control -->
-                </div> <!-- .field -->
+                    <div class="control">
+                      {{ Form::text('dataurl', null, ['class' => 'input', 'id' => 'dataurl']) }}
+                    </div><!--.control -->
+                  </div> <!-- .field -->
 
-                <div class="file has-name">
-                  <label class="file-label">
-                    <input type="file" name="image[]" class="file-input" id="logo-file">
+                  <div class="field">
+                    <a href="#" class="button is-primary" id="fetch">
+                      <span class="icon left">
 
-                    <span class="file-cta">
-                      <span class="file-icon">
-                        <i class="fas fa-upload"></i>
                       </span>
+                      Fetch
+                    </a>
+                  </div> <!-- .field -->
 
-                      <span class="file-label">Choose an image...</span>
-                    </span>
+                  {{-- <div class="field">
+                    <a href="#" class="button is-primary" id="xpath">
+                      XPath
+                    </a>
+                  </div> <!-- .field --> --}}
 
-                    <span class="file-name" id="file-name"></span>
-                  </label>
-                </div> <!-- .file has-name -->
+                  <div class="lunch-deals">
+                    {{-- <div class="field">
+                      {{ Form::label('title[]', 'Lunch Title', ['class' => 'label']) }}
 
-                <div class="field">
-                  {{ Form::label('price[]', 'Meal Price', ['class' => 'label']) }}
+                      <div class="control">
+                        {{ Form::text('title[]', null, ['class' => 'input field-title']) }}
+                      </div> <!-- .control -->
+                    </div> <!-- .field -->
 
-                  <div class="control">
-                    {{ Form::number('price[]', null, ['class' => 'input field-price', 'step' => '0.01']) }}
-                  </div> <!-- .control -->
-                </div> <!-- .field --> --}}
+                    <div class="file has-name">
+                      <label class="file-label">
+                        <input type="file" name="image[]" class="file-input" id="logo-file">
 
-                <div class="field">
-                  {{ Form::label('weekday[]', 'Week Day', ['class' => 'label']) }}
+                        <span class="file-cta">
+                          <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                          </span>
 
-                  <div class="control">
-                    <div class="select">
-                      {{-- {{ Form::text('a', date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l'), ['class' => 'input']) }} --}}
-                      {{ Form::select('weekday[]', [
-                        'Monday' => 'Monday',
-                        'Tuesday' => 'Tuesday',
-                        'Wednesday' => 'Wednesday',
-                        'Thursday' => 'Thursday',
-                        'Friday' => 'Friday',
-                      ], date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l')) }}
-                    </div>
+                          <span class="file-label">Choose an image...</span>
+                        </span>
 
-                  </div> <!-- .control -->
-                </div> <!-- .field -->
+                        <span class="file-name" id="file-name"></span>
+                      </label>
+                    </div> <!-- .file has-name -->
 
-                {{ Form::hidden('count_deals', null, ['id' => 'count-deals']) }}
-                {{-- {{ Form::hidden('photo_url[]', null, ['id' => 'photo-url']) }} --}}
+                    <div class="field">
+                      {{ Form::label('price[]', 'Meal Price', ['class' => 'label']) }}
 
-                {{-- <h2>XPath</h2> --}}
-                {{-- {{ Form::text('title_xpath[]', null, ['id' => 'title-xpath']) }}
-                {{ Form::text('image_xpath[]', null, ['id' => 'image-xpath']) }}
-                {{ Form::text('price_xpath[]', null, ['id' => 'price-xpath']) }} --}}
-                {{-- {{ Form::text('imgcount[]', null, ['id' => 'imgcount']) }} --}}
+                      <div class="control">
+                        {{ Form::number('price[]', null, ['class' => 'input field-price', 'step' => '0.01']) }}
+                      </div> <!-- .control -->
+                    </div> <!-- .field --> --}}
 
-              </div> <!-- .lunch-deals -->
-            </div> <!-- .col-md-4 auto-lunch-cont -->
+                    <div class="field">
+                      {{ Form::label('weekday[]', 'Week Day', ['class' => 'label']) }}
 
-            <div class="col-md-8">
-              <div class="opa-results">
+                      <div class="control">
+                        <div class="select">
+                          {{-- {{ Form::text('a', date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l'), ['class' => 'input']) }} --}}
+                          {{ Form::select('weekday[]', [
+                            'Monday' => 'Monday',
+                            'Tuesday' => 'Tuesday',
+                            'Wednesday' => 'Wednesday',
+                            'Thursday' => 'Thursday',
+                            'Friday' => 'Friday',
+                          ], date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l')) }}
+                        </div>
 
-              </div>
+                      </div> <!-- .control -->
+                    </div> <!-- .field -->
 
-              <div class="results" style="margin-top: 30px;"> <!-- background: yellow; -->
+                    {{ Form::hidden('count_deals', null, ['id' => 'count-deals']) }}
+                    {{-- {{ Form::hidden('photo_url[]', null, ['id' => 'photo-url']) }} --}}
 
-              </div> <!-- .results -->
-            </div> <!-- .col-md-8 -->
+                    {{-- <h2>XPath</h2> --}}
+                    {{-- {{ Form::text('title_xpath[]', null, ['id' => 'title-xpath']) }}
+                    {{ Form::text('image_xpath[]', null, ['id' => 'image-xpath']) }}
+                    {{ Form::text('price_xpath[]', null, ['id' => 'price-xpath']) }} --}}
+                    {{-- {{ Form::text('imgcount[]', null, ['id' => 'imgcount']) }} --}}
 
-            <div class="html-content">
+                  </div> <!-- .lunch-deals -->
+                </div> <!-- .col-md-4 auto-lunch-cont -->
 
-            </div> <!-- .html-content -->
-          </div> <!-- .row -->
-        </div> <!-- .automatic-lunch-container -->
+                <div class="col-md-8">
+                  <div class="opa-results">
 
-        <div class="field">
-          <a href="#" id="add-more" class="button is-primary is-small is-hidden">
-            <span class="icon">
-              <i class="fas fa-plus"></i>
-            </span>
-            Add Another Deal
-          </a>
-        </div> <!-- .field -->
+                  </div>
 
-        {{-- {{ Form::text('fetch_count', null, ['id' => 'fetch_count']) }} --}}
+                  <div class="results" style="margin-top: 30px;"> <!-- background: yellow; -->
 
-        <div class="field is-grouped is-grouped-centered">
-          <p class="control">
-            {{ Form::submit('Add New Deal', ['class' => 'button is-success']) }}
-          </p>
+                  </div> <!-- .results -->
+                </div> <!-- .col-md-8 -->
 
-          <p class="control">
-            <a href="{{ route('dashboard.edit', $restaurantId) }}" class="button is-light">Cancel</a>
-          </p>
-        </div> <!-- .field is-grouped is-grouped-centered -->
+                <div class="html-content">
 
-      {!! Form::close() !!}
+                </div> <!-- .html-content -->
+              </div> <!-- .row -->
+            </div> <!-- .automatic-lunch-container -->
 
-    </div> <!-- .col-xs-12 lunch-container-->
-  </div> <!-- .row -->
+            <div class="field">
+              <a href="#" id="add-more" class="button is-primary is-small is-hidden">
+                <span class="icon">
+                  <i class="fas fa-plus"></i>
+                </span>
+                Add Another Deal
+              </a>
+            </div> <!-- .field -->
+
+            {{-- {{ Form::text('fetch_count', null, ['id' => 'fetch_count']) }} --}}
+
+            <div class="field is-grouped is-grouped-centered">
+              <p class="control">
+                {{ Form::submit('Add New Deal', ['class' => 'button is-success']) }}
+              </p>
+
+              <p class="control">
+                <a href="{{ route('dashboard.edit', $restaurantId) }}" class="button is-light">Cancel</a>
+              </p>
+            </div> <!-- .field is-grouped is-grouped-centered -->
+
+          {!! Form::close() !!}
+
+        </div> <!-- .col-xs-12 lunch-container-->
+      </div> <!-- .row -->
+
+    </div>
+  </section>
 
   {{-- <section class="section">
     <div class="fetch-container" style="background: pink; padding:20px;">
@@ -340,6 +367,9 @@
 
           $('#add-more').removeClass('is-hidden');
 
+          $('#manual').addClass('is-active');
+          $('#automatic').removeClass('is-active');
+
           if ($('.manual-lunch-container .lunch-deals').length == 0) {
             $('.manual-lunch-container').prepend(content);
             $('.automatic-lunch-container .lunch-deals').remove();
@@ -363,6 +393,9 @@
           $('.automatic-lunch-container #dataurl').val('');
 
           $('#add-more').addClass('is-hidden');
+
+          $('#manual').removeClass('is-active');
+          $('#automatic').addClass('is-active');
 
           if ($('.automatic-lunch-container .lunch-deals').length == 0) {
             $('.automatic-lunch-container .auto-lunch-cont').append(auto_content);

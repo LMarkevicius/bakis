@@ -368,13 +368,19 @@ class LunchController extends Controller
     public function destroy($restaurant_id, $id)
     {
       $lunch = Lunch::find($id);
-      $xpath = Xpath::where('lunch_id', $id)->firstOrFail();
+      // $xpath = Xpath::where('lunch_id', $id)->firstOrFail();
+      $xpath = $lunch->xpaths;
+      if (!empty($xpath[0])) {
+        $xpath[0]->delete();
+      }
+      // dd($lunch, $xpath[0]);
+      // dd($xpath);
 
       if (!empty($lunch->image)) {
         Storage::delete($lunch->image);
       }
 
-      $xpath->delete();
+
       $lunch->delete();
 
       Session::flash('success', 'The lunch deal was successfully deleted!');

@@ -22,16 +22,19 @@ class AdminController extends Controller
     {
       $restaurants = Restaurant::withCount('lunches')->orderBy('lunches_count', 'desc')->get();
 
-      // $log = File::get("images/check_lunches_log.txt");
-      //
-      // $exploded = explode("**", $log);
-      // $last = $exploded[count($exploded) - 1];
-      // // dd($last);
-      // $count = substr_count($last, "Match");
+      $log = File::get("images/check_lunches_log.txt");
 
-      // dd($count);
+      $exploded = explode("**", $log);
+      $last = $exploded[count($exploded) - 1];
+      // dd($last);
+      $count['match'] = substr_count($last, "Match");
+      $count['exists'] = substr_count($last, "exists");
+      $count['updated'] = substr_count($last, "Updated");
+      $count['new'] = substr_count($last, "Days");
+
+      // dd($count['match'], $count['exists'], $count['updated'], $count['new']);
       // asdasdasdasd
-      return view('dashboard.restaurants.index')->withRestaurants($restaurants);
+      return view('dashboard.restaurants.index')->withRestaurants($restaurants)->withCount($count);
     }
 
     /**

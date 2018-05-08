@@ -17,11 +17,11 @@ Route::get('/todays-deals', ['as' => 'todays.deals', 'uses' => 'LunchController@
 Route::get('/all-deals', ['as' => 'all.deals', 'uses' => 'LunchController@alldeals']);
 // Route::get('/restaurant/{id}', ['as' => 'lunch.show', 'uses' => 'LunchController@show']);
 
-Route::get('/dasboard/restaurant/{restaurant_id}/lunch', ['as' => 'lunch.create', 'uses' => 'LunchController@create']);
-Route::post('/dasboard/restaurant/{restaurant_id}/lunch', ['as' => 'lunch.store', 'uses' => 'LunchController@store']);
-Route::get('/dasboard/restaurant/{restaurant_id}/lunch/{id}/edit', ['as' => 'lunch.edit', 'uses' => 'LunchController@edit']);
-Route::put('/dasboard/restaurant/{restaurant_id}/lunch/{id}', ['as' => 'lunch.update', 'uses' => 'LunchController@update']);
-Route::delete('/dasboard/restaurant/{restaurant_id}/lunch/{id}', ['as' => 'lunch.destroy', 'uses' => 'LunchController@destroy']);
+Route::get('/dashboard/restaurant/{restaurant_id}/lunch', ['as' => 'lunch.create', 'uses' => 'LunchController@create']);
+Route::post('/dashboard/restaurant/{restaurant_id}/lunch', ['as' => 'lunch.store', 'uses' => 'LunchController@store']);
+Route::get('/dashboard/restaurant/{restaurant_id}/lunch/{id}/edit', ['as' => 'lunch.edit', 'uses' => 'LunchController@edit']);
+Route::put('/dashboard/restaurant/{restaurant_id}/lunch/{id}', ['as' => 'lunch.update', 'uses' => 'LunchController@update']);
+Route::delete('/dashboard/restaurant/{restaurant_id}/lunch/{id}', ['as' => 'lunch.destroy', 'uses' => 'LunchController@destroy']);
 
 // Restaurants
 Route::get('/all_restaurants', ['as' => 'restaurant.index', 'uses' => 'RestaurantController@index']);

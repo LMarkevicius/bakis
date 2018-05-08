@@ -218,8 +218,8 @@ class ChechForNewLunches extends Command
 
                  $new_xpath->save();
 
-                 $lunch->delete();
-                 $xpath->delete();
+                 // $lunch->delete();
+                 // $xpath->delete();
 
                } else {
                  // Jei toks jau kazkur yra, pakeicia statusa
@@ -265,7 +265,7 @@ class ChechForNewLunches extends Command
              }
            }
          } else {
-
+           // ATSAKAS JEI NERANDA ISVIS TURINIO
          }
 
 

@@ -13,15 +13,21 @@
       @include('partials._messages')
     </div>
 
-    <section class="section">
+    @if (Request::is('dashboard/*'))
+      @yield('section')
+    @else
+      <section class="section">
 
-      <div class="container">
+        <div class="container">
 
-        @yield('section')
+          @yield('section')
 
-      </div>
+        </div>
 
       </section>
+    @endif
+
+
 
     @include('partials._footer')
 
