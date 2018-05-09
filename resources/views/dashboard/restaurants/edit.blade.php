@@ -23,6 +23,10 @@
     </div>
   </section>
 
+  <div class="container">
+    @include('partials._messages')
+  </div>
+
   <section class="section">
 
     <div class="container">
@@ -333,7 +337,16 @@
 
         },
         error: function (error) {
-          console.log(error);
+          console.log(error.statusText);
+          var error_message = '<p class="help is-danger">' + error.statusText + '</p>';
+          thiss.parent('td').append(error_message);
+          // console.log('yra err');
+          thiss.removeClass('is-light');
+          thiss.removeClass('is-success');
+          thiss.addClass('is-danger');
+
+          thiss.children('span').children().remove();
+          thiss.children('span').append('<i class="fas fa-times"></i>');
         }
       })
       .done(function (msg) {

@@ -9,13 +9,13 @@
 
     @include('partials._nav')
 
-    <div class="container">
-      @include('partials._messages')
-    </div>
-
     @if (Request::is('dashboard/*'))
       @yield('section')
     @else
+      <div class="container">
+        @include('partials._messages')
+      </div>
+
       <section class="section">
 
         <div class="container">

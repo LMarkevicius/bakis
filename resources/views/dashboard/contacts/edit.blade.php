@@ -24,6 +24,10 @@
     </div>
   </section>
 
+  <div class="container">
+    @include('partials._messages')
+  </div>
+
   <section class="section">
 
     <div class="container">
@@ -59,7 +63,7 @@
               <div class="control is-expanded has-icons-left">
                 {{ Form::text('phone', null, ['class' => 'input', 'placeholder' => '+37067500000']) }}
                 <span class="icon is-small is-left">
-                  <i class="fas fa-building"></i>
+                  <i class="fas fa-phone"></i>
                 </span>
               </div>
             </div>

@@ -13,6 +13,9 @@ class FetchController extends Controller
      */
     public function index(Request $request, $restaurantId)
     {
+      $this->validate($request, [
+        'dataurl' => 'required|url'
+      ]);
       $html = file_get_contents("$request->dataurl"); //get the html returned from the following url
 
       // $output = str_replace(array("\r\n", "\r", "\n"), "", $html);

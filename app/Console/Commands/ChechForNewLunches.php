@@ -267,10 +267,23 @@ class ChechForNewLunches extends Command
            }
          } else {
            // ATSAKAS JEI NERANDA ISVIS TURINIO
+           Storage::append('check_lunches_log.txt', "#" . ($number + 1) . " / Error / " . $lunch->id);
+
+           $xpath->status = "NOT OK";
+           $xpath->check_date = date('Y-m-d');
+
+           $xpath->save();
          }
 
 
-        }
+       } else {
+         Storage::append('check_lunches_log.txt', "#" . ($number + 1) . " / Error / " . $lunch->id);
+
+         $xpath->status = "NOT OK";
+         $xpath->check_date = date('Y-m-d');
+
+         $xpath->save();
+       }
 
         $settings = Settings::find(1);
         Storage::append('check_lunches_log.txt', date('H:m:s'));

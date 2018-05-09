@@ -31,6 +31,8 @@ class AdminController extends Controller
       $count['exists'] = substr_count($last, "exists");
       $count['updated'] = substr_count($last, "Updated");
       $count['new'] = substr_count($last, "Days");
+      $count['error'] = substr_count($last, "Error");
+      // $count['error'] = substr_count($last, "Error");
 
       // dd($count['match'], $count['exists'], $count['updated'], $count['new']);
       // asdasdasdasd

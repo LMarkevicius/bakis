@@ -24,6 +24,10 @@
     </div>
   </section>
 
+  <div class="container">
+    @include('partials._messages')
+  </div>
+
   <section class="section">
 
     <div class="container">
@@ -67,7 +71,7 @@
               <div class="row">
 
                 <div class="col-md-4 auto-lunch-cont">
-                  <div class="field">
+                  <div class="field dataurl-field">
                     {{ Form::label('dataurl', 'Website Data URL', ['class' => 'label']) }}
 
                     <div class="control is-expanded has-icons-left">
@@ -389,6 +393,8 @@
           $('#automatic').removeClass('is-danger');
           $('#automatic').addClass('is-light');
 
+          $('.opa-results').empty();
+
           if ($('.manual-lunch-container .lunch-deals').length == 0) {
             $('.manual-lunch-container').prepend(content);
             $('.automatic-lunch-container .lunch-deals').remove();
@@ -457,27 +463,51 @@
           data: {dataurl: dataurl, restaurantId: restaurantId, _token: token},
           beforeSend: function () {
             // $('#fetch').children('span').children().remove();
+            $('#fetch').children('span').children('svg').remove();
             $('#fetch').children('span').append('<i class="fas fa-spinner rotate"></i>');
+
+          },
+          error: function (xhr) {
+            // var errors = data.responseJSON;
+            var error = '<p class="help is-danger dataurl-error">' + JSON.parse(xhr.responseText).errors['dataurl'] + '</p>';
+            // console.log();
+            if ($('.dataurl-error').length) {
+              $('.dataurl-error').remove();
+
+              $('.dataurl-field').append(error);
+
+              $('#fetch').children('span').children('svg').remove();
+              $('#fetch').children('span').append('<i class="fas fa-times"></i>');
+            } else {
+              $('.dataurl-field').append(error);
+              $('#fetch').children('span').children('svg').remove();
+              $('#fetch').children('span').append('<i class="fas fa-times"></i>');
+            }
 
           }
         })
+
         .done(function (msg) {
           // var obj = JSON.parse(msg);
+          $('.dataurl-error').remove();
 
           var lunchwrap = '<div class="col-xs-12 col-sm-6 margin-bottom"><div class="card">';
-              lunchwrap += '<div class="card-image new-image"><button class="delete-deal button is-danger is-rounded"><span class="icon"><i class="fas fa-times"></i></span></button><figure class="image is-4by3"><img src=""></figure></div>';
+              lunchwrap += '<div class="card-image new-image"><a class="delete-deal button is-danger is-small is-rounded"><span class="icon is-small"><i class="fas fa-times"></i></span></a><figure class="image is-4by3"><img src=""></figure></div>';
               lunchwrap += '{{ Form::hidden('photo_url[]', null, ['class' => 'photo-url new-photo-url']) }}';
               lunchwrap += '<div class="card-content"><div class="content"><div class="field">{{ Form::label('title[]', 'Lunch Title', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::textarea('title[]', null, ['class' => 'input field-title new-title', 'style' => 'height: 60px;', 'placeholder' => 'Lietiniai su varške']) }}<span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div></div>';
               lunchwrap += '<div class="content-weekday"></div>';
               lunchwrap += '<div class="field">{{ Form::label('price[]', 'Meal Price', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::number('price[]', null, ['class' => 'input field-price new-price', 'step' => '0.01', 'placeholder' => '3.99']) }}<span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
-              lunchwrap += '{{ Form::hidden('image_xpath[]', null, ['class' => 'image-xpath new-image-xpath']) }}';
-              lunchwrap += '{{ Form::hidden('title_xpath[]', null, ['class' => 'title-xpath new-title-xpath']) }}';
-              lunchwrap += '{{ Form::hidden('price_xpath[]', null, ['class' => 'price-xpath new-price-xpath']) }}';
+              lunchwrap += '{{ Form::text('image_xpath[]', null, ['class' => 'image-xpath new-image-xpath']) }}';
+              lunchwrap += '{{ Form::text('title_xpath[]', null, ['class' => 'title-xpath new-title-xpath']) }}';
+              lunchwrap += '{{ Form::text('price_xpath[]', null, ['class' => 'price-xpath new-price-xpath']) }}';
               lunchwrap += '</div></div></div>';
 
           var wrapper = document.createElement('div');
 
+          // var testing = '<div><div><div><div><img src="https://thumbs.imagekind.com/canvas2/blurred/0c82677a-06df-413e-b1c8-a74526b8be93_16_650/Lion_art.png?v=04102014-1521252199"></img></div></div></div><div><h3>opa</h3><div>Tekstas</div><div>123</div></div></div>';
+
           wrapper.innerHTML = msg['content'];
+          // wrapper.innerHTML = testing;
           console.log(wrapper);
           var images = wrapper.getElementsByTagName('img');
           var specimg = [];
@@ -508,6 +538,41 @@
                 specimg.push($(images[i]));
                 console.log("http");
                 temp_xpath_image = getElementXPath($(images[i])).split('/');
+                console.log(temp_xpath_image);
+                temp_xpath_image[2] = "html/body";
+                // if (temp_xpath_image[3] == "main") {
+                //   temp_xpath_image.splice(3, 1);
+                // }
+
+              //   function getPathTo(element) {
+              //     if (element.tagName == 'HTML')
+              //         return '/HTML[1]';
+              //     if (element===document.body)
+              //         return '/HTML[1]/BODY[1]';
+              //
+              //     var ix= 0;
+              //     var siblings= element.parentNode.childNodes;
+              //     for (var i= 0; i<siblings.length; i++) {
+              //         var sibling= siblings[i];
+              //         if (sibling===element)
+              //             return getPathTo(element.parentNode)+'/'+element.tagName+'['+(ix+1)+']';
+              //         if (sibling.nodeType===1 && sibling.tagName===element.tagName)
+              //             ix++;
+              //     }
+              // }
+              //
+              //   var test_path = getPathTo($(images[i]));
+                console.log("PATH");
+                // console.log(test_path);
+                temp_image = temp_xpath_image.join('/');
+
+
+                xpath_image.push(temp_image);
+                // console.log('praeina');
+              } else if (images[i].src.match(/^http:\/\//)) {
+                specimg.push($(images[i]));
+                // console.log("http");
+                temp_xpath_image = getElementXPath($(images[i])).split('/');
                 temp_xpath_image[2] = "html/body";
                 temp_image = temp_xpath_image.join('/');
 
@@ -524,31 +589,22 @@
           // for (var i = 0; i < images.length; i++) {
             // $('.opa-results').append('<ul></ul>');
             // console.log(images.length);
-          for (var i = 0; i < specimg.length; i++) {
-            var father = $(wrapper).find(specimg[i]).parent('div');
+
+          function FetchLunches(father) {
+
             console.log('Pirmas foras');
+            console.log($(father).siblings().length);
 
-
-            if ($(father).siblings('div') == 1) {
-              var grandpa = $(father).parent('div');
-              console.log('neturi');
+            if ($(father).siblings().length == 0) {
+              var grandfather = $(father).parent();
+              console.log('neturi iesko dar');
 
               // $('.opa-results ul .father').remove();
               // $('.opa-results ul').append('<li class="grandpa">div grandpa</li><li class="father">div  father</li>');
+              FetchLunches(grandfather);
 
-              if ($(grandpa).length == 1) {
-                var grandpa2 = $(grandpa).parent('div');
-
-                // $('.opa-results ul').prepend('<li>div grandpa2</li>');
-
-                if ($(grandpa2).length == 1) {
-                  var grandpa3 = $(grandpa2).parent('div');
-
-                  // $('.opa-results ul').prepend('<li>div grandpa3</li>');
-                }
-              }
             } else {
-              var brolis = $(father).siblings('div');
+              var brolis = $(father).siblings();
               // console.log($(brolis).children().length);
               console.log('Pirmas ifo elsas');
 
@@ -574,7 +630,8 @@
                         xpath = temp_xpath_data.join('/');
 
                         // console.log('praeina');
-                        field_price = $(vaikai[count]).text().replace(/[^0-9.]/g, '');
+                        field_price = $(vaikai[count]).text().replace(/[^0-9,.]/g, '');
+                        field_price = field_price.replace(/,/, '.');
                         console.log(field_price);
                         $('.opa-results .new-image img').attr('src', $(wrapper).find(specimg[i]).attr('src'));
                         $('.opa-results .new-photo-url').val($(wrapper).find(specimg[i]).attr('src'));
@@ -645,9 +702,16 @@
 
 
             // $('.opa-results ul').append('<li class="father">div</li>');
-
-
           }
+          if (specimg.length > 0) {
+            for (var i = 0; i < specimg.length; i++) {
+              var father = $(wrapper).find(specimg[i]).parent();
+
+              FetchLunches(father);
+
+            }
+          }
+
 
           $('.delete-deal').on('click', function () {
             $(this).parent().parent().parent().remove();

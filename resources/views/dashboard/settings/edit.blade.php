@@ -23,6 +23,10 @@
     </div>
   </section>
 
+  <div class="container">
+    @include('partials._messages')
+  </div>
+
   <section class="section">
 
     <div class="container">

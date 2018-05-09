@@ -22,6 +22,10 @@
     </div>
   </section>
 
+  <div class="container">
+    @include('partials._messages')
+  </div>
+
   <section class="section">
 
     <div class="container">
@@ -59,6 +63,12 @@
                     <p class="title">{{ $count['new'] }}</p>
                   </div>
                 </div>
+                <div class="level-item has-text-centered">
+                  <div>
+                    <p class="heading">Errors</p>
+                    <p class="title">{{ $count['error'] }}</p>
+                  </div>
+                </div>
               </nav>
             </div>
           </section>
@@ -85,6 +95,7 @@
                 <th>Restaurant</th>
                 <th>Lunches</th>
                 <th>Contacts</th>
+                <th>Errors</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -101,6 +112,23 @@
                   <td>{{ $restaurant->name }}</td>
                   <td>{{ $restaurant->lunches->count() }}</td>
                   <td>{{ $restaurant->contacts->count() }}</td>
+                  <td>
+
+                    <?php $count = 0 ?>
+                    @foreach ($restaurant->lunches as $lunch)
+
+                      {{-- {{ dd($lunch->xpaths[0]->status) }} --}}
+                      @if ($lunch->xpaths[0]->status == "NOT OK")
+                        <?php $count++ ?>
+                      @endif
+                    @endforeach
+
+                    @if ($count > 0)
+                      <span class="tag is-danger">{{ $count }}</span>
+                    @else
+                      <span class="tag">{{ $count }}</span>
+                    @endif
+                  </td>
                   <td>
                     <a href="{{ route('dashboard.edit', $restaurant->id) }}" class="button is-info is-small is-fullwidth">
                       <span class="icon left">

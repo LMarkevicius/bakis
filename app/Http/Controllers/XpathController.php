@@ -9,6 +9,7 @@ use App\Restaurant;
 use Session;
 use Image;
 use Storage;
+use Exception;
 
 class XpathController extends Controller
 {
@@ -40,9 +41,12 @@ class XpathController extends Controller
 
          $restaurant_xpath = new \DOMXPath($restaurant_doc);
 
+
          $title_path = $restaurant_xpath->query("$xpath_data->title_path");
          $price_path = $restaurant_xpath->query("$xpath_data->price_path");
          $image_path = $restaurant_xpath->query("$xpath_data->image_path");
+         // $image_path1 = $restaurant_xpath->xpath("$xpath_data->image_path");
+         // dd($image_path1);
 
          if($title_path->length > 0){
            foreach($title_path as $key => $row){
@@ -55,6 +59,7 @@ class XpathController extends Controller
              $price_result[$key] = $row->nodeValue;
            }
          }
+         // dd($price_result[0]);
 
          if($image_path->length > 0){
            foreach($image_path as $key => $row){
@@ -63,10 +68,15 @@ class XpathController extends Controller
            }
          }
 
+         // dd($image_result[0]);
+
          if (!empty($result[0]) || !empty($price_result[0])) {
 
            // $sutvarkytas = preg_replace('/\s+/', '', $result[0]);
-           $sutvarkytas_price = trim(preg_replace('/[^a-z0-9.]/', '', $price_result[0]));
+           $sutvarkytas_price = trim(preg_replace('/[^a-z0-9.,]/', '', $price_result[0]));
+           $sutvarkytas_price = preg_replace('/,/', '.', $sutvarkytas_price);
+
+           // dd($sutvarkytas_price);
 
            $decode_title = utf8_decode($result[0]);
            $fixed_title = trim($decode_title);
@@ -157,8 +167,33 @@ class XpathController extends Controller
           }
         } else {
           // ATSAKAS JEI NERANDA ISVIS TURINIO
+
+          // $atsakas = "Something is wrong with xpaths";
+          $xpath = Xpath::find($xpath_data->id);
+
+          $xpath->status = "NOT OK";
+          $xpath->check_date = date('Y-m-d');
+
+          $xpath->save();
+
+
+          header('HTTP/1.0 400 Something is wrong with xpaths');
+
+          die();
         }
-       }
+      } else {
+        $xpath = Xpath::find($xpath_data->id);
+
+        $xpath->status = "NOT OK";
+        $xpath->check_date = date('Y-m-d');
+
+        $xpath->save();
+
+
+        header('HTTP/1.0 400 Something is wrong with restaurant website');
+
+        die();
+      }
 
        return response()->json(['atsakas' => $atsakas, 'content' => $fixed_title, 'new_lunchdeal' => $new_lunchdeal]);
      }

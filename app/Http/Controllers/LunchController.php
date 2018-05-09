@@ -193,8 +193,9 @@ class LunchController extends Controller
 
           break;
         case 0:
-          // Session::flash('errors', 'You have no deals');
-          // return redirect()->route('dashboard.edit', $restaurant_id);
+          Session::flash('error', 'You have not added any deals');
+
+          return redirect()->route('lunch.create', $restaurant_id);
           break;
         default:
           for ($i = 0; $i < $request->count_deals; $i++) {
@@ -204,7 +205,7 @@ class LunchController extends Controller
               // ]);
 
             $this->validate($request, [
-              "title.$i"          => 'required|max:255|unique:lunches,title',
+              "title.$i"          => 'required|max:255',
               "image.$i"          => 'sometimes',
               "price.$i"          => 'required',
               "weekday.0"         => 'required|max:255'

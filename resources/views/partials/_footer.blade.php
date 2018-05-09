@@ -15,10 +15,21 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $('.notification .delete').on('click', function () {
-      $('.notification').slideUp();
-      // alert('opa');
-    });
+
+    $('.notification').on('click', '.delete', function() {
+      $('.notification').slideUp(1000);
+    }).parent('div').delay(3000).slideUp(1000);
+
+    // $('.notification').delay(3000).slideUp();
+
+
+    // $('.notification').delay(3000).slideUp(function() {
+    //   $('.notification .delete').on('click', function () {
+    //     $('.notification').slideUp();
+    //     console.log('asd');
+    //     // alert('opa');
+    //   });
+    // });
   });
 </script>
 
