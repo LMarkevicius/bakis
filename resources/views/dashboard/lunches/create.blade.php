@@ -569,7 +569,7 @@
 
                 xpath_image.push(temp_image);
                 // console.log('praeina');
-              // } else if (images[i].src.match(/^http:\/\//)) {
+              }// else if (images[i].src.match(/^http:\/\//)) {
               //   specimg.push($(images[i]));
               //   // console.log("http");
               //   temp_xpath_image = getElementXPath($(images[i])).split('/');
