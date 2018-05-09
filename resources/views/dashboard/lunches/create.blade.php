@@ -569,16 +569,16 @@
 
                 xpath_image.push(temp_image);
                 // console.log('praeina');
-              } else if (images[i].src.match(/^http:\/\//)) {
-                specimg.push($(images[i]));
-                // console.log("http");
-                temp_xpath_image = getElementXPath($(images[i])).split('/');
-                temp_xpath_image[2] = "html/body";
-                temp_image = temp_xpath_image.join('/');
-
-                xpath_image.push(temp_image);
-                // console.log('praeina');
-              }
+              // } else if (images[i].src.match(/^http:\/\//)) {
+              //   specimg.push($(images[i]));
+              //   // console.log("http");
+              //   temp_xpath_image = getElementXPath($(images[i])).split('/');
+              //   temp_xpath_image[2] = "html/body";
+              //   temp_image = temp_xpath_image.join('/');
+              //
+              //   xpath_image.push(temp_image);
+              //   // console.log('praeina');
+              // }
             });
           }
           console.log(xpath_image[0]);
