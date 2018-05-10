@@ -38,14 +38,14 @@
             </a>
             <div class="navbar-dropdown is-boxed is-left">
               @php ($minprice = 0)
-              @php ($maxprice = 5)
-              @while ($maxprice <= 50)
+              @php ($maxprice = 1)
+              @while ($maxprice <= 15)
                 <a href="{{ route('todays.deals', ['restaurant_id' => request('restaurant_id'), 'price' => "$minprice-$maxprice"]) }}" class="navbar-item {{ request('price') == "$minprice-$maxprice" ? 'is-active' : '' }}">
                   {{ $minprice }} - {{ $maxprice }} $
                 </a>
 
-                @php ($minprice += 5)
-                @php ($maxprice += 5)
+                @php ($minprice += 1)
+                @php ($maxprice += 1)
               @endwhile
 
             </div><!-- .navbar-dropdown is-boxed is-left -->
