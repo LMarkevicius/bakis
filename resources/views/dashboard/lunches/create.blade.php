@@ -497,9 +497,9 @@
               lunchwrap += '<div class="card-content"><div class="content"><div class="field">{{ Form::label('title[]', 'Lunch Title', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::textarea('title[]', null, ['class' => 'input field-title new-title', 'style' => 'height: 60px;', 'placeholder' => 'Lietiniai su varške']) }}<span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div></div>';
               lunchwrap += '<div class="content-weekday"></div>';
               lunchwrap += '<div class="field">{{ Form::label('price[]', 'Meal Price', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::number('price[]', null, ['class' => 'input field-price new-price', 'step' => '0.01', 'placeholder' => '3.99']) }}<span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
-              lunchwrap += '{{ Form::text('image_xpath[]', null, ['class' => 'image-xpath new-image-xpath']) }}';
-              lunchwrap += '{{ Form::text('title_xpath[]', null, ['class' => 'title-xpath new-title-xpath']) }}';
-              lunchwrap += '{{ Form::text('price_xpath[]', null, ['class' => 'price-xpath new-price-xpath']) }}';
+              lunchwrap += '{{ Form::hidden('image_xpath[]', null, ['class' => 'image-xpath new-image-xpath']) }}';
+              lunchwrap += '{{ Form::hidden('title_xpath[]', null, ['class' => 'title-xpath new-title-xpath']) }}';
+              lunchwrap += '{{ Form::hidden('price_xpath[]', null, ['class' => 'price-xpath new-price-xpath']) }}';
               lunchwrap += '</div></div></div>';
 
           var wrapper = document.createElement('div');
@@ -569,16 +569,16 @@
 
                 xpath_image.push(temp_image);
                 // console.log('praeina');
-              }// else if (images[i].src.match(/^http:\/\//)) {
-              //   specimg.push($(images[i]));
-              //   // console.log("http");
-              //   temp_xpath_image = getElementXPath($(images[i])).split('/');
-              //   temp_xpath_image[2] = "html/body";
-              //   temp_image = temp_xpath_image.join('/');
-              //
-              //   xpath_image.push(temp_image);
-              //   // console.log('praeina');
-              // }
+              } else if (images[i].src.match(/^http:\/\/guacamole/)) {
+                specimg.push($(images[i]));
+                // console.log("http");
+                temp_xpath_image = getElementXPath($(images[i])).split('/');
+                temp_xpath_image[2] = "html/body";
+                temp_image = temp_xpath_image.join('/');
+
+                xpath_image.push(temp_image);
+                // console.log('praeina');
+              }
             });
           }
           console.log(xpath_image[0]);

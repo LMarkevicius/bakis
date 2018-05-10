@@ -225,7 +225,7 @@
                     <tr>
                       <td><img src="{{ asset('images/' . $lunch->image) }}" class="table-logo" /></td>
                       <td>{{ $lunch->title }}</td>
-                      <td>{{ $lunch->price }} $</td>
+                      <td>{{ $lunch->price }} €</td>
                       {{-- <td>{{ $lunch->weekday }}</td> --}}
                       <td>
                         <a href="{{ route('lunch.edit', [$restaurant->id, $lunch->id]) }}" class="button is-info is-small is-fullwidth">
