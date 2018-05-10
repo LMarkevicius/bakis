@@ -624,7 +624,7 @@
                     if ($(vaikai[count]).text().trim() != '') {
                       console.log('sukuria');
 
-                      if (/\d/.test($(vaikai[count]).text())) {
+                      if (/\€/.test($(vaikai[count]).text())) {
                         temp_xpath_data = getElementXPath($(vaikai[count])).split('/');
                         temp_xpath_data[2] = "html/body";
                         xpath = temp_xpath_data.join('/');
