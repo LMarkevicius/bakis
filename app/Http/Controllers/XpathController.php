@@ -28,7 +28,11 @@ class XpathController extends Controller
        $match_count = 0;
        $new_lunchdeal = [];
 
-       $html = file_get_contents("$xpath_data->restaurant_url"); //get the html returned from the following url
+       $opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
+       //Basically adding headers to the request
+       $context = stream_context_create($opts);
+
+       $html = file_get_contents("$xpath_data->restaurant_url", false, $context); //get the html returned from the following url
 
        $restaurant_doc = new \DOMDocument();
 

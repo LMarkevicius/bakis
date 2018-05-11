@@ -16,7 +16,12 @@ class FetchController extends Controller
       $this->validate($request, [
         'dataurl' => 'required|url'
       ]);
-      $html = file_get_contents("$request->dataurl"); //get the html returned from the following url
+
+      $opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
+      //Basically adding headers to the request
+      $context = stream_context_create($opts);
+
+      $html = file_get_contents("$request->dataurl", false, $context); //get the html returned from the following url
 
       // $output = str_replace(array("\r\n", "\r", "\n"), "", $html);
       //
