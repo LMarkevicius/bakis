@@ -32,11 +32,24 @@ class AdminController extends Controller
       $count['updated'] = substr_count($last, "Updated");
       $count['new'] = substr_count($last, "Days");
       $count['error'] = substr_count($last, "Error");
+
+
+
+
+
+      // dd($op);
       // $count['error'] = substr_count($last, "Error");
 
       // dd($count['match'], $count['exists'], $count['updated'], $count['new']);
       // asdasdasdasd
-      return view('dashboard.restaurants.index')->withRestaurants($restaurants)->withCount($count);
+      return view('dashboard.restaurants.index')->withRestaurants($restaurants)->withCount($count)
+      ;
+    }
+
+    public function download() {
+      $fetch_log = public_path('images/check_lunches_log.txt');
+
+      return response()->download($fetch_log);
     }
 
     /**

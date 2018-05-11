@@ -36,6 +36,7 @@
             <div class="hero-body has-text-centered">
               <h1 class="title">
                 Fetch Results
+                <a href="{{ route('dashboard.download') }}" class="button is-small is-primary"><span class="icon is-small"><i class="fas fa-download"></i></span></a>
               </h1>
 
               <nav class="level">
@@ -114,12 +115,13 @@
                   <td>{{ $restaurant->contacts->count() }}</td>
                   <td>
 
-                    <?php $count = 0 ?>
+                    @php $count = 0 @endphp
                     @foreach ($restaurant->lunches as $lunch)
 
-                      {{-- {{ dd($lunch->xpaths[0]->status) }} --}}
-                      @if ($lunch->xpaths[0]->status == "NOT OK")
-                        <?php $count++ ?>
+                      @if (count($lunch->xpaths) > 0)
+                        @if ($lunch->xpaths[0]->status == "NOT OK")
+                          @php $count++ @endphp
+                        @endif
                       @endif
                     @endforeach
 

@@ -55,6 +55,7 @@ Route::post('/dashboard/restaurant', ['as' => 'dashboard.store', 'uses' => 'Admi
 Route::get('/dashboard/restaurant/{id}/edit', ['as' => 'dashboard.edit', 'uses' => 'AdminController@edit']);
 Route::put('/dashboard/restaurant/{id}', ['as' => 'dashboard.update', 'uses' => 'AdminController@update']);
 Route::delete('/dashboard/restaurant/{id}', ['as' => 'dashboard.destroy', 'uses' => 'AdminController@destroy']);
+Route::get('/dashboard/download-log-file', ['as' => 'dashboard.download', 'uses' => 'AdminController@download']);
 
 // Admin Settings
 Route::get('/dashboard/settings', ['as' => 'settings.edit', 'uses' => 'SettingsController@edit']);

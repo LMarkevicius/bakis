@@ -286,7 +286,7 @@ class ChechForNewLunches extends Command
        }
 
         $settings = Settings::find(1);
-        Storage::append('check_lunches_log.txt', date('H:m:s'));
+        // Storage::append('check_lunches_log.txt', date('H:m:s'));
         sleep($settings->sleep);
       }
     }
