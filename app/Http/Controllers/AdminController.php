@@ -73,7 +73,7 @@ class AdminController extends Controller
       if (!empty($request->address) || !empty($request->city) || !empty($request->phone)) {
         $this->validate($request, [
           'name'          => 'required|max:255',
-          'website'       => 'required|max:255',
+          'website'       => 'required|url',
           'logo'          => 'required|image',
           'address'       => 'required|max:255',
           'city'          => 'required|max:255',
@@ -179,7 +179,7 @@ class AdminController extends Controller
         // dd($request->price);
         $this->validate($request, [
           'name'          => 'required|max:255',
-          'website'       => 'required|max:255',
+          'website'       => 'required|url',
           'logo'          => 'required|image'
         ]);
 
@@ -271,7 +271,7 @@ class AdminController extends Controller
         // }
       }
 
-      Session::flash('success', 'You have successfully saved Restaurant!');
+      Session::flash('success', 'Jūs sėkmingai pridėjote naują restoraną!');
 
       return redirect()->route('dashboard.edit', $restaurant->id);
     }
@@ -339,7 +339,7 @@ class AdminController extends Controller
 
       $restaurant->save();
 
-      Session::flash('success', 'You have successfully updated Restaurant!');
+      Session::flash('success', 'Jūs sėkmingai atnaujinote restorano duomenis!');
 
       return redirect()->route('dashboard.edit', $restaurant->id);
     }
@@ -369,7 +369,7 @@ class AdminController extends Controller
       Storage::delete($restaurant->logo);
       $restaurant->delete();
 
-      Session::flash('success', 'The restaurant was successfully deleted!');
+      Session::flash('success', 'Restoranas buvo sėkmingai pašalintas!');
 
       return redirect()->route('dashboard.index');
     }

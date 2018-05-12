@@ -1,7 +1,7 @@
 @if (Session::has('success'))
   <div class="notification is-success">
     <button class="delete"></button>
-    <strong>Success:</strong> {{ Session::get('success') }}
+    <strong>Sėkmingai:</strong> {{ Session::get('success') }}
   </div>
 
   {{-- <div class="alert alert-success" role="alert">
@@ -12,7 +12,7 @@
 @if (Session::has('error'))
   <div class="notification is-danger">
     <button class="delete"></button>
-    <strong>Error:</strong> {{ Session::get('error') }}
+    <strong>Klaida:</strong> {{ Session::get('error') }}
   </div>
 
   {{-- <div class="alert alert-success" role="alert">
@@ -23,7 +23,7 @@
 @if (Session::has('errors'))
   <div class="notification is-danger">
     <button class="delete"></button>
-    <strong>Error:</strong>
+    <strong>Klaida:</strong>
 
     <ul>
       @foreach ($errors->all() as $error)

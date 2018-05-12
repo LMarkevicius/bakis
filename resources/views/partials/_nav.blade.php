@@ -2,7 +2,7 @@
   <div class="navbar-brand">
     <a class="navbar-item" href="{{ route('index') }}">
       {{-- <img src="" alt="Lunch Deals Logo" width="112" height="28"> --}}
-      Lunch Deals
+      Dienos Pietūs
     </a>
     <div class="navbar-burger burger" data-target="navbar-danger">
       <span></span>
@@ -14,19 +14,19 @@
   <div id="navbar-danger" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item {{ Request::is('/') ? 'is-active' : '' }}" href="{{ route('index') }}">
-        Home
+        Pradžia
       </a>
 
-      <a class="navbar-item {{ Request::is('todays-deals') ? 'is-active' : '' }}" href="{{ route('todays.deals') }}">
-        Today's Deals
+      <a class="navbar-item {{ Request::is('šios-dienos-patiekalai') ? 'is-active' : '' }}" href="{{ route('todays.deals') }}">
+        Šiandienos Pietūs
       </a>
 
-      <a class="navbar-item {{ Request::is('all-deals') ? 'is-active' : '' }}" href="{{ route('all.deals') }}">
-        All Deals
+      <a class="navbar-item {{ Request::is('visi-patiekalai') ? 'is-active' : '' }}" href="{{ route('all.deals') }}">
+        Visi Patiekalai
       </a>
 
-      <a class="navbar-item {{ Request::is('all_restaurants') ? 'is-active' : '' }}" href="{{ route('restaurant.index') }}">
-        All Restaurants
+      <a class="navbar-item {{ Request::is('visi-restoranai') ? 'is-active' : '' }}" href="{{ route('restaurant.index') }}">
+        Visi Restoranai
       </a>
 
 
@@ -34,16 +34,16 @@
 
     <div class="navbar-end">
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link {{ Request::is('all_restaurants') ? 'is-active' : '' }}" href="#">
-          Admin
+        <a class="navbar-link {{ Request::is('apžvalga/*') ? 'is-active' : '' }}" href="#">
+          Administratorius
         </a>
         <div class="navbar-dropdown is-boxed is-right">
-          <a class="navbar-item {{ Request::is('dashboard/all-restaurants') ? 'is-active' : '' }}" href="{{ route('dashboard.index') }}">
-            Dashboard
+          <a class="navbar-item {{ Request::is('apžvalga/visi-restoranai') ? 'is-active' : '' }}" href="{{ route('dashboard.index') }}">
+            Apžvalga
           </a>
 
-          <a class="navbar-item {{ Request::is('dashboard/settings') ? 'is-active' : '' }}" href="{{ route('settings.edit') }}">
-            Settings
+          <a class="navbar-item {{ Request::is('apžvalga/nustatymai') ? 'is-active' : '' }}" href="{{ route('settings.edit') }}">
+            Nustatymai
           </a>
 
           <hr class="navbar-divider">
@@ -55,7 +55,7 @@
                   <span class="icon">
                     <i class="fas fa-plus"></i>
                   </span>
-                  <span>Add New Restaurant</span>
+                  <span>Pridėti naują restoraną</span>
                 </a>
               </p>
             </div>

@@ -1,15 +1,15 @@
 @extends('main')
 
-@section('title', 'All Restaurants')
+@section('title', 'Visi Restoranai')
 
 @section('section')
 
   <section class="hero">
     <div class="hero-body has-text-centered hero-margin-bottom">
       <h1 class="title">
-        All Restaurants
+        Visi Restoranai
       </h1>
-      <h2 class="subtitle">{{ count($restaurants) }} different places</h2>
+      <h2 class="subtitle">{{ count($restaurants) }} skirtingos vietos</h2>
     </div>
   </section>
 
@@ -38,7 +38,7 @@
               </div>
 
               <div class="content">
-                {{ count($restaurant->lunches) }} Lunch Deals
+                {{ count($restaurant->lunches) }} Dienos pietų pasiūlymų
                 {{-- {{ $lunch->title }} --}}
                 {{-- <a class="button is-danger is-small is-rounded">{{ $lunch->price }} $</a> --}}
               </div>

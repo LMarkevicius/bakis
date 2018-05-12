@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Edit Restaurant')
+@section('title', 'Redaguoti Restoraną')
 
 @section('section')
 
@@ -8,14 +8,14 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Edit "{{ $restaurant->name }}" Restaurant
+          Redaguoti "{{ $restaurant->name }}" Restoraną
         </h1>
 
         <h2 class="subtitle">
           <nav class="breadcrumb is-medium" aria-label="breadcrumbs">
             <ul>
-              <li><a href="{{ route('dashboard.index') }}">Admin Dashboard</a></li>
-              <li class="is-active"><a href="" aria-current="page">Edit Restaurant</a></li>
+              <li><a href="{{ route('dashboard.index') }}">Administratoriaus Apžvalga</a></li>
+              <li class="is-active"><a href="" aria-current="page">Redaguoti Restoraną</a></li>
             </ul>
           </nav>
         </h2>
@@ -35,7 +35,7 @@
         <div class="col-xs-12 col-md-10 col-md-offset-1">
           {!! Form::model($restaurant, ['route' => ['dashboard.update', $restaurant->id], 'method' => 'PUT', 'files' => true]) !!}
             <div class="field">
-              {{ Form::label('name', 'Website Name', ['class' => 'label']) }}
+              {{ Form::label('name', 'Restorano pavadinimas', ['class' => 'label']) }}
 
               <div class="control is-expanded has-icons-left">
                 {{ Form::text('name', null, ['class' => 'input']) }}
@@ -46,7 +46,7 @@
             </div>
 
             <div class="field">
-              {{ Form::label('website', 'Website URL', ['class' => 'label']) }}
+              {{ Form::label('website', 'Tinklalapio nuoroda', ['class' => 'label']) }}
 
               <div class="control is-expanded has-icons-left">
                 {{ Form::text('website', null, ['class' => 'input']) }}
@@ -67,7 +67,7 @@
                       <i class="fas fa-upload"></i>
                     </span>
 
-                    <span class="file-label">Choose a logo...</span>
+                    <span class="file-label">Pasirinkite logotipą...</span>
                   </span>
 
                   <span class="file-name" id="file-name">{{ $restaurant->logo }}</span>
@@ -83,11 +83,11 @@
 
             <div class="field is-grouped is-grouped-centered">
               <p class="control">
-                {{ Form::submit('Update Restaurant', ['class' => 'button is-success']) }}
+                {{ Form::submit('Atnaujinti Restoraną', ['class' => 'button is-success']) }}
               </p>
 
               <p class="control">
-                <a href="{{ route('dashboard.index') }}" class="button is-light">Cancel</a>
+                <a href="{{ route('dashboard.index') }}" class="button is-light">Atšaukti</a>
               </p>
             </div>
 
@@ -101,13 +101,13 @@
       <section class="hero">
         <div class="hero-body has-text-centered">
           <h2 class="subtitle is-4">
-            Contacts
+            Kontaktai
 
             <a href="{{ route('contact.create', $restaurant->id) }}" class="button is-primary is-small">
               <span class="icon">
                 <i class="fas fa-plus"></i>
               </span>
-              Add new
+              Pridėti naujus
             </a>
           </h2>
         </div>
@@ -119,10 +119,10 @@
             <table class="table is-striped is-fullwidth">
               <thead>
                 <tr>
-                  <th>Address</th>
-                  <th>City</th>
-                  <th>Phone Number</th>
-                  <th>Actions</th>
+                  <th>Adresas</th>
+                  <th>Miestas</th>
+                  <th>Telefono numeris</th>
+                  <th>Veiksmai</th>
                 </tr>
               </thead>
 
@@ -137,7 +137,7 @@
                         <span class="icon left">
                           <i class="fas fa-pencil-alt"></i>
                         </span>
-                        Edit Contact
+                        Redaguoti kontaktą
                       </a>
 
                       {!! Form::open(['route' => ['contact.destroy', $restaurant->id, $contact->id], 'method' => 'DELETE']) !!}
@@ -146,7 +146,7 @@
                           <span class="icon left">
                             <i class="fas fa-trash-alt"></i>
                           </span>
-                          Delete Contact
+                          Ištrinti kontaktą
                         </button>
 
                       {!! Form::close() !!}
@@ -157,7 +157,7 @@
             </table>
           @else
             <div class="has-text-centered">
-              There are no contacts
+              Nėra pridėtų kontaktų
             </div>
           @endif
         </div>
@@ -166,13 +166,13 @@
       <section class="hero" id="modal-place">
         <div class="hero-body has-text-centered">
           <h2 class="subtitle is-4">
-            Lunches
+            Patiekalai
 
             <a href="{{ route('lunch.create', $restaurant->id) }}" class="button is-primary is-small">
               <span class="icon">
                 <i class="fas fa-plus"></i>
               </span>
-              Add new
+              Pridėti naujus
             </a>
           </h2>
         </div>
@@ -205,20 +205,20 @@
             <table class="table is-striped is-fullwidth">
               <thead>
                 <tr>
-                  <th>Image</th>
-                  <th>Title</th>
-                  <th>Price</th>
+                  <th>Nuotrauka</th>
+                  <th>Pavadinimas</th>
+                  <th>Kaina</th>
                   {{-- <th>Week day</th> --}}
-                  <th>Actions</th>
-                  <th>Status</th>
-                  <th>Check Date</th>
+                  <th>Veiksmai</th>
+                  <th>Statusas</th>
+                  <th>Patikrinimo data</th>
                 </tr>
               </thead>
 
               <tbody>
                 @foreach ($lunchesByWeekday as $weekday => $lunches)
                   <tr>
-                    <th colspan="6">{{ $weekday }}<small> ({{ count($lunches) }} meals)</small></th>
+                    <th colspan="6">{{ $weekday }}<small> ({{ count($lunches) }} {{ count($lunches) > 10 ? 'patiekalų' : 'patiekalai' }})</small></th>
                   </tr>
 
                   @foreach ($lunches as $lunch)
@@ -232,7 +232,7 @@
                           <span class="icon left">
                             <i class="fas fa-pencil-alt"></i>
                           </span>
-                          Edit
+                          Redaguoti
                         </a>
 
                         {!! Form::open(['route' => ['lunch.destroy', $restaurant->id, $lunch->id], 'method' => 'DELETE']) !!}
@@ -240,7 +240,7 @@
                             <span class="icon left">
                               <i class="fas fa-trash-alt"></i>
                             </span>
-                            Delete
+                            Ištrinti
                           </button>
                         {!! Form::close() !!}
                       </td>
@@ -256,7 +256,7 @@
                                   <i class="fas fa-times"></i>
                                 @endif
                               </span>
-                              Check
+                              Patikrinti
                             </a>
 
                             {{ Form::hidden('xpath_data', $xpath, ['class' => 'xpath_data']) }}
@@ -284,7 +284,7 @@
             {{-- {{ Form::text('check', null, ['id' => 'check_atsakas']) }} --}}
           @else
             <div class="has-text-centered">
-              There are no lunch deals
+              Šiuo metu nėra jokių patiekalų priklausančių šiam restoranui
             </div>
           @endif
         </div>
@@ -354,6 +354,10 @@
         console.log(msg['content']);
         console.log(msg['new_lunchdeal']);
 
+        {{ setlocale(LC_TIME, "lt_LT") }}
+
+
+
         var modal_open = '<div class="modal is-active"><div class="modal-background"></div><div class="modal-card">';
 
         var form = '{!! Form::open(['route' => ['xpath.lunch.store', $restaurant->id]]) !!}';
@@ -361,29 +365,29 @@
         var update_form = '<form method="POST" action="' + update_url + '">';
             update_form += '<input type="hidden" name="_token" value="{{ csrf_token() }}">';
 
-        var modal = '<header class="modal-card-head"><p class="modal-card-title">Add new Lunch Deal</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body">';
+        var modal = '<header class="modal-card-head"><p class="modal-card-title">Pridėti naują patiekalą</p><button class="delete" aria-label="close"></button></header><section class="modal-card-body">';
             modal += '<div class="row"><div class="col-md-6">';
-            modal += '<h2>Old Lunch Deal</h2>'
+            modal += '<h2>Senas Pasiūlymas</h2>'
 
-            modal += '<div class="field"><label class="label">Lunch Title</label><div class="control is-expanded has-icons-left"><input type="text" value="' + lunch_title + '" class="input field-title" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div>';
-            modal += '<div class="field"><label class="label">Meal Price</label><div class="control is-expanded has-icons-left"><input type="number" step="0.01" value="' + lunch_price + '" class="input field-price" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
-            modal += '<div class="field"><label class="label">Weekday</label><div class="control is-expanded has-icons-left"><input type="text" value="' + lunch_weekday + '" class="input" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
+            modal += '<div class="field"><label class="label">Pavadinimas</label><div class="control is-expanded has-icons-left"><input type="text" value="' + lunch_title + '" class="input field-title" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div>';
+            modal += '<div class="field"><label class="label">Kaina</label><div class="control is-expanded has-icons-left"><input type="number" step="0.01" value="' + lunch_price + '" class="input field-price" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
+            modal += '<div class="field"><label class="label">Savaitės diena</label><div class="control is-expanded has-icons-left"><input type="text" value="' + lunch_weekday + '" class="input" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
             modal += '<input type="hidden" name="lunch_id" value="' + lunch_id + '" />';
 
             modal += '</div><div class="col-md-6">';
-            modal += '<h2>New Lunch Deal</h2>';
+            modal += '<h2>Naujas Pasiūlymas</h2>';
 
-            modal += '<div class="field"><label name="title" class="label">Lunch Title</label><div class="control is-expanded has-icons-left"><input type="text" name="title" value="' + msg['new_lunchdeal']['title'] + '" class="input field-title" placeholder="Lietiniai su varške" /><span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div>';
-            modal += '<div class="field"><label name="price" class="label">Meal Price</label><div class="control is-expanded has-icons-left"><input type="number" name="price" step="0.01" value="' + msg['new_lunchdeal']['price'] + '" class="input field-price" placeholder="3.99" /><span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
+            modal += '<div class="field"><label name="title" class="label">Pavadinimas</label><div class="control is-expanded has-icons-left"><input type="text" name="title" value="' + msg['new_lunchdeal']['title'] + '" class="input field-title" placeholder="Lietiniai su varške" /><span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div>';
+            modal += '<div class="field"><label name="price" class="label">Kaina</label><div class="control is-expanded has-icons-left"><input type="number" name="price" step="0.01" value="' + msg['new_lunchdeal']['price'] + '" class="input field-price" placeholder="3.99" /><span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
             modal += "<input type='hidden' name='image' value='" + msg['new_lunchdeal']['image'] + "' />";
-            modal += '<div class="field"><label name="weekday" class="label">Weekday</label><div class="control has-icons-left"><div class="select">{{ Form::select('weekday', ["Monday" => "Monday", "Tuesday" => "Tuesday", "Wednesday" => "Wednesday", "Thursday" => "Thursday", "Friday" => "Friday"], date("l") == "Saturday" || date("l") == "Sunday" ? "Monday" : date("l")) }}</div><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
+            modal += '<div class="field"><label name="weekday" class="label">Savaitės diena</label><div class="control has-icons-left"><div class="select">{{ Form::select('weekday', ["Pirmadienis" => "Pirmadienis", "Antradienis" => "Antradienis", "Trečiadienis" => "Trečiadienis", "Ketvirtadienis" => "Ketvirtadienis", "Penktadienis" => "Penktadienis"], strftime('%A') == "Šeštadienis" || strftime('%A') == "Sekmadienis" ? "Pirmadienis" : strftime('%A')) }}</div><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
             // modal += '<input type="hidden" name="lunch_id" id="lunch_id" value="' + lunch_id + '" />';
             var todaysdate = "{{ date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l') }}";
             // console.log(todaysdate);
             // $('option[value="' + todaysdate + '"]').attr('selected', 'selected');
 
             modal += '</div></div>';
-            modal += '</section><footer class="modal-card-foot"><button type="submit" class="button is-success">Add New Deal</button><button class="button cancel-modal">Cancel</button></footer>';
+            modal += '</section><footer class="modal-card-foot"><button type="submit" class="button is-success">Pridėti Pasiūlymą</button><button class="button cancel-modal">Atšaukti</button></footer>';
             modal += '</div>{!! Form::close() !!}</div>';
 
         if (msg['atsakas'] == 'Error') {

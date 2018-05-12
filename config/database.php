@@ -1,11 +1,5 @@
 <?php
 
-$url = parse_url(getenv("DATABASE URL"));
-$host = $url["host"]??null;
-$username = $url["user"]??null;
-$password = $url["pass"]??null;
-$database = substr($url["path"], 1)??null;
-
 return [
 
     /*
@@ -19,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql_heroku'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -45,22 +39,8 @@ return [
             'prefix' => '',
         ],
 
-        'mysql' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', 'db4free.net'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'lunchdeals_bakis'),
-            'username' => env('DB_USERNAME', 'vyshnanu'),
-            'password' => env('DB_PASSWORD', '#Manjau22'),
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'strict' => true,
-            'engine' => null,
-        ],
 
-        'mysql_old' => [
+        'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
@@ -82,19 +62,6 @@ return [
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'prefer',
-        ],
-
-        'pgsql_heroku' => [
-            'driver' => 'pgsql',
-            'host' => $host,
-            'port' => env('DB_PORT', '5432'),
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',

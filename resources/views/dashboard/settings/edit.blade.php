@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Admin Settings')
+@section('title', 'Administratoriaus Nustatymai')
 
 @section('section')
 
@@ -8,14 +8,14 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Admin Settings
+          Administratoriaus Nustatymai
         </h1>
 
         <h2 class="subtitle">
           <nav class="breadcrumb is-medium" aria-label="breadcrumbs">
             <ul>
-              <li><a href="{{ route('dashboard.index') }}">Admin Dashboard</a></li>
-              <li class="is-active"><a href="" aria-current="page">Admin Settings</a></li>
+              <li><a href="{{ route('dashboard.index') }}">Administratoriaus Apžvalga</a></li>
+              <li class="is-active"><a href="" aria-current="page">Administratoriaus Nustatymai</a></li>
             </ul>
           </nav>
         </h2>
@@ -35,7 +35,7 @@
         <div class="col-xs-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
           {!! Form::model($settings, ['route' => ['settings.update'], 'method' => 'PUT']) !!}
             <div class="field">
-              {{ Form::label('sleep', 'Sleep Time (s)', ['class' => 'label']) }}
+              {{ Form::label('sleep', 'Miegojimo laikas (s)', ['class' => 'label']) }}
 
               <div class="control is-expanded has-icons-left">
                 {{ Form::number('sleep', null, ['class' => 'input', 'min' => '0', 'max' => '300']) }}
@@ -58,7 +58,7 @@
               <div class="field-body">
                 {{-- <div class="field is-expanded"> --}}
                   <div class="field">
-                    {{ Form::label('daily', 'Daily at', ['class' => 'label']) }}
+                    {{ Form::label('daily', 'Kasdieną x valandą', ['class' => 'label']) }}
 
                     <p class="control is-expanded has-icons-left">
                       {{ Form::time('daily', null, ['class' => 'input']) }}
@@ -69,7 +69,7 @@
                   </div>
 
                   <div class="field">
-                    {{ Form::label('hourly', 'Every x hours', ['class' => 'label']) }}
+                    {{ Form::label('hourly', 'Kas x valandų', ['class' => 'label']) }}
 
                     <p class="control is-expanded has-icons-left">
                       {{ Form::number('hourly', null, ['class' => 'input', 'min' => '1', 'max' => '23']) }}
@@ -85,16 +85,16 @@
             </div>
             <div class="field">
 
-              <p class="help">Choose daily or every x hours</p>
+              <p class="help">Pasirinkite vieną iš dviejų</p>
             </div>
 
             <div class="field is-grouped is-grouped-centered">
               <p class="control">
-                {{ Form::submit('Update Settings', ['class' => 'button is-success']) }}
+                {{ Form::submit('Atnaujinti Nustatymus', ['class' => 'button is-success']) }}
               </p>
 
               <p class="control">
-                <a href="{{ route('dashboard.index') }}" class="button is-light">Cancel</a>
+                <a href="{{ route('dashboard.index') }}" class="button is-light">Atšaukti</a>
               </p>
             </div>
 

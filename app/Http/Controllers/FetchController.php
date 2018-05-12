@@ -100,22 +100,22 @@ class FetchController extends Controller
      */
     public function store(Request $request, $restaurantId)
     {
-      $html = file_get_contents("$request->dataurl");
-      $restaurant_doc = new \DOMDocument();
-
-      $restaurant_doc->loadHTML($html);
-      // dd($restaurant_doc.xml);
-
-      $content_xpath = new \DOMXPath($restaurant_doc);
-      // dd($content_xpath);
-      // dd($html);
-      $result = $content_xpath->query('//html/body//div[4]/div/div[3]/div/div/div/div[2]/div/div/div/div/div[1]/div[2]/h3');
-      // dd($result);
-      $value = $result[0]->nodeValue;
-      // dd($value);
-      $xpath = ['message' => $request->xpath];
-
-      return response()->json(['message' => $value]);
+      // $html = file_get_contents("$request->dataurl");
+      // $restaurant_doc = new \DOMDocument();
+      //
+      // $restaurant_doc->loadHTML($html);
+      // // dd($restaurant_doc.xml);
+      //
+      // $content_xpath = new \DOMXPath($restaurant_doc);
+      // // dd($content_xpath);
+      // // dd($html);
+      // $result = $content_xpath->query('//html/body//div[4]/div/div[3]/div/div/div/div[2]/div/div/div/div/div[1]/div[2]/h3');
+      // // dd($result);
+      // $value = $result[0]->nodeValue;
+      // // dd($value);
+      // $xpath = ['message' => $request->xpath];
+      //
+      // return response()->json(['message' => $value]);
     }
 
     /**

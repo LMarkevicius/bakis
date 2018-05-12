@@ -94,7 +94,7 @@ class SettingsController extends Controller
 
       $settings->save();
 
-      Session::flash('success', 'You have successfully updated settings!');
+      Session::flash('success', 'Jūs sėkmingai atnaujinote nustatymus!');
 
       return redirect()->route('settings.edit');
     }

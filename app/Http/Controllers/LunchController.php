@@ -10,6 +10,9 @@ use App\Lunch;
 use App\Xpath;
 use Image;
 use Storage;
+// use Lang;
+use Date;
+use Carbon\Carbon;
 
 class LunchController extends Controller
 {
@@ -20,10 +23,19 @@ class LunchController extends Controller
      */
     public function index()
     {
-      if (date('l') == 'Saturday' || date('l') == 'Sunday') {
-        $todayslunches = Lunch::where('weekday', 'Monday')->orderBy('created_at', 'DESC')->paginate(6);
+      setlocale(LC_TIME, "lt_LT.utf8");
+      // $now = Carbon::now('Europe/Vilnius');
+      // Carbon::setLocale('lt_LT.utf8');
+      // Carbon::setUtf8(true);
+      // dd(Carbon::now()->formatLocalized('%A'));
+      // Date::setLocale('lt_LT');
+      // dd(getLocale());
+      $today = strftime('%A');
+      // dd($month_name, date('l'));
+      if ($today == 'Šeštadienis' || $today == 'Sekmadienis') {
+        $todayslunches = Lunch::where('weekday', 'Pirmadienis')->orderBy('created_at', 'DESC')->paginate(6);
       } else {
-        $todayslunches = Lunch::where('weekday', date('l'))->orderBy('created_at', 'DESC')->paginate(6);
+        $todayslunches = Lunch::where('weekday', $today)->orderBy('created_at', 'DESC')->paginate(6);
       }
 
       $recentlunches = Lunch::orderBy('created_at', 'DESC')->paginate(6);
@@ -33,24 +45,36 @@ class LunchController extends Controller
 
     public function todaysdeals()
     {
+      setlocale(LC_TIME, "lt_LT.utf8");
+
+      $today = strftime('%A');
       $lunches = new Lunch;
       $queries = [];
 
       $columns = [
-        'restaurant_id', 'price'
+        'restaurant_id', 'from', 'to'
       ];
 
-      if (date('l') == 'Saturday' || date('l') == 'Sunday') {
-        $lunches = $lunches->where('weekday', 'Monday');
+      if ($today == 'Šeštadienis' || $today == 'Sekmadienis') {
+        $lunches = $lunches->where('weekday', 'Pirmadienis');
       } else {
-        $lunches = $lunches->where('weekday', date('l'));
+        $lunches = $lunches->where('weekday', $today);
       }
 
       foreach ($columns as $column) {
         if (request()->has($column)) {
-          if ($column == 'price') {
-            $prices = explode('-', request('price'));
-            $lunches = $lunches->whereBetween($column, [$prices[0], $prices[1]]);
+          if ($column == 'from') {
+            if (request()->has('to')) {
+              $lunches = $lunches->whereBetween('price', [request($column), request('to')]);
+            } else {
+              $lunches = $lunches->whereBetween('price', [request($column), '15']);
+            }
+          } else if ($column == 'to') {
+            if (request()->has('from')) {
+              $lunches = $lunches->whereBetween('price', [request('from'), request($column)]);
+            } else {
+              $lunches = $lunches->whereBetween('price', ['0', request($column)]);
+            }
           } else {
             $lunches = $lunches->where($column, request($column));
           }
@@ -71,14 +95,23 @@ class LunchController extends Controller
       $queries = [];
 
       $columns = [
-        'restaurant_id', 'weekday', 'price'
+        'restaurant_id', 'weekday', 'from', 'to'
       ];
 
       foreach ($columns as $column) {
         if (request()->has($column)) {
-          if ($column == 'price') {
-            $prices = explode('-', request('price'));
-            $lunches = $lunches->whereBetween($column, [$prices[0], $prices[1]]);
+          if ($column == 'from') {
+            if (request()->has('to')) {
+              $lunches = $lunches->whereBetween('price', [request($column), request('to')]);
+            } else {
+              $lunches = $lunches->whereBetween('price', [request($column), '15']);
+            }
+          } else if ($column == 'to') {
+            if (request()->has('from')) {
+              $lunches = $lunches->whereBetween('price', [request('from'), request($column)]);
+            } else {
+              $lunches = $lunches->whereBetween('price', ['0', request($column)]);
+            }
           } else {
             $lunches = $lunches->where($column, request($column));
           }
@@ -193,7 +226,7 @@ class LunchController extends Controller
 
           break;
         case 0:
-          Session::flash('error', 'You have not added any deals');
+          Session::flash('error', 'Jūs nepridėjote nei vieno dienos pietų pasiūlymo!');
 
           return redirect()->route('lunch.create', $restaurant_id);
           break;
@@ -208,7 +241,7 @@ class LunchController extends Controller
               "title.$i"          => 'required|max:255',
               "image.$i"          => 'sometimes',
               "price.$i"          => 'required',
-              "weekday.0"         => 'required|max:255'
+              "weekday.0"        => 'required|max:255'
             ]);
 
             // $fixed_title = str_replace('""', "''", $request->title[$i]);
@@ -218,9 +251,11 @@ class LunchController extends Controller
 
             $lunch->restaurant_id = $restaurant_id;
             $lunch->title = $request->title[$i];
-
-            $lunch->price = $request->price[$i];
             $lunch->weekday = $request->weekday[0];
+            $lunch->price = $request->price[$i];
+
+
+
             // dd($request->photo_url);
 
             if (!empty($request->file('image')[$i])) {
@@ -269,6 +304,9 @@ class LunchController extends Controller
                 "price_xpath.$i"    => 'required'
               ]);
 
+              // $lunch->weekday = $request->weekday[0];
+              //
+              // $lunch->save();
               $xpath = new Xpath;
 
               $xpath->lunch_id = $lunch->id;
@@ -278,6 +316,7 @@ class LunchController extends Controller
               $xpath->price_path = $request->price_xpath[$i];
 
               $xpath->save();
+
             }
 
 
@@ -286,7 +325,7 @@ class LunchController extends Controller
           break;
       }
 
-      Session::flash('success', 'You have successfully added lunch deals!');
+      Session::flash('success', 'Jūs sėkmingai pridėjote dienos pietų pasiūlymus!');
 
       return redirect()->route('dashboard.edit', $restaurant_id);
     }
@@ -355,7 +394,7 @@ class LunchController extends Controller
 
       $lunch->save();
 
-      Session::flash('success', 'You have successfully updated Lunch Deal!');
+      Session::flash('success', 'Jūs sėkmingai atnaujinote dienos pietų pasiūlymą!');
 
       return redirect()->route('dashboard.edit', $restaurant_id);
     }
@@ -384,7 +423,7 @@ class LunchController extends Controller
 
       $lunch->delete();
 
-      Session::flash('success', 'The lunch deal was successfully deleted!');
+      Session::flash('success', 'Pietų pasiūlymas buvo sėkmingai ištrintas!');
 
       return redirect()->route('dashboard.edit', $restaurant_id);
     }

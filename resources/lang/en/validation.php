@@ -100,8 +100,97 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        // Restaurants
+        'name' => [
+            'required' => 'Negalite palikti pavadinimo laukelio tuščio',
+            'max'      => 'Laukelis Restorano pavadinimas negali viršyti :max simbolių skaičiaus',
+        ],
+        'website' => [
+            'required' => 'Negalite palikti nuorodos laukelio tuščio',
+            'url'      => 'Nuoroda turi būti teisinga',
+        ],
+        'logo' => [
+            'required'  => 'Turite įkelti logotipą',
+            'image'     => 'Galite įkelti tik nuotraukas',
+        ],
+
+        // Contacts
+        'address' => [
+            'required' => 'Negalite palikti restorano adreso laukelio tuščio',
+            'max'      => 'Laukelis Restorano adresas negali viršyti :max simbolių skaičiaus',
+        ],
+        'city' => [
+            'required' => 'Negalite palikti miesto laukelio tuščio',
+            'max'      => 'Laukelis Miestas negali viršyti :max simbolių skaičiaus',
+        ],
+        'phone' => [
+            'required' => 'Negalite palikti telefono numerio laukelio tuščio',
+            'max'      => 'Laukelis Telefono numeris negali viršyti :max simbolių skaičiaus',
+        ],
+
+        // Lunches
+        'title' => [
+            'required' => 'Negalite palikti patiekalo pavadinimo laukelio tuščio',
+            'max'      => 'Laukelis Patiekalo pavadinimas negali viršyti :max simbolių skaičiaus',
+        ],
+        'title.*' => [
+            'required' => 'Negalite palikti patiekalo pavadinimo laukelio tuščio',
+            'max'      => 'Laukelis :* Patiekalo pavadinimas negali viršyti :max simbolių skaičiaus',
+        ],
+        'image' => [
+            'sometimes' => 'Patiekalo nuotrauka nėra privaloma',
+        ],
+        'image.*' => [
+            'sometimes' => 'Patiekalo nuotrauka nėra privaloma',
+        ],
+        'price' => [
+            'required' => 'Negalite palikti kainos laukelio tuščio',
+        ],
+        'price.*' => [
+            'required' => 'Negalite palikti kainos laukelio tuščio',
+        ],
+        'weekday' => [
+            'required' => 'Negalite palikti savaitės dienos laukelio tuščio',
+            'max'      => 'Laukelis Savaitės diena negali viršyti :max simbolių skaičiaus',
+        ],
+        'weekday.*' => [
+            'required' => 'Negalite palikti savaitės dienos laukelio tuščio',
+            'max'      => 'Laukelis Savaitės diena negali viršyti :max simbolių skaičiaus',
+        ],
+
+        'title_xpath' => [
+            'required' => 'Negalite palikti pavadinimo xpath laukelio tuščio',
+        ],
+        'title_xpath.*' => [
+            'required' => 'Negalite palikti pavadinimo xpath laukelio tuščio',
+        ],
+        'image_xpath' => [
+            'sometimes' => 'Nuotraukos xpath laukelis yra neprivalomas',
+        ],
+        'image_xpath.*' => [
+            'sometimes' => 'Nuotraukos xpath laukelis yra neprivalomas',
+        ],
+        'price_xpath' => [
+            'required' => 'Negalite palikti kainos xpath laukelio tuščio',
+        ],
+        'price_xpath.*' => [
+            'required' => 'Negalite palikti kainos xpath laukelio tuščio',
+        ],
+        'dataurl' => [
+            'required' => 'Negalite palikti tuščio laukelio',
+            'url'      => 'Neteisingai įvestas nuorodos formatas',
+        ],
+
+        // Settings
+        'sleep' => [
+            'required' => 'Negalite palikti miegojimo laiko laukelio tuščio',
+            'numeric'  => 'Laukelis Miegojimo laikas gali priimti tik skaičius',
+        ],
+        'daily' => [
+            'required_without' => 'Vienas iš dviejų laukelių yra privalomas',
+        ],
+        'hourly' => [
+            'required_without' => '',
         ],
     ],
 

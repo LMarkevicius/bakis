@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'All Restaurants')
+@section('title', 'Administratoriaus Apžvalga')
 
 @section('section')
 
@@ -8,12 +8,12 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Admin Dashboard
+          Administratoriaus Apžvalga
         </h1>
         <h2 class="subtitle">
           <nav class="breadcrumb is-medium" aria-label="breadcrumbs">
             <ul>
-              <li class="is-active"><a href="{{ route('dashboard.index') }} aria-current="page"">Admin Dashboard</a></li>
+              <li class="is-active"><a href="{{ route('dashboard.index') }} aria-current="page"">Administratoriaus Apžvalga</a></li>
             </ul>
           </nav>
           {{-- <a href="{{ route('dashboard.index') }}">Admin Dashboard</a> --}}
@@ -35,38 +35,38 @@
           <section class="hero">
             <div class="hero-body has-text-centered">
               <h1 class="title">
-                Fetch Results
+                Duomenų Surinkimo Rezultatai
                 <a href="{{ route('dashboard.download') }}" class="button is-small is-primary"><span class="icon is-small"><i class="fas fa-download"></i></span></a>
               </h1>
 
               <nav class="level">
                 <div class="level-item has-text-centered">
                   <div>
-                    <p class="heading">Matched</p>
+                    <p class="heading">Sutampantys</p>
                     <p class="title">{{ $count['match'] }}</p>
                   </div>
                 </div>
                 <div class="level-item has-text-centered">
                   <div>
-                    <p class="heading">Existing</p>
+                    <p class="heading">Egzistuojantys</p>
                     <p class="title">{{ $count['exists'] }}</p>
                   </div>
                 </div>
                 <div class="level-item has-text-centered">
                   <div>
-                    <p class="heading">Updated</p>
+                    <p class="heading">Atnaujinti</p>
                     <p class="title">{{ $count['updated'] }}</p>
                   </div>
                 </div>
                 <div class="level-item has-text-centered">
                   <div>
-                    <p class="heading">New</p>
+                    <p class="heading">Nauji</p>
                     <p class="title">{{ $count['new'] }}</p>
                   </div>
                 </div>
                 <div class="level-item has-text-centered">
                   <div>
-                    <p class="heading">Errors</p>
+                    <p class="heading">Klaidos</p>
                     <p class="title">{{ $count['error'] }}</p>
                   </div>
                 </div>
@@ -80,9 +80,9 @@
       <section class="hero">
         <div class="hero-body has-text-centered">
           <h1 class="title">
-            All Restaurants
+            Visi Restoranai
           </h1>
-          <h2 class="subtitle">{{ count($restaurants) }} different places</h2>
+          <h2 class="subtitle">{{ count($restaurants) }} skirtingos vietos</h2>
         </div>
       </section>
 
@@ -92,12 +92,12 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Logo</th>
-                <th>Restaurant</th>
-                <th>Lunches</th>
-                <th>Contacts</th>
-                <th>Errors</th>
-                <th>Actions</th>
+                <th>Logotipas</th>
+                <th>Restoranas</th>
+                <th>Patiekalai</th>
+                <th>Kontaktai</th>
+                <th>Klaidos</th>
+                <th>Veiksmai</th>
               </tr>
             </thead>
 
@@ -136,7 +136,7 @@
                       <span class="icon left">
                         <i class="fas fa-pencil-alt"></i>
                       </span>
-                      Edit
+                      Redaguoti
                     </a>
 
                     {!! Form::open(['route' => ['dashboard.destroy', $restaurant->id], 'method' => 'DELETE']) !!}
@@ -144,7 +144,7 @@
                         <span class="icon left">
                           <i class="fas fa-trash-alt"></i>
                         </span>
-                        Delete
+                        Ištrinti
                       </button>
                     {!! Form::close() !!}
                   </td>

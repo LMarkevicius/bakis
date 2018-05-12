@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Show Lunch Deals')
+@section('title', 'Parodyti dienos pasiūlymus')
 
 @section('section')
   {{-- {{ dd($contacts) }} --}}
@@ -37,39 +37,63 @@
 
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link {{ request()->has('weekday') ? 'is-active' : '' }}" href="#">
-                  {{ request()->has('weekday') ? request('weekday') : 'Weekday' }}
+                  {{ request()->has('weekday') ? request('weekday') : 'Savaitės diena' }}
                 </a>
                 <div class="navbar-dropdown is-boxed is-left">
-                  <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => 'Monday', 'price' => request('price')]) }}" class="navbar-item {{ request('weekday') == 'Monday' ? 'is-active' : '' }}">
-                    Monday
+                  <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => 'Pirmadienis', 'from' => request('from'), 'to' => request('to')]) }}" class="navbar-item {{ request('weekday') == 'Pirmadienis' ? 'is-active' : '' }}">
+                    Pirmadienis
                   </a>
-                  <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => 'Tuesday', 'price' => request('price')]) }}" class="navbar-item {{ request('weekday') == 'Tuesday' ? 'is-active' : '' }}">
-                    Tuesday
+                  <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => 'Antradienis', 'from' => request('from'), 'to' => request('to')]) }}" class="navbar-item {{ request('weekday') == 'Antradienis' ? 'is-active' : '' }}">
+                    Antradienis
                   </a>
-                  <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => 'Wednesday', 'price' => request('price')]) }}" class="navbar-item {{ request('weekday') == 'Wednesday' ? 'is-active' : '' }}">
-                    Wednesday
+                  <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => 'Trečiadienis', 'from' => request('from'), 'to' => request('to')]) }}" class="navbar-item {{ request('weekday') == 'Trečiadienis' ? 'is-active' : '' }}">
+                    Trečiadienis
                   </a>
-                  <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => 'Friday', 'price' => request('price')]) }}" class="navbar-item {{ request('weekday') == 'Friday' ? 'is-active' : '' }}">
-                    Friday
+                  <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => 'Ketvirtadienis', 'from' => request('from'), 'to' => request('to')]) }}" class="navbar-item {{ request('weekday') == 'Ketvirtadienis' ? 'is-active' : '' }}">
+                    Ketvirtadienis
+                  </a>
+                  <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => 'Penktadienis', 'from' => request('from'), 'to' => request('to')]) }}" class="navbar-item {{ request('weekday') == 'Penktadienis' ? 'is-active' : '' }}">
+                    Penktadienis
                   </a>
 
                 </div><!-- .navbar-dropdown is-boxed is-left -->
               </div><!-- .navbar-item has-dropdown is-hoverable -->
 
               <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link {{ request()->has('price') ? 'is-active' : '' }}" href="#">
-                  Price Range
+                <a class="navbar-link {{ request()->has('from') ? 'is-active' : '' }}" href="#">
+                  Kaina nuo
                 </a>
+
                 <div class="navbar-dropdown is-boxed is-left">
                   @php ($minprice = 0)
-                  @php ($maxprice = 5)
-                  @while ($maxprice <= 50)
-                    <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => request('weekday'), 'price' => "$minprice-$maxprice"]) }}" class="navbar-item {{ request('price') == "$minprice-$maxprice" ? 'is-active' : '' }}">
-                      {{ $minprice }} - {{ $maxprice }} $
+                  {{-- @php ($maxprice = 1) --}}
+                  @while ($minprice <= 10)
+                    <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => request('weekday'), 'from' => $minprice, 'to' => request('to')]) }}" class="navbar-item {{ request('from') == "$minprice" ? 'is-active' : '' }}">
+                      {{ $minprice }} €
                     </a>
 
-                    @php ($minprice += 5)
-                    @php ($maxprice += 5)
+                    @php ($minprice += 1)
+                    {{-- @php ($maxprice += 1) --}}
+                  @endwhile
+
+                </div><!-- .navbar-dropdown is-boxed is-left -->
+              </div><!-- .navbar-item has-dropdown is-hoverable -->
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link {{ request()->has('to') ? 'is-active' : '' }}" href="#">
+                  iki
+                </a>
+
+                <div class="navbar-dropdown is-boxed is-left">
+                  {{-- @php ($minprice = 0) --}}
+                  @php ($maxprice = 1)
+                  @while ($maxprice <= 10)
+                    <a href="{{ route('restaurant.show', [$restaurant->id, 'weekday' => request('weekday'), 'from' => request('from'), 'to' => $maxprice]) }}" class="navbar-item {{ request('to') == $maxprice ? 'is-active' : '' }}">
+                      {{ $maxprice }} €
+                    </a>
+
+                    {{-- @php ($minprice += 1) --}}
+                    @php ($maxprice += 1)
                   @endwhile
 
                 </div><!-- .navbar-dropdown is-boxed is-left -->
@@ -78,7 +102,7 @@
             </div><!-- .navbar-start -->
 
             <div class="navbar-end">
-              <a href="{{ route('restaurant.show', $restaurant->id) }}" class="navbar-item">Reset Filter</a>
+              <a href="{{ route('restaurant.show', $restaurant->id) }}" class="navbar-item">Panaikinti filtrą</a>
             </div><!-- .navbar-end -->
           </div><!-- .navbar-menu -->
         </nav><!-- .navbar navbar-filter is-light -->
@@ -90,7 +114,7 @@
             <div class="card">
               <div class="card-image">
                 <a class="button is-primary is-small is-rounded button-weekday">{{ $lunch->weekday }}</a>
-                <a class="button is-danger is-small is-rounded button-price">{{ $lunch->price }} $</a>
+                <a class="button is-danger is-small is-rounded button-price">{{ $lunch->price }} €</a>
                 <figure class="image is-4by3">
                   <img src="{{ asset('images/' . $lunch->image) }}" alt="{{ $lunch->title }}">
                 </figure>
@@ -117,7 +141,7 @@
       @if (count($restaurant->contacts) > 0)
         <nav class="panel">
           <p class="panel-heading">
-            Contacts
+            Kontaktai
           </p>
 
           {{-- <p class="panel-tabs">

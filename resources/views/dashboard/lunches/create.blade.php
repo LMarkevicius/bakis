@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Create Lunch Deals')
+@section('title', 'Pridėti Dienos Pietų Pasiūlymus')
 
 @section('section')
 
@@ -8,15 +8,15 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Add New Lunch Deal(s)
+          Pridėti Dienos Pietų Pasiūlymus
         </h1>
 
         <h2 class="subtitle">
           <nav class="breadcrumb is-medium" aria-label="breadcrumbs">
             <ul>
-              <li><a href="{{ route('dashboard.index') }}">Admin Dashboard</a></li>
-              <li><a href="{{ route('dashboard.edit', $restaurantId) }}">Edit Restaurant</a></li>
-              <li class="is-active"><a href="" aria-current="page">Add Lunches</a></li>
+              <li><a href="{{ route('dashboard.index') }}">Administratoriaus Apžvalga</a></li>
+              <li><a href="{{ route('dashboard.edit', $restaurantId) }}">Redaguoti Restoraną</a></li>
+              <li class="is-active"><a href="" aria-current="page">Pridėti Patiekalus</a></li>
             </ul>
           </nav>
         </h2>
@@ -35,7 +35,7 @@
       <section class="hero">
         <div class="hero-body has-text-centered">
           <h1 class="title">
-            Choose a method
+            Pasirinkite metodą
           </h1>
 
           <div class="field is-grouped is-grouped-centered">
@@ -44,7 +44,7 @@
                 <span class="icon">
                   <i class="fas fa-magic"></i>
                 </span>
-                Automatically
+                Automatinis
               </a>
             </p>
 
@@ -53,7 +53,7 @@
                 <span class="icon">
                   <i class="fas fa-pencil-alt"></i>
                 </span>
-                Manually
+                Rankinis
               </a>
             </p>
           </div>
@@ -72,7 +72,7 @@
 
                 <div class="col-md-4 auto-lunch-cont">
                   <div class="field dataurl-field">
-                    {{ Form::label('dataurl', 'Website Data URL', ['class' => 'label']) }}
+                    {{ Form::label('dataurl', 'Tinklalapio duomenų nuoroda', ['class' => 'label']) }}
 
                     <div class="control is-expanded has-icons-left">
                       {{ Form::text('dataurl', null, ['class' => 'input', 'id' => 'dataurl', 'placeholder' => 'https://www.lacrepe.lt/lt/dienos-pietus']) }}
@@ -87,7 +87,7 @@
                       <span class="icon left">
 
                       </span>
-                      Fetch
+                      Ištraukti
                     </a>
                   </div> <!-- .field -->
 
@@ -131,17 +131,17 @@
                     </div> <!-- .field --> --}}
 
                     <div class="field">
-                      {{ Form::label('weekday[]', 'Week Day', ['class' => 'label']) }}
+                      {{ Form::label('weekday[]', 'Savaitės diena', ['class' => 'label']) }}
 
                       <div class="control has-icons-left">
                         <div class="select">
                           {{-- {{ Form::text('a', date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l'), ['class' => 'input']) }} --}}
                           {{ Form::select('weekday[]', [
-                            'Monday' => 'Monday',
-                            'Tuesday' => 'Tuesday',
-                            'Wednesday' => 'Wednesday',
-                            'Thursday' => 'Thursday',
-                            'Friday' => 'Friday',
+                            'Pirmadienis' => 'Pirmadienis',
+                            'Antradienis' => 'Antradienis',
+                            'Trečiadienis' => 'Trečiadienis',
+                            'Ketvirtadienis' => 'Ketvirtadienis',
+                            'Penktadienis' => 'Penktadienis',
                           ], date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l')) }}
                         </div>
 
@@ -185,7 +185,7 @@
                 <span class="icon">
                   <i class="fas fa-plus"></i>
                 </span>
-                Add Another Deal
+                Pridėti dar vieną patiekalą
               </a>
             </div> <!-- .field -->
 
@@ -193,11 +193,11 @@
 
             <div class="field is-grouped is-grouped-centered">
               <p class="control">
-                {{ Form::submit('Add New Deal', ['class' => 'button is-success']) }}
+                {{ Form::submit('Pridėti Patiekalus', ['class' => 'button is-success']) }}
               </p>
 
               <p class="control">
-                <a href="{{ route('dashboard.edit', $restaurantId) }}" class="button is-light">Cancel</a>
+                <a href="{{ route('dashboard.edit', $restaurantId) }}" class="button is-light">Atšaukti</a>
               </p>
             </div> <!-- .field is-grouped is-grouped-centered -->
 
@@ -321,13 +321,13 @@
 
       $('.lunch-container #fetch_count').val(fetch_count);
 
-      var lunchfields = '<div class="field">{{ Form::label('title[]', 'Lunch Title', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::text('title[]', null, ['class' => 'input field-title', 'placeholder' => 'Lietiniai su varške']) }}<span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div>';
-          lunchfields += '<div class="field file has-name"><label class="file-label"><input type="file" name="image[]" class="file-input" id="logo-file"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Choose an image...</span></span><span class="file-name" id="file-name"></span></label></div>';
-          lunchfields += '<div class="field">{{ Form::label('price[]', 'Meal Price', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::number('price[]', null, ['class' => 'input field-price', 'step' => '0.01', 'placeholder' => '3.99']) }}<span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
+      var lunchfields = '<div class="field">{{ Form::label('title[]', 'Patiekalo pavadinimas', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::text('title[]', null, ['class' => 'input field-title', 'placeholder' => 'Lietiniai su varške']) }}<span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div>';
+          lunchfields += '<div class="field file has-name"><label class="file-label"><input type="file" name="image[]" class="file-input" id="logo-file"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Pasirinkite paveiksliuką...</span></span><span class="file-name" id="file-name"></span></label></div>';
+          lunchfields += '<div class="field">{{ Form::label('price[]', 'Kaina', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::number('price[]', null, ['class' => 'input field-price', 'step' => '0.01', 'placeholder' => '3.99']) }}<span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
 
-          weekdayfield = '<div class="field">{{ Form::label('weekday[]', 'Week Day', ['class' => 'label']) }}<div class="control has-icons-left"><div class="select">{{ Form::select('weekday[]', ["Monday" => "Monday", "Tuesday" => "Tuesday", "Wednesday" => "Wednesday", "Thursday" => "Thursday", "Friday" => "Friday"], date("l") == "Saturday" || date("l") == "Sunday" ? "Monday" : date("l")) }}</div><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
+          weekdayfield = '<div class="field">{{ Form::label('weekday[]', 'Savaitės diena', ['class' => 'label']) }}<div class="control has-icons-left"><div class="select">{{ Form::select('weekday[]', ["Pirmadienis" => "Pirmadienis", "Antradienis" => "Antradienis", "Trečiadienis" => "Trečiadienis", "Ketvirtadienis" => "Ketvirtadienis", "Penktadienis" => "Penktadienis"], date("l") == "Saturday" || date("l") == "Sunday" ? "Monday" : date("l")) }}</div><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
 
-      var removebutton = '<a href="#" class="remove-meal button is-danger is-small is-rounded"><span class="icon"><i class="fas fa-times-circle"></i></span>Remove</a>';
+      var removebutton = '<a href="#" class="remove-meal button is-danger is-small is-rounded"><span class="icon"><i class="fas fa-times-circle"></i></span>Pašalinti</a>';
 
       $('.lunch-deals #count-deals').val(x);
 
@@ -340,7 +340,7 @@
             lunchdeal += weekdayfield;
             // lunchdeal += removebutton;
 
-        $('.lunch-deals').append('<div class="field has-margin-top"><h2 class="subtitle is-5">' + x + ' meal ' + removebutton + '</h2>' + lunchdeal + '</div>');
+        $('.lunch-deals').append('<div class="field has-margin-top"><h2 class="subtitle is-5">' + x + ' patiekalas ' + removebutton + '</h2>' + lunchdeal + '</div>');
 
         $('.lunch-deals #count-deals').val(x);
 
@@ -494,9 +494,9 @@
           var lunchwrap = '<div class="col-xs-12 col-sm-6 margin-bottom"><div class="card">';
               lunchwrap += '<div class="card-image new-image"><a class="delete-deal button is-danger is-small is-rounded"><span class="icon is-small"><i class="fas fa-times"></i></span></a><figure class="image is-4by3"><img src=""></figure></div>';
               lunchwrap += '{{ Form::hidden('photo_url[]', null, ['class' => 'photo-url new-photo-url']) }}';
-              lunchwrap += '<div class="card-content"><div class="content"><div class="field">{{ Form::label('title[]', 'Lunch Title', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::textarea('title[]', null, ['class' => 'input field-title new-title', 'style' => 'height: 60px;', 'placeholder' => 'Lietiniai su varške']) }}<span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div></div>';
-              lunchwrap += '<div class="content-weekday"></div>';
-              lunchwrap += '<div class="field">{{ Form::label('price[]', 'Meal Price', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::number('price[]', null, ['class' => 'input field-price new-price', 'step' => '0.01', 'placeholder' => '3.99']) }}<span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
+              lunchwrap += '<div class="card-content"><div class="content"><div class="field">{{ Form::label('title[]', 'Patiekalo pavadinimas', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::textarea('title[]', null, ['class' => 'input field-title new-title', 'style' => 'height: 60px;', 'placeholder' => 'Lietiniai su varške']) }}<span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div></div>';
+              // lunchwrap += '<div class="content-weekday"></div>';
+              lunchwrap += '<div class="field">{{ Form::label('price[]', 'Kaina', ['class' => 'label']) }}<div class="control is-expanded has-icons-left">{{ Form::number('price[]', null, ['class' => 'input field-price new-price', 'step' => '0.01', 'placeholder' => '3.99']) }}<span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
               lunchwrap += '{{ Form::hidden('image_xpath[]', null, ['class' => 'image-xpath new-image-xpath']) }}';
               lunchwrap += '{{ Form::hidden('title_xpath[]', null, ['class' => 'title-xpath new-title-xpath']) }}';
               lunchwrap += '{{ Form::hidden('price_xpath[]', null, ['class' => 'price-xpath new-price-xpath']) }}';

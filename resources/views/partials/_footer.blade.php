@@ -2,7 +2,7 @@
   <div class="container">
     <div class="content has-text-centered">
       <p>
-        <a href="{{ route('index') }}"><strong>Lunch Deals</strong></a> by Lukas Markevicius.
+        <a href="{{ route('index') }}"><strong>Dienos Pietūs</strong></a> sukurta Luko Markevičiaus.
       </p>
     </div>
   </div>

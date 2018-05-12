@@ -102,7 +102,11 @@ class XpathController extends Controller
 
           } else {
             // Jei nesutampa
-            $todaysdate = date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l');
+            setlocale(LC_TIME, "lt_LT.utf8");
+
+            $today = strftime('%A');
+
+            $todaysdate = $today == "Šeštadienis" || $today == "Sekmadienis" ? "Pirmadienis" : $today;
             if ($lunch->weekday != $todaysdate) {
               // Jei nesutampa ir nesutampa patiekalo diena
 
@@ -181,7 +185,7 @@ class XpathController extends Controller
           $xpath->save();
 
 
-          header('HTTP/1.0 400 Something is wrong with xpaths');
+          header('HTTP/1.0 400 Klaida su XPATH keliu');
 
           die();
         }
@@ -194,7 +198,7 @@ class XpathController extends Controller
         $xpath->save();
 
 
-        header('HTTP/1.0 400 Something is wrong with restaurant website');
+        header('HTTP/1.0 400 Klaida su restorano tinklalapiu');
 
         die();
       }
@@ -260,7 +264,7 @@ class XpathController extends Controller
 
       $xpath->save();
 
-      Session::flash('success', 'You have successfully added new lunch deal!');
+      Session::flash('success', 'Jūs sėkmingai pridėjote naują dienos pietų pasiūlymą!');
 
       return redirect()->route('dashboard.edit', $restaurantId);
     }
@@ -329,7 +333,7 @@ class XpathController extends Controller
 
       $xpath->save();
 
-      Session::flash('success', 'You have successfully added new lunch deal!');
+      Session::flash('success', 'Jūs sėkmingai atnaujinote dienos pietų pasiūlymą!');
 
       return redirect()->route('dashboard.edit', $restaurantId);
     }

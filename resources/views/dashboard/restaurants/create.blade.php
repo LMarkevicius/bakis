@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Create Lunch Deals')
+@section('title', 'Pridėti Restoraną')
 
 @section('section')
 
@@ -8,14 +8,14 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Create Restaurant
+          Sukurti Restoraną
         </h1>
 
         <h2 class="subtitle">
           <nav class="breadcrumb is-medium" aria-label="breadcrumbs">
             <ul>
-              <li><a href="{{ route('dashboard.index') }}">Admin Dashboard</a></li>
-              <li class="is-active"><a href="" aria-current="page">Create Restaurant</a></li>
+              <li><a href="{{ route('dashboard.index') }}">Administratoriaus Apžvalga</a></li>
+              <li class="is-active"><a href="" aria-current="page">Sukurti Restoraną</a></li>
             </ul>
           </nav>
         </h2>
@@ -35,7 +35,7 @@
         <div class="col-xs-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
           {!! Form::open(['route' => 'dashboard.store', 'files' => true]) !!}
             <div class="field">
-              {{ Form::label('name', 'Website Name', ['class' => 'label']) }}
+              {{ Form::label('name', 'Restorano pavadinimas', ['class' => 'label']) }}
 
               <div class="control is-expanded has-icons-left">
                 {{ Form::text('name', null, ['class' => 'input', 'placeholder' => 'La Crepe']) }}
@@ -46,7 +46,7 @@
             </div>
 
             <div class="field">
-              {{ Form::label('website', 'Website URL', ['class' => 'label']) }}
+              {{ Form::label('website', 'Tinklalapio nuoroda', ['class' => 'label']) }}
 
               <div class="control is-expanded has-icons-left">
                 {{ Form::text('website', null, ['class' => 'input', 'placeholder' => 'https://www.lacrepe.lt/']) }}
@@ -65,17 +65,17 @@
                     <i class="fas fa-upload"></i>
                   </span>
 
-                  <span class="file-label">Choose a logo...</span>
+                  <span class="file-label">Pasirinkite logotipą...</span>
                 </span>
 
                 <span class="file-name" id="file-name"></span>
               </label>
             </div>
 
-            <h2 class="subtitle is-5">Contacts <small>(Optional)</small></h2>
+            <h2 class="subtitle is-5">Kontaktai <small>(Neprivaloma)</small></h2>
 
             <div class="field">
-              {{ Form::label('address', 'Restaurant Address', ['class' => 'label']) }}
+              {{ Form::label('address', 'Restorano adresas', ['class' => 'label']) }}
 
               <div class="control is-expanded has-icons-left">
                 {{ Form::text('address', null, ['class' => 'input', 'placeholder' => 'Žirmūnų g. 15']) }}
@@ -86,7 +86,7 @@
             </div>
 
             <div class="field">
-              {{ Form::label('city', 'Restaurant City', ['class' => 'label']) }}
+              {{ Form::label('city', 'Miestas', ['class' => 'label']) }}
 
               <div class="control is-expanded has-icons-left">
                 {{ Form::text('city', null, ['class' => 'input', 'placeholder' => 'Vilnius']) }}
@@ -97,7 +97,7 @@
             </div>
 
             <div class="field">
-              {{ Form::label('phone', 'Phone Number', ['class' => 'label']) }}
+              {{ Form::label('phone', 'Telefono numeris', ['class' => 'label']) }}
 
               <div class="control is-expanded has-icons-left">
                 {{ Form::text('phone', null, ['class' => 'input', 'placeholder' => '+37067500000']) }}
@@ -190,7 +190,7 @@
 
             <div class="field is-grouped is-grouped-centered">
               <p class="control">
-                {{ Form::submit('Create Restaurant', ['class' => 'button is-success']) }}
+                {{ Form::submit('Sukurti Restoraną', ['class' => 'button is-success']) }}
               </p>
             </div>
 

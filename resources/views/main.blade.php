@@ -9,7 +9,7 @@
 
     @include('partials._nav')
 
-    @if (Request::is('dashboard/*'))
+    @if (Request::is('apžvalga/*'))
       @yield('section')
     @else
       <div class="container">

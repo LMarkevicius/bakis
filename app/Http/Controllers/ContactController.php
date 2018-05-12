@@ -38,8 +38,8 @@ class ContactController extends Controller
     {
       $this->validate($request, [
         'address'   => 'required|max:255',
-        'city'   => 'required|max:255',
-        'phone'   => 'required|max:255'
+        'city'      => 'required|max:255',
+        'phone'     => 'required|max:255'
       ]);
 
       $contact = new Contact;
@@ -51,7 +51,7 @@ class ContactController extends Controller
 
       $contact->save();
 
-      Session::flash('success', 'You have successfully added contact!');
+      Session::flash('success', 'Jūs sėkmingai pridėjote restorano kontaktą!');
 
       return redirect()->route('dashboard.edit', $restaurant_id);
     }
@@ -103,7 +103,7 @@ class ContactController extends Controller
 
       $contact->save();
 
-      Session::flash('success', 'You have successfully updated restaurant contact!');
+      Session::flash('success', 'Jūs sėkmingai atnaujinote restorano kontaktą!');
 
       return redirect()->route('dashboard.edit', $restaurant_id);
     }
@@ -120,7 +120,7 @@ class ContactController extends Controller
 
       $contact->delete();
 
-      Session::flash('success', 'You have successfully deleted contact!');
+      Session::flash('success', 'Jūs sėkmingai ištrynėte restorano kontaktą!');
 
       return redirect()->route('dashboard.edit', $restaurant_id);
     }

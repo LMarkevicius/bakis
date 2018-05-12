@@ -6,8 +6,8 @@
     {{-- @if ($paginator->onFirstPage())
       <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
     @else --}}
-      <a href="{{ $paginator->previousPageUrl() }}" class="pagination-previous" rel="prev" {{ ($paginator->onFirstPage()) ? 'disabled' : '' }}>&laquo; Previous</a>
-      <a href="{{ $paginator->nextPageUrl() }}" class="pagination-next" rel="next" {{ ($paginator->hasMorePages()) ? '' : 'disabled' }}>Next &raquo;</a>
+      <a href="{{ $paginator->previousPageUrl() }}" class="pagination-previous" rel="prev" {{ ($paginator->onFirstPage()) ? 'disabled' : '' }}>&laquo; Ankstesnis</a>
+      <a href="{{ $paginator->nextPageUrl() }}" class="pagination-next" rel="next" {{ ($paginator->hasMorePages()) ? '' : 'disabled' }}>Sekantis &raquo;</a>
       {{-- <li class="page-item"><a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev">&laquo;</a></li> --}}
     {{-- @endif --}}
 

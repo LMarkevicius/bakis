@@ -1,13 +1,13 @@
 @extends('main')
 
-@section('title', 'Home Page')
+@section('title', 'Pradinis puslapis')
 
 @section('section')
 
   <section class="hero">
     <div class="hero-body has-text-centered hero-margin-bottom">
       <h1 class="title">
-        Today's Lunch Deals
+        Šiandienos Pietų Pasiūlymai
       </h1>
     </div>
   </section>
@@ -24,7 +24,7 @@
           <div class="card">
             <div class="card-image">
               <a class="button is-primary is-small is-rounded button-weekday">{{ $lunch->weekday }}</a>
-              <a class="button is-danger is-small is-rounded button-price">{{ $lunch->price }} $</a>
+              <a class="button is-danger is-small is-rounded button-price">{{ $lunch->price }} €</a>
               <figure class="image is-4by3">
                 <img src="{{ asset('images/' . $lunch->image) }}" alt="{{ $lunch->title }}">
               </figure>
@@ -66,20 +66,20 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="field is-grouped is-grouped-centered">
-          <a href="{{ route('todays.deals') }}" class="button is-info">View All</a>
+          <a href="{{ route('todays.deals') }}" class="button is-info">Peržiūrėti Visus</a>
         </div>
       </div>
     </div>
   @else
     <div class="has-text-centered">
-      <h2 class="subtitle">There are no lunch deals at this moment ;(</h2>
+      <h2 class="subtitle">Šiuo metu nėra jokių dienos patiekalų</h2>
     </div>
   @endif
 
   <section class="hero">
     <div class="hero-body has-text-centered">
       <h1 class="title">
-        Recent Lunch Deals
+        Neseniai Pridėti Dienos Patiekalai
       </h1>
     </div>
   </section>
@@ -93,7 +93,7 @@
           <div class="card">
             <div class="card-image">
               <a class="button is-primary is-small is-rounded button-weekday">{{ $lunch->weekday }}</a>
-              <a class="button is-danger is-small is-rounded button-price">{{ $lunch->price }} $</a>
+              <a class="button is-danger is-small is-rounded button-price">{{ $lunch->price }} €</a>
               <figure class="image is-4by3">
                 <img src="{{ asset('images/' . $lunch->image) }}" alt="{{ $lunch->title }}">
               </figure>
@@ -137,13 +137,13 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="field is-grouped is-grouped-centered">
-          <a href="{{ route('all.deals') }}" class="button is-info">View All</a>
+          <a href="{{ route('all.deals') }}" class="button is-info">Peržiūrėti Visus</a>
         </div>
       </div>
     </div>
   @else
     <div class="has-text-centered">
-      <h2 class="subtitle">There are no lunch deals at this moment ;(</h2>
+      <h2 class="subtitle">Šiuo metu nėra jokių dienos patiekalų</h2>
     </div>
   @endif
 

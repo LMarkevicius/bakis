@@ -260,14 +260,24 @@ class RestaurantController extends Controller
       $queries = [];
 
       $columns = [
-        'weekday', 'price'
+        'weekday', 'from', 'to'
       ];
-
+      // dd('asd');
       foreach ($columns as $column) {
         if (request()->has($column)) {
-          if ($column == 'price') {
-            $prices = explode('-', request('price'));
-            $lunches = $lunches->whereBetween($column, [$prices[0], $prices[1]]);
+          if ($column == 'from') {
+            if (request()->has('to')) {
+              $lunches = $lunches->whereBetween('price', [request($column), request('to')]);
+            } else {
+              // dd('op');
+              $lunches = $lunches->whereBetween('price', [request($column), '15']);
+            }
+          } else if ($column == 'to') {
+            if (request()->has('from')) {
+              $lunches = $lunches->whereBetween('price', [request('from'), request($column)]);
+            } else {
+              $lunches = $lunches->whereBetween('price', ['0', request($column)]);
+            }
           } else {
             $lunches = $lunches->where($column, request($column));
           }

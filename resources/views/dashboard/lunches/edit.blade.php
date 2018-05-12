@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Edit Lunch Deal')
+@section('title', 'Redaguoti Pietų Pasiūlymą')
 
 @section('section')
 
@@ -8,15 +8,15 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Edit Lunch Deal
+          Redaguoti Pietų Pasiūlymą
         </h1>
 
         <h2 class="subtitle">
           <nav class="breadcrumb is-medium" aria-label="breadcrumbs">
             <ul>
-              <li><a href="{{ route('dashboard.index') }}">Admin Dashboard</a></li>
-              <li><a href="{{ route('dashboard.edit', $lunch->restaurant_id) }}">Edit Restaurant</a></li>
-              <li class="is-active"><a href="" aria-current="page">Edit Lunch</a></li>
+              <li><a href="{{ route('dashboard.index') }}">Administratoriaus Apžvalga</a></li>
+              <li><a href="{{ route('dashboard.edit', $lunch->restaurant_id) }}">Redaguoti Restoraną</a></li>
+              <li class="is-active"><a href="" aria-current="page">Redaguoti Patiekalą</a></li>
             </ul>
           </nav>
         </h2>
@@ -36,7 +36,7 @@
         <div class="col-xs-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
           {!! Form::model($lunch, ['route' => ['lunch.update', $lunch->restaurant_id, $lunch->id], 'method' => 'PUT', 'files' => true]) !!}
             <div class="field">
-              {{ Form::label('title', 'Lunch Title', ['class' => 'label']) }}
+              {{ Form::label('title', 'Patiekalo pavadinimas', ['class' => 'label']) }}
 
               <div class="control is-expanded has-icons-left">
                 {{ Form::text('title', null, ['class' => 'input', 'placeholder' => 'Lietiniai su varške']) }}
@@ -55,7 +55,7 @@
                     <i class="fas fa-upload"></i>
                   </span>
 
-                  <span class="file-label">Choose an image...</span>
+                  <span class="file-label">Pasirinkite paveiksliuką...</span>
                 </span>
 
                 <span class="file-name" id="file-name">{{ $lunch->image }}</span>
@@ -63,7 +63,7 @@
             </div>
 
             <div class="field">
-              {{ Form::label('price', 'Meal Price', ['class' => 'label']) }}
+              {{ Form::label('price', 'Kaina', ['class' => 'label']) }}
 
               <div class="control is-expanded has-icons-left">
                 {{ Form::number('price', null, ['class' => 'input', 'step' => '0.01', 'placeholder' => '3.99']) }}
@@ -74,17 +74,17 @@
             </div>
 
             <div class="field">
-              {{ Form::label('weekday', 'Week Day', ['class' => 'label']) }}
+              {{ Form::label('weekday', 'Savaitės diena', ['class' => 'label']) }}
 
               <div class="control has-icons-left">
                 <div class="select">
                   {{-- {{ Form::text('a', date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l'), ['class' => 'input']) }} --}}
                   {{ Form::select('weekday', [
-                    'Monday' => 'Monday',
-                    'Tuesday' => 'Tuesday',
-                    'Wednesday' => 'Wednesday',
-                    'Thursday' => 'Thursday',
-                    'Friday' => 'Friday',
+                    'Pirmadienis' => 'Pirmadienis',
+                    'Antradienis' => 'Antradienis',
+                    'Trečiadienis' => 'Trečiadienis',
+                    'Ketvirtadienis' => 'Ketvirtadienis',
+                    'Penktadienis' => 'Penktadienis',
                   ], $lunch->weekday) }}
                 </div>
 
@@ -96,11 +96,11 @@
 
             <div class="field is-grouped is-grouped-centered">
               <p class="control">
-                {{ Form::submit('Add New Deal', ['class' => 'button is-success']) }}
+                {{ Form::submit('Atnaujinti Patiekalą', ['class' => 'button is-success']) }}
               </p>
 
               <p class="control">
-                <a href="{{ route('dashboard.edit', $lunch->restaurant_id) }}" class="button is-light">Cancel</a>
+                <a href="{{ route('dashboard.edit', $lunch->restaurant_id) }}" class="button is-light">Atšaukti</a>
               </p>
             </div>
 

@@ -135,7 +135,11 @@ class ChechForNewLunches extends Command
 
            } else {
              // Jei nesutampa
-             $todaysdate = date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l');
+             setlocale(LC_TIME, "lt_LT.utf8");
+
+             $today = strftime('%A');
+
+             $todaysdate = $today == "Šeštadienis" || $today == "Sekmadienis" ? "Pirmadienis" : $today;
              if ($lunch->weekday != $todaysdate) {
                // Jei nesutampa ir nesutampa patiekalo diena
                // dd("nesutampa diena");
