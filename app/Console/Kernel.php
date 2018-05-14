@@ -26,10 +26,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-      // $settings = Settings::find(1);
+      $settings = Settings::find(1);
 
       if (!empty($settings->daily)) {
-        dd("ol");
+        // dd("ol");
         $schedule->command('CheckForNewLunches')->runInBackground()->dailyAt($settings->daily)->timezone('Europe/Vilnius');
       }
 

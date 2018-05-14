@@ -382,7 +382,7 @@
             modal += "<input type='hidden' name='image' value='" + msg['new_lunchdeal']['image'] + "' />";
             modal += '<div class="field"><label name="weekday" class="label">Savaitės diena</label><div class="control has-icons-left"><div class="select">{{ Form::select('weekday', ["Pirmadienis" => "Pirmadienis", "Antradienis" => "Antradienis", "Trečiadienis" => "Trečiadienis", "Ketvirtadienis" => "Ketvirtadienis", "Penktadienis" => "Penktadienis"], strftime('%A') == "Šeštadienis" || strftime('%A') == "Sekmadienis" ? "Pirmadienis" : strftime('%A')) }}</div><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
             // modal += '<input type="hidden" name="lunch_id" id="lunch_id" value="' + lunch_id + '" />';
-            var todaysdate = "{{ date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l') }}";
+            // var todaysdate = "{{ date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l') }}";
             // console.log(todaysdate);
             // $('option[value="' + todaysdate + '"]').attr('selected', 'selected');
 
