@@ -20,7 +20,7 @@
     <div class="row">
       @foreach ($todayslunches as $lunch)
         {{-- {{ dd($lunch->restaurant) }} --}}
-        <div class="col-sm-12 col-md-4 col-lg-3 margin-bottom">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 margin-bottom">
           <div class="card">
             <div class="card-image">
               <a class="button is-primary is-small is-rounded button-weekday">{{ $lunch->weekday }}</a>
@@ -89,7 +89,7 @@
     <div class="row">
       @foreach ($recentlunches as $lunch)
         {{-- {{ dd($lunch->restaurant) }} --}}
-        <div class="col-sm-12 col-md-4 col-lg-3 margin-bottom">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 margin-bottom">
           <div class="card">
             <div class="card-image">
               <a class="button is-primary is-small is-rounded button-weekday">{{ $lunch->weekday }}</a>

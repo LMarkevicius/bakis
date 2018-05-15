@@ -33,12 +33,12 @@ class LunchController extends Controller
       $today = strftime('%A');
       // dd($month_name, date('l'));
       if ($today == 'Šeštadienis' || $today == 'Sekmadienis') {
-        $todayslunches = Lunch::where('weekday', 'Pirmadienis')->orderBy('created_at', 'DESC')->paginate(6);
+        $todayslunches = Lunch::where('weekday', 'Pirmadienis')->orderBy('created_at', 'DESC')->paginate(8);
       } else {
-        $todayslunches = Lunch::where('weekday', $today)->orderBy('created_at', 'DESC')->paginate(6);
+        $todayslunches = Lunch::where('weekday', $today)->orderBy('created_at', 'DESC')->paginate(8);
       }
 
-      $recentlunches = Lunch::orderBy('created_at', 'DESC')->paginate(6);
+      $recentlunches = Lunch::orderBy('created_at', 'DESC')->paginate(8);
 
       return view('lunches.index')->withRecentlunches($recentlunches)->withTodayslunches($todayslunches);
     }
@@ -82,7 +82,7 @@ class LunchController extends Controller
         }
       }
 
-      $lunches = $lunches->orderBy('created_at', 'DESC')->paginate(9)->appends($queries);
+      $lunches = $lunches->orderBy('created_at', 'DESC')->paginate(12)->appends($queries);
 
       $restaurants = Restaurant::all();
 
@@ -119,7 +119,7 @@ class LunchController extends Controller
         }
       }
 
-      $lunches = $lunches->orderBy('created_at', 'DESC')->paginate(9)->appends($queries);
+      $lunches = $lunches->orderBy('created_at', 'DESC')->paginate(12)->appends($queries);
 
       $restaurants = Restaurant::all();
 

@@ -356,11 +356,15 @@ class AdminController extends Controller
       $lunches = Lunch::where('restaurant_id', $id)->get();
       // dd($restaurant->lunches()->count() > 1);
       $restaurant->contacts()->delete();
-      if ($restaurant->lunches()->count() > 1) {
+      if ($restaurant->lunches()->count() >= 1) {
         foreach ($lunches as $lunch) {
           // dd($lunch->image);
           if (!empty($lunch->image)) {
             Storage::delete($lunch->image);
+          }
+          // dd($lunch->xpaths->count());
+          if ($lunch->xpaths->count() >= 1) {
+            $lunch->xpaths[0]->delete();
           }
         }
       }
