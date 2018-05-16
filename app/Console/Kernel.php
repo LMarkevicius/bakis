@@ -29,18 +29,14 @@ class Kernel extends ConsoleKernel
       $settings = Settings::find(1);
 
       if (!empty($settings->daily)) {
-        // dd("ol");
         $schedule->command('CheckForNewLunches')->runInBackground()->dailyAt($settings->daily)->timezone('Europe/Vilnius');
       }
 
       if (!empty($settings->hourly)) {
         $hour = "0 */" . $settings->hourly . " * * *";
-        // dd($hour);
 
         $schedule->command('CheckForNewLunches')->runInBackground()->timezone('Europe/Vilnius')->cron($hour);
       }
-
-        // $schedule->command('CheckForNewLunches')->runInBackground()->hourly();
     }
 
     /**

@@ -26,12 +26,6 @@
 
             <div class="card-content">
               <div class="media">
-                {{-- <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img src="{{ asset('images/' . $lunch->restaurant['logo']) }}" alt="{{ $lunch->restaurant['name'] }} logo">
-                  </figure>
-                </div> --}}
-
                 <div class="media-content">
                   <span class="subtitle is-5">{{ $restaurant->name }}</span>
                 </div>
@@ -39,8 +33,6 @@
 
               <div class="content">
                 {{ count($restaurant->lunches) }} Dienos pietų pasiūlymų
-                {{-- {{ $lunch->title }} --}}
-                {{-- <a class="button is-danger is-small is-rounded">{{ $lunch->price }} $</a> --}}
               </div>
             </div>
 

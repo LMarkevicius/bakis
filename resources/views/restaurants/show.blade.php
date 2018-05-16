@@ -3,24 +3,19 @@
 @section('title', 'Parodyti dienos pasiūlymus')
 
 @section('section')
-  {{-- {{ dd($contacts) }} --}}
 
   <section class="hero">
     <div class="hero-body has-text-centered">
       <div class="row hero-flex">
-        {{-- <div class="col-md-3"> --}}
-          <figure class="image">
-            <img src="{{ asset('images/' . $restaurant->logo) }}" alt="{{ $restaurant->name }} logo" style="width: 200px;">
-          </figure>
-        {{-- </div> --}}
+        <figure class="image">
+          <img src="{{ asset('images/' . $restaurant->logo) }}" alt="{{ $restaurant->name }} logo" style="width: 200px;">
+        </figure>
 
-        {{-- <div class="col-md-6"> --}}
-          <a target="_blank" href="{{ $restaurant->website }}">
-            <h1 class="title">
-              {{ $restaurant->name }}
-            </h1>
-          </a>
-        {{-- </div> --}}
+        <a target="_blank" href="{{ $restaurant->website }}">
+          <h1 class="title">
+            {{ $restaurant->name }}
+          </h1>
+        </a>
       </div>
     </div>
   </section>
@@ -30,7 +25,6 @@
       <div class="row">
 
         <nav class="navbar navbar-filter is-light" role="navigation">
-
 
           <div id="navbar-danger" class="navbar-menu">
             <div class="navbar-start">
@@ -144,13 +138,6 @@
             Kontaktai
           </p>
 
-          {{-- <p class="panel-tabs">
-            <a class="is-active">all</a>
-            <a>public</a>
-            <a>private</a>
-            <a>sources</a>
-            <a>forks</a>
-          </p> --}}
           @foreach ($restaurant->contacts as $contact)
             <a class="panel-block">
               <span class="panel-icon">

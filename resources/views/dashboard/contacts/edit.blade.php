@@ -68,7 +68,6 @@
               </div>
             </div>
 
-
             <div class="field is-grouped is-grouped-centered">
               <p class="control">
                 {{ Form::submit('Atnaujinti Kontaktą', ['class' => 'button is-success']) }}
@@ -78,9 +77,6 @@
                 <a href="{{ route('dashboard.edit', $contact->restaurant_id) }}" class="button is-light">Atšaukti</a>
               </p>
             </div>
-
-            {{-- {!! Html::linkRoute('lunch.show', 'Cancel', [$restaurant->id], ['class' => 'btn btn-danger']) !!}
-            {{ Form::submit('Update Deal', ['class' => 'btn btn-primary']) }} --}}
 
           {!! Form::close() !!}
         </div>

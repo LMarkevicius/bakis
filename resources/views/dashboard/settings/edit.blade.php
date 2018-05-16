@@ -45,42 +45,29 @@
               </div>
             </div>
 
-            {{-- <div class="field has-text-centered">
-              <h2 class="subtitle">
-                Choose daily or every x hours
-              </h2>
-            </div> --}}
-
             <div class="field is-horizontal">
-              {{-- <div class="field-label is-normal">
-                <label class="label">From</label>
-              </div> --}}
               <div class="field-body">
-                {{-- <div class="field is-expanded"> --}}
-                  <div class="field">
-                    {{ Form::label('daily', 'Kasdieną x valandą', ['class' => 'label']) }}
+                <div class="field">
+                  {{ Form::label('daily', 'Kasdieną x valandą', ['class' => 'label']) }}
 
-                    <p class="control is-expanded has-icons-left">
-                      {{ Form::time('daily', null, ['class' => 'input']) }}
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-clock"></i>
-                      </span>
-                    </p>
-                  </div>
+                  <p class="control is-expanded has-icons-left">
+                    {{ Form::time('daily', null, ['class' => 'input']) }}
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-clock"></i>
+                    </span>
+                  </p>
+                </div>
 
-                  <div class="field">
-                    {{ Form::label('hourly', 'Kas x valandų', ['class' => 'label']) }}
+                <div class="field">
+                  {{ Form::label('hourly', 'Kas x valandų', ['class' => 'label']) }}
 
-                    <p class="control is-expanded has-icons-left">
-                      {{ Form::number('hourly', null, ['class' => 'input', 'min' => '1', 'max' => '23']) }}
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-clock"></i>
-                      </span>
-                    </p>
-                  </div>
-
-
-                {{-- </div> --}}
+                  <p class="control is-expanded has-icons-left">
+                    {{ Form::number('hourly', null, ['class' => 'input', 'min' => '1', 'max' => '23']) }}
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-clock"></i>
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
             <div class="field">
@@ -97,9 +84,6 @@
                 <a href="{{ route('dashboard.index') }}" class="button is-light">Atšaukti</a>
               </p>
             </div>
-
-            {{-- {!! Html::linkRoute('lunch.show', 'Cancel', [$restaurant->id], ['class' => 'btn btn-danger']) !!}
-            {{ Form::submit('Update Deal', ['class' => 'btn btn-primary']) }} --}}
 
           {!! Form::close() !!}
         </div>

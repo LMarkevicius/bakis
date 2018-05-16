@@ -3,6 +3,7 @@
 @section('title', 'Redaguoti Restoraną')
 
 @section('section')
+  @php setlocale(LC_TIME, "lt_LT.UTF8") @endphp
 
   <section class="hero is-dark">
     <div class="hero-body">
@@ -59,7 +60,6 @@
             <div class="field">
               <div class="file has-name">
                 <label class="file-label">
-                  {{-- {{ Form::file('logo', null, ['class' => 'file-input']) }} --}}
                   <input type="file" name="logo" class="file-input" id="logo-file">
 
                   <span class="file-cta">
@@ -75,12 +75,6 @@
               </div>
             </div>
 
-
-            {{-- <div class="form-group">
-              {{ Form::label('logo', 'Website Logo') }}
-              {{ Form::file('logo', null, ['class' => 'form-control']) }}
-            </div> --}}
-
             <div class="field is-grouped is-grouped-centered">
               <p class="control">
                 {{ Form::submit('Atnaujinti Restoraną', ['class' => 'button is-success']) }}
@@ -90,9 +84,6 @@
                 <a href="{{ route('dashboard.index') }}" class="button is-light">Atšaukti</a>
               </p>
             </div>
-
-            {{-- {!! Html::linkRoute('lunch.show', 'Cancel', [$restaurant->id], ['class' => 'btn btn-danger']) !!}
-            {{ Form::submit('Update Deal', ['class' => 'btn btn-primary']) }} --}}
 
           {!! Form::close() !!}
         </div>
@@ -180,26 +171,6 @@
 
       <div class="row hero-margin-bottom">
         <div class="col-xs-12 col-md-10 col-md-offset-1">
-          {{-- <table>
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              @foreach ($lunchesByWeekday as $weekday => $lunches)
-                <tr>
-                  <td>{{ $weekday }}</td>
-                </tr>
-                @foreach ($lunches as $lunch)
-                  <tr>
-                    <td></td>
-                    <td>{{ $l->title }}</td>
-                    {{-- <td>{{ $weekday[$lunch]->price }}</td> --}}
-
 
           @if (count($restaurant->lunches) > 0)
             <table class="table is-striped is-fullwidth">
@@ -208,7 +179,6 @@
                   <th>Nuotrauka</th>
                   <th>Pavadinimas</th>
                   <th>Kaina</th>
-                  {{-- <th>Week day</th> --}}
                   <th>Veiksmai</th>
                   <th>Statusas</th>
                   <th>Patikrinimo data</th>
@@ -226,7 +196,6 @@
                       <td><img src="{{ asset('images/' . $lunch->image) }}" class="table-logo" /></td>
                       <td>{{ $lunch->title }}</td>
                       <td>{{ $lunch->price }} €</td>
-                      {{-- <td>{{ $lunch->weekday }}</td> --}}
                       <td>
                         <a href="{{ route('lunch.edit', [$restaurant->id, $lunch->id]) }}" class="button is-info is-small is-fullwidth">
                           <span class="icon left">
@@ -245,7 +214,6 @@
                         {!! Form::close() !!}
                       </td>
                       <td>
-                        {{-- {{ dd($lunch->xpaths()->title_path) }} --}}
                         @if ($lunch->xpaths)
                           @foreach ($lunch->xpaths as $xpath)
                             <a href="#" class="button {{ $xpath->status == 'OK' ? 'is-success' : ($xpath->status == 'NOT OK' ? 'is-danger' : 'is-light') }} is-small check_xpath">
@@ -281,7 +249,6 @@
               </tbody>
             </table>
 
-            {{-- {{ Form::text('check', null, ['id' => 'check_atsakas']) }} --}}
           @else
             <div class="has-text-centered">
               Šiuo metu nėra jokių patiekalų priklausančių šiam restoranui
@@ -306,9 +273,7 @@
       }
     };
 
-
-
-    // Check
+    // PATIEKALŲ PATIKRINIMO FUNKCIJA
     $('.check_xpath').on('click', function(e) {
       e.preventDefault();
       var thiss = $(this);
@@ -319,9 +284,6 @@
       var lunch_title = thiss.siblings('.lunch_title').val();
       var lunch_price = thiss.siblings('.lunch_price').val();
       var lunch_weekday = thiss.siblings('.lunch_weekday').val();
-
-      // console.log(xpath_data);
-
 
       var token = '{{ Session::token() }}';
       var url = '{{ route('xpath.index', $restaurant->id) }}';
@@ -337,10 +299,9 @@
 
         },
         error: function (error) {
-          console.log(error.statusText);
           var error_message = '<p class="help is-danger">' + error.statusText + '</p>';
           thiss.parent('td').append(error_message);
-          // console.log('yra err');
+
           thiss.removeClass('is-light');
           thiss.removeClass('is-success');
           thiss.addClass('is-danger');
@@ -350,14 +311,6 @@
         }
       })
       .done(function (msg) {
-        console.log(msg['atsakas']);
-        console.log(msg['content']);
-        console.log(msg['new_lunchdeal']);
-
-        {{ setlocale(LC_TIME, "lt_LT") }}
-
-
-
         var modal_open = '<div class="modal is-active"><div class="modal-background"></div><div class="modal-card">';
 
         var form = '{!! Form::open(['route' => ['xpath.lunch.store', $restaurant->id]]) !!}';
@@ -381,10 +334,6 @@
             modal += '<div class="field"><label name="price" class="label">Kaina</label><div class="control is-expanded has-icons-left"><input type="number" name="price" step="0.01" value="' + msg['new_lunchdeal']['price'] + '" class="input field-price" placeholder="3.99" /><span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
             modal += "<input type='hidden' name='image' value='" + msg['new_lunchdeal']['image'] + "' />";
             modal += '<div class="field"><label name="weekday" class="label">Savaitės diena</label><div class="control has-icons-left"><div class="select">{{ Form::select('weekday', ["Pirmadienis" => "Pirmadienis", "Antradienis" => "Antradienis", "Trečiadienis" => "Trečiadienis", "Ketvirtadienis" => "Ketvirtadienis", "Penktadienis" => "Penktadienis"], strftime('%A') == "Šeštadienis" || strftime('%A') == "Sekmadienis" ? "Pirmadienis" : strftime('%A')) }}</div><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
-            // modal += '<input type="hidden" name="lunch_id" id="lunch_id" value="' + lunch_id + '" />';
-            // var todaysdate = "{{ date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l') }}";
-            // console.log(todaysdate);
-            // $('option[value="' + todaysdate + '"]').attr('selected', 'selected');
 
             modal += '</div></div>';
             modal += '</section><footer class="modal-card-foot"><button type="submit" class="button is-success">Pridėti Pasiūlymą</button><button class="button cancel-modal">Atšaukti</button></footer>';
@@ -435,9 +384,6 @@
           thiss.children('span').children().remove();
           thiss.children('span').append('<i class="fas fa-check"></i>');
         }
-
-
-        // $('#check_atsakas').val(msg['content']);
 
         });
       });

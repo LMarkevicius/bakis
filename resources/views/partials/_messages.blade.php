@@ -3,10 +3,6 @@
     <button class="delete"></button>
     <strong>Sėkmingai:</strong> {{ Session::get('success') }}
   </div>
-
-  {{-- <div class="alert alert-success" role="alert">
-    <strong>Success:</strong> {{ Session::get('success') }}
-  </div> --}}
 @endif
 
 @if (Session::has('error'))
@@ -14,10 +10,6 @@
     <button class="delete"></button>
     <strong>Klaida:</strong> {{ Session::get('error') }}
   </div>
-
-  {{-- <div class="alert alert-success" role="alert">
-    <strong>Success:</strong> {{ Session::get('success') }}
-  </div> --}}
 @endif
 
 @if (Session::has('errors'))
@@ -31,14 +23,4 @@
       @endforeach
     </ul>
   </div>
-
-  {{-- <div class="alert alert-danger" role="alert">
-    <strong>Error:</strong>
-
-    <ul>
-      @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-  </div> --}}
 @endif

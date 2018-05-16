@@ -16,7 +16,6 @@
               <li class="is-active"><a href="{{ route('dashboard.index') }} aria-current="page"">Administratoriaus Apžvalga</a></li>
             </ul>
           </nav>
-          {{-- <a href="{{ route('dashboard.index') }}">Admin Dashboard</a> --}}
         </h2>
       </div>
     </div>

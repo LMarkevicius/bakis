@@ -26,24 +26,14 @@ class AdminController extends Controller
 
       $exploded = explode("**", $log);
       $last = $exploded[count($exploded) - 1];
-      // dd($last);
+
       $count['match'] = substr_count($last, "Match");
       $count['exists'] = substr_count($last, "exists");
       $count['updated'] = substr_count($last, "Updated");
       $count['new'] = substr_count($last, "Days");
       $count['error'] = substr_count($last, "Error");
 
-
-
-
-
-      // dd($op);
-      // $count['error'] = substr_count($last, "Error");
-
-      // dd($count['match'], $count['exists'], $count['updated'], $count['new']);
-      // asdasdasdasd
-      return view('dashboard.restaurants.index')->withRestaurants($restaurants)->withCount($count)
-      ;
+      return view('dashboard.restaurants.index')->withRestaurants($restaurants)->withCount($count);
     }
 
     public function download() {
@@ -104,79 +94,7 @@ class AdminController extends Controller
 
         $contact->save();
 
-        // switch ($request->count_deals) {
-        //   case 1:
-        //     $this->validate($request, [
-        //       'address'       => 'required|max:255',
-        //       'city'          => 'required|max:255',
-        //       'phone'         => 'required|max:255',
-        //       'title.0'         => 'required|max:255',
-        //       'image.0'         => 'sometimes',
-        //       'price.0'         => 'required',
-        //       'weekday.0'       => 'required|max:255'
-        //     ]);
-        //
-        //     $lunch = new Lunch;
-        //
-        //     $lunch->restaurant_id = $restaurant->id;
-        //     $lunch->title = $request->title[0];
-        //     $lunch->price = $request->price[0];
-        //     $lunch->weekday = $request->weekday[0];
-        //
-        //     if ($request->hasFile('image')) {
-        //       $image = $request->file('image')[0];
-        //       $filename = time() . '.' . $image->getClientOriginalExtension();
-        //       $location = public_path('images/') . $filename;
-        //
-        //       Image::make($image)->save($location);
-        //
-        //       $lunch->image = $filename;
-        //     } else {
-        //       $lunch->image = 'placeholder.jpg';
-        //     }
-        //
-        //     $lunch->save();
-        //
-        //     break;
-        //   default:
-        //     // dd('OPA')
-        //     for ($i = 0; $i < $request->count_deals; $i++) {
-        //       $this->validate($request, [
-        //         'address'       => 'required|max:255',
-        //         'city'          => 'required|max:255',
-        //         'phone'         => 'required|max:255',
-        //         "title.$i"         => 'required|max:255',
-        //         "image.$i"         => 'sometimes',
-        //         "price.$i"         => 'required',
-        //         "weekday.$i"       => 'required|max:255'
-        //       ]);
-        //
-        //       $lunch = new Lunch;
-        //
-        //       $lunch->restaurant_id = $restaurant->id;
-        //       $lunch->title = $request->title[$i];
-        //       $lunch->price = $request->price[$i];
-        //       $lunch->weekday = $request->weekday[$i];
-        //
-        //       if (!empty($request->file('image')[$i])) {
-        //         $image = $request->file('image')[$i];
-        //         $filename = time() . $i . '.' . $image->getClientOriginalExtension();
-        //         $location = public_path('images/') . $filename;
-        //
-        //         Image::make($image)->save($location);
-        //
-        //         $lunch->image = $filename;
-        //       } else {
-        //         $lunch->image = 'placeholder.jpg';
-        //       }
-        //
-        //       $lunch->save();
-        //     }
-        //
-        //     break;
-        // }
       } else {
-        // dd($request->price);
         $this->validate($request, [
           'name'          => 'required|max:255',
           'website'       => 'required|url',
@@ -197,94 +115,11 @@ class AdminController extends Controller
         $restaurant->logo = $filename;
 
         $restaurant->save();
-
-        // switch ($request->count_deals) {
-        //   case 1:
-        //     // dd('STOP');
-        //     $this->validate($request, [
-        //       'title.0'         => 'required|max:255',
-        //       'image.0'         => 'sometimes',
-        //       'price.0'         => 'required',
-        //       'weekday.0'       => 'required|max:255'
-        //     ]);
-        //
-        //     $lunch = new Lunch;
-        //
-        //     $lunch->restaurant_id = $restaurant->id;
-        //     $lunch->title = $request->title[0];
-        //     $lunch->price = $request->price[0];
-        //     $lunch->weekday = $request->weekday[0];
-        //
-        //     if ($request->hasFile('image')) {
-        //       $image = $request->file('image')[0];
-        //       $filename = time() . '.' . $image->getClientOriginalExtension();
-        //       $location = public_path('images/') . $filename;
-        //
-        //       Image::make($image)->save($location);
-        //
-        //       $lunch->image = $filename;
-        //     } else {
-        //       $lunch->image = 'placeholder.jpg';
-        //     }
-        //     // dd($lunch);
-        //     $lunch->save();
-        //
-        //     break;
-        //   default:
-        //     // dd('STOP');
-        //     // dd($request->file('image')[2]->isValid());
-        //     for ($i = 0; $i < $request->count_deals; $i++) {
-        //       $this->validate($request, [
-        //         "title.$i"         => 'required|max:255',
-        //         "image.$i"         => 'sometimes',
-        //         "price.$i"         => 'required',
-        //         "weekday.$i"       => 'required|max:255'
-        //       ]);
-        //
-        //       $lunch = new Lunch;
-        //
-        //       $lunch->restaurant_id = $restaurant->id;
-        //       $lunch->title = $request->title[$i];
-        //       $lunch->price = $request->price[$i];
-        //       $lunch->weekday = $request->weekday[$i];
-        //       // dd(empty($request->file('image')[$i]));
-        //       if (!empty($request->file('image')[$i])) {
-        //         // dd($request->file('image')[1]);
-        //         $image = $request->file('image')[$i];
-        //         // dd($image);
-        //         $filename = time() . $i . '.' . $image->getClientOriginalExtension();
-        //         $location = public_path('images/') . $filename;
-        //
-        //         Image::make($image)->save($location);
-        //
-        //         $lunch->image = $filename;
-        //         // $lunch->save();
-        //       } else {
-        //         $lunch->image = 'placeholder.jpg';
-        //       }
-        //       // dd($request->file('image')[1]);
-        //       $lunch->save();
-        //       // dd($lunch);
-        //     }
-        //     // dd($lunch);
-        //     break;
-        // }
       }
 
       Session::flash('success', 'Jūs sėkmingai pridėjote naują restoraną!');
 
       return redirect()->route('dashboard.edit', $restaurant->id);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -297,8 +132,6 @@ class AdminController extends Controller
     {
       $restaurant = Restaurant::find($id);
       $lunchesByWeekday = Lunch::where('restaurant_id', $restaurant->id)->get()->groupBy('weekday');
-
-      // dd($lunchesByWeekday->);
 
       return view('dashboard.restaurants.edit')->withRestaurant($restaurant)->withLunchesByWeekday($lunchesByWeekday);
     }
@@ -354,15 +187,15 @@ class AdminController extends Controller
     {
       $restaurant = Restaurant::find($id);
       $lunches = Lunch::where('restaurant_id', $id)->get();
-      // dd($restaurant->lunches()->count() > 1);
+
       $restaurant->contacts()->delete();
+
       if ($restaurant->lunches()->count() >= 1) {
         foreach ($lunches as $lunch) {
-          // dd($lunch->image);
           if (!empty($lunch->image)) {
             Storage::delete($lunch->image);
           }
-          // dd($lunch->xpaths->count());
+          
           if ($lunch->xpaths->count() >= 1) {
             $lunch->xpaths[0]->delete();
           }

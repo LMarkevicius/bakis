@@ -169,3 +169,97 @@
 #37 / Match / 561
 #38 / Match / 562
 #39 / Match / 563
+2018-05-16 11:49:55**
+#1 / Match / 500
+#2 / Match / 501
+#3 / Updated / 502
+#4 / Updated / 503
+#5 / Match / 504
+#6 / Updated / 505
+#7 / Updated / 506
+#8 / Updated / 507
+#9 / Updated / 508
+#10 / Updated / 509
+#11 / Days doesn't match / 510
+#12 / Days doesn't match / 511
+#13 / Match / 512
+#14 / Days doesn't match / 513
+#15 / Days doesn't match / 514
+#16 / Match / 515
+#17 / Days doesn't match / 516
+#18 / Days doesn't match / 517
+#19 / Days doesn't match / 518
+#20 / Days doesn't match / 519
+#21 / Days doesn't match / 520
+#22 / Already exists / 527
+#23 / Already exists / 528
+#24 / Already exists / 529
+#25 / Already exists / 530
+#26 / Already exists / 531
+#27 / Already exists / 532
+#28 / Already exists / 533
+#29 / Already exists / 534
+#30 / Match / 538
+#31 / Match / 540
+#32 / Match / 541
+#33 / Match / 542
+#34 / Already exists / 552
+#35 / Already exists / 559
+#36 / Match / 560
+#37 / Match / 561
+#38 / Match / 562
+#39 / Match / 563
+2018-05-16 12:04:54**
+#1 / Match / 500
+#2 / Match / 501
+#3 / Match / 502
+#4 / Match / 503
+#5 / Match / 504
+#6 / Match / 505
+#7 / Match / 506
+#8 / Match / 507
+#9 / Match / 508
+#10 / Match / 509
+#11 / Already exists / 510
+#12 / Already exists / 511
+#13 / Match / 512
+#14 / Already exists / 513
+#15 / Already exists / 514
+#16 / Match / 515
+#17 / Already exists / 516
+#18 / Already exists / 517
+#19 / Already exists / 518
+#20 / Already exists / 519
+#21 / Already exists / 520
+#22 / Already exists / 527
+#23 / Already exists / 528
+#24 / Already exists / 529
+#25 / Already exists / 530
+#26 / Already exists / 531
+#27 / Already exists / 532
+#28 / Already exists / 533
+#29 / Already exists / 534
+#30 / Match / 538
+#31 / Match / 540
+#32 / Match / 541
+#33 / Match / 542
+#34 / Already exists / 552
+#35 / Already exists / 559
+#36 / Match / 560
+#37 / Match / 561
+#38 / Match / 562
+#39 / Match / 563
+#40 / Match / 564
+#41 / Match / 565
+#42 / Match / 566
+#43 / Match / 567
+#44 / Match / 568
+#45 / Match / 569
+#46 / Match / 570
+#47 / Match / 571
+#48 / Match / 572
+#49 / Match / 579
+#50 / Updated / 580
+#51 / Already exists / 581
+#52 / Match / 582
+#53 / Match / 583

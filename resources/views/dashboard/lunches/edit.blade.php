@@ -78,7 +78,6 @@
 
               <div class="control has-icons-left">
                 <div class="select">
-                  {{-- {{ Form::text('a', date('l') == "Saturday" || date('l') == "Sunday" ? "Monday" : date('l'), ['class' => 'input']) }} --}}
                   {{ Form::select('weekday', [
                     'Pirmadienis' => 'Pirmadienis',
                     'Antradienis' => 'Antradienis',

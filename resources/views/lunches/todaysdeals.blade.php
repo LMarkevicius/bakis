@@ -36,22 +36,15 @@
             <a class="navbar-link {{ request()->has('from') ? 'is-active' : '' }}" href="#">
               Kaina nuo
             </a>
-          {{-- </div>
-          <div class="navbar-item"> --}}
-
-
-
 
             <div class="navbar-dropdown is-boxed is-left">
               @php ($minprice = 0)
-              {{-- @php ($maxprice = 1) --}}
               @while ($minprice <= 10)
                 <a href="{{ route('todays.deals', ['restaurant_id' => request('restaurant_id'), 'from' => $minprice, 'to' => request('to')]) }}" class="navbar-item {{ request('from') == "$minprice" ? 'is-active' : '' }}">
                   {{ $minprice }} €
                 </a>
 
                 @php ($minprice += 1)
-                {{-- @php ($maxprice += 1) --}}
               @endwhile
 
             </div><!-- .navbar-dropdown is-boxed is-left -->
@@ -61,21 +54,13 @@
             <a class="navbar-link {{ request()->has('to') ? 'is-active' : '' }}" href="#">
               iki
             </a>
-          {{-- </div>
-          <div class="navbar-item"> --}}
-
-
-
 
             <div class="navbar-dropdown is-boxed is-left">
-              {{-- @php ($minprice = 0) --}}
               @php ($maxprice = 1)
               @while ($maxprice <= 10)
                 <a href="{{ route('todays.deals', ['restaurant_id' => request('restaurant_id'), 'from' => request('from'), 'to' => $maxprice]) }}" class="navbar-item {{ request('to') == $maxprice ? 'is-active' : '' }}">
                   {{ $maxprice }} €
                 </a>
-
-                {{-- @php ($minprice += 1) --}}
                 @php ($maxprice += 1)
               @endwhile
 

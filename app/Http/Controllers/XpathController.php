@@ -29,7 +29,6 @@ class XpathController extends Controller
        $new_lunchdeal = [];
 
        $opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
-       //Basically adding headers to the request
        $context = stream_context_create($opts);
 
        $html = file_get_contents("$xpath_data->restaurant_url", false, $context); //get the html returned from the following url
@@ -49,8 +48,6 @@ class XpathController extends Controller
          $title_path = $restaurant_xpath->query("$xpath_data->title_path");
          $price_path = $restaurant_xpath->query("$xpath_data->price_path");
          $image_path = $restaurant_xpath->query("$xpath_data->image_path");
-         // $image_path1 = $restaurant_xpath->xpath("$xpath_data->image_path");
-         // dd($image_path1);
 
          if($title_path->length > 0){
            foreach($title_path as $key => $row){
@@ -63,30 +60,21 @@ class XpathController extends Controller
              $price_result[$key] = $row->nodeValue;
            }
          }
-         // dd($price_result[0]);
 
          if($image_path->length > 0){
            foreach($image_path as $key => $row){
              $image_result[$key] = $row->getAttribute("src");
-             // dd($row->getAttribute("src"));
            }
          }
 
-         // dd($image_result[0]);
-
          if (!empty($result[0]) || !empty($price_result[0])) {
 
-           // $sutvarkytas = preg_replace('/\s+/', '', $result[0]);
            $sutvarkytas_price = trim(preg_replace('/[^a-z0-9.,]/', '', $price_result[0]));
            $sutvarkytas_price = preg_replace('/,/', '.', $sutvarkytas_price);
-
-           // dd($sutvarkytas_price);
 
            $decode_title = utf8_decode($result[0]);
            $fixed_title = trim($decode_title);
            $fixed_title = str_replace('"', "'", $fixed_title);
-
-           // dd([$fixed_title, $request->lunch_title]);
 
            if ($fixed_title == $request->lunch_title && $sutvarkytas_price == $request->lunch_price) {
             // Jei sutampa tos pacios dienos patiekalas
@@ -125,7 +113,6 @@ class XpathController extends Controller
 
                 $new_lunchdeal['restaurant_id'] = $lunch->restaurant_id;
                 $new_lunchdeal['title'] = $fixed_title;
-                // $new_lunchdeal['image'] = 'placeholder.jpg';
                 $new_lunchdeal['price'] = $sutvarkytas_price;
                 $new_lunchdeal['weekday'] = $todaysdate;
 
@@ -140,12 +127,6 @@ class XpathController extends Controller
 
                 $atsakas = "Jau toks yra!";
 
-                // $new_lunchdeal['restaurant_id'] = $lunch->restaurant_id;
-                // $new_lunchdeal['title'] = $fixed_title;
-                // $new_lunchdeal['image'] = 'placeholder.jpg';
-                // $new_lunchdeal['price'] = $sutvarkytas_price;
-                // $new_lunchdeal['weekday'] = date('l');
-
                 $xpath = Xpath::find($xpath_data->id);
 
                 $xpath->status = "OK";
@@ -155,7 +136,7 @@ class XpathController extends Controller
               }
 
             } else {
-              // Jeigu visiskai neatitinka, tai updeitina
+              // Jeigu visiskai neatitinka, tai atnaujina
 
               $atsakas = "Error";
 
@@ -176,7 +157,6 @@ class XpathController extends Controller
         } else {
           // ATSAKAS JEI NERANDA ISVIS TURINIO
 
-          // $atsakas = "Something is wrong with xpaths";
           $xpath = Xpath::find($xpath_data->id);
 
           $xpath->status = "NOT OK";
@@ -238,10 +218,8 @@ class XpathController extends Controller
 
         array_pop($exploded);
         array_push($exploded, $lastlast);
-        // dd($last);
 
         $imploded = implode('/', $exploded);
-        // dd($imploded);
 
         Image::make($imploded)->save($location);
 
@@ -253,7 +231,6 @@ class XpathController extends Controller
       $lunch->save();
 
       $old_xpath = Xpath::where('lunch_id', $request->lunch_id)->get();
-      // dd($old_xpath[0]['restaurant_url']);
       $xpath = new Xpath;
 
       $xpath->lunch_id = $lunch->id;
@@ -267,39 +244,6 @@ class XpathController extends Controller
       Session::flash('success', 'Jūs sėkmingai pridėjote naują dienos pietų pasiūlymą!');
 
       return redirect()->route('dashboard.edit', $restaurantId);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -336,16 +280,5 @@ class XpathController extends Controller
       Session::flash('success', 'Jūs sėkmingai atnaujinote dienos pietų pasiūlymą!');
 
       return redirect()->route('dashboard.edit', $restaurantId);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

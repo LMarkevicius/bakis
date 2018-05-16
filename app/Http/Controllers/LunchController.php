@@ -10,9 +10,7 @@ use App\Lunch;
 use App\Xpath;
 use Image;
 use Storage;
-// use Lang;
 use Date;
-use Carbon\Carbon;
 
 class LunchController extends Controller
 {
@@ -24,14 +22,9 @@ class LunchController extends Controller
     public function index()
     {
       setlocale(LC_TIME, "lt_LT.utf8");
-      // $now = Carbon::now('Europe/Vilnius');
-      // Carbon::setLocale('lt_LT.utf8');
-      // Carbon::setUtf8(true);
-      // dd(Carbon::now()->formatLocalized('%A'));
-      // Date::setLocale('lt_LT');
-      // dd(getLocale());
+
       $today = strftime('%A');
-      // dd($month_name, date('l'));
+
       if ($today == 'Šeštadienis' || $today == 'Sekmadienis') {
         $todayslunches = Lunch::where('weekday', 'Pirmadienis')->orderBy('created_at', 'DESC')->paginate(8);
       } else {
@@ -144,9 +137,6 @@ class LunchController extends Controller
      */
     public function store(Request $request, $restaurant_id)
     {
-      // dd($request->count_deals);
-
-
       switch ($request->count_deals) {
         case 1:
 
@@ -161,17 +151,10 @@ class LunchController extends Controller
 
           $lunch->restaurant_id = $restaurant_id;
           $lunch->title = $request->title[0];
-          // if ($request->dataurl) {
-          //   $lunch->price = $request->price[0];
-          // } else {
-          $lunch->price = $request->price[0];
-          // }
           $lunch->price = $request->price[0];
           $lunch->weekday = $request->weekday[0];
-          // dd($request->file('image'));
-          // dd($request->hasFile('image'));
-          if ($request->hasFile('image')) {
 
+          if ($request->hasFile('image')) {
             $image = $request->file('image')[0];
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/') . $filename;
@@ -180,8 +163,6 @@ class LunchController extends Controller
 
             $lunch->image = $filename;
           } elseif (!empty($request->photo_url[0])) {
-            // dd($request->photo_url[0]);
-            // dd(str_replace('.', '', strstr(basename($request->photo_url[0]), '.')));
             $extension = str_replace('.', '', strstr(basename($request->photo_url[0]), '.'));
             $filename = time() . '.' . $extension;
             $location = public_path('images/') . $filename;
@@ -193,13 +174,11 @@ class LunchController extends Controller
             array_push($exploded, $last);
 
             $imploded = implode('/', $exploded);
-            // dd($imploded);
 
             Image::make($imploded)->save($location);
 
             $lunch->image = $filename;
           } else {
-            // dd('lol');
             $lunch->image = 'placeholder.jpg';
           }
 
@@ -232,11 +211,6 @@ class LunchController extends Controller
           break;
         default:
           for ($i = 0; $i < $request->count_deals; $i++) {
-            // if ($request->title_xpath[0] || $request->image_xpath[0] || $request->price_xpath[0]) {
-              // $this->validate($request, [
-              //
-              // ]);
-
             $this->validate($request, [
               "title.$i"          => 'required|max:255',
               "image.$i"          => 'sometimes',
@@ -244,19 +218,12 @@ class LunchController extends Controller
               "weekday.0"        => 'required|max:255'
             ]);
 
-            // $fixed_title = str_replace('""', "''", $request->title[$i]);
-            // dd($fixed_title);
-
             $lunch = new Lunch;
 
             $lunch->restaurant_id = $restaurant_id;
             $lunch->title = $request->title[$i];
             $lunch->weekday = $request->weekday[0];
             $lunch->price = $request->price[$i];
-
-
-
-            // dd($request->photo_url);
 
             if (!empty($request->file('image')[$i])) {
               $image = $request->file('image')[$i];
@@ -267,25 +234,19 @@ class LunchController extends Controller
 
               $lunch->image = $filename;
             } elseif (!empty($request->photo_url[$i])) {
-              // dd($request->photo_url);
-              // dd(str_replace('.', '', strstr(basename($request->photo_url[0]), '.')));
               $extension = str_replace('.', '', strstr(basename($request->photo_url[$i]), '.'));
-              // dd($extension);
+
               $filename = time() . $i . '.' . $extension;
-              // dd($filename);
+
               $location = public_path('images/') . $filename;
-              // dd($location);
-              // $corrected_photo = preg_replace('/\s+/', '%20', $request->photo_url[3]);
+
               $exploded = explode('/', $request->photo_url[$i]);
               $last = rawurlencode($exploded[count($exploded) - 1]);
 
               array_pop($exploded);
               array_push($exploded, $last);
 
-              // dd($exploded);
               $imploded = implode('/', $exploded);
-              // dd($last);
-              // dd($imploded);
 
               Image::make($imploded)->save($location);
 
@@ -304,9 +265,6 @@ class LunchController extends Controller
                 "price_xpath.$i"    => 'required'
               ]);
 
-              // $lunch->weekday = $request->weekday[0];
-              //
-              // $lunch->save();
               $xpath = new Xpath;
 
               $xpath->lunch_id = $lunch->id;
@@ -316,10 +274,7 @@ class LunchController extends Controller
               $xpath->price_path = $request->price_xpath[$i];
 
               $xpath->save();
-
             }
-
-
           }
 
           break;
@@ -328,19 +283,6 @@ class LunchController extends Controller
       Session::flash('success', 'Jūs sėkmingai pridėjote dienos pietų pasiūlymus!');
 
       return redirect()->route('dashboard.edit', $restaurant_id);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-      // $restaurant = Restaurant::find($id);
-      //
-      // return view('lunches.show')->withRestaurant($restaurant);
     }
 
     /**
@@ -408,18 +350,15 @@ class LunchController extends Controller
     public function destroy($restaurant_id, $id)
     {
       $lunch = Lunch::find($id);
-      // $xpath = Xpath::where('lunch_id', $id)->firstOrFail();
       $xpath = $lunch->xpaths;
+
       if (!empty($xpath[0])) {
         $xpath[0]->delete();
       }
-      // dd($lunch, $xpath[0]);
-      // dd($xpath);
 
       if (!empty($lunch->image)) {
         Storage::delete($lunch->image);
       }
-
 
       $lunch->delete();
 

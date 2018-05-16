@@ -16,10 +16,8 @@
 
   @if (count($todayslunches) > 0)
 
-
     <div class="row">
       @foreach ($todayslunches as $lunch)
-        {{-- {{ dd($lunch->restaurant) }} --}}
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 margin-bottom">
           <div class="card">
             <div class="card-image">
@@ -45,21 +43,10 @@
 
               <div class="content content-title">
                 {{ $lunch->title }}
-
-
               </div>
             </div>
-
-            {{-- <a href="{{ route('lunch.show', $lunch->restaurant_id) }}">{{ $lunch->restaurant['name'] }}</a> --}}
-            {{-- <img class="card-img-top card-specs" src="{{ asset('images/' . $lunch->image) }}" alt="{{ $lunch->title }} logo"> --}}
-            {{-- <div class="card-image" style="background-image: url('/images/{{ $lunch->image }}');"></div> --}}
-            {{-- <div class="card-body">
-              <p class="card-text">{{ $lunch->title }}</p>
-              <a href="#" class="btn btn-primary">{{ $lunch->price }} $</a>
-            </div> --}}
           </div>
         </div>
-      {{-- </div> --}}
       @endforeach
     </div>
 
@@ -88,7 +75,6 @@
   @if (count($recentlunches) > 0)
     <div class="row">
       @foreach ($recentlunches as $lunch)
-        {{-- {{ dd($lunch->restaurant) }} --}}
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 margin-bottom">
           <div class="card">
             <div class="card-image">
@@ -114,26 +100,14 @@
 
               <div class="content content-title">
                 {{ $lunch->title }}
-
-
               </div>
             </div>
-
-            {{-- <a href="{{ route('lunch.show', $lunch->restaurant_id) }}">{{ $lunch->restaurant['name'] }}</a> --}}
-            {{-- <img class="card-img-top card-specs" src="{{ asset('images/' . $lunch->image) }}" alt="{{ $lunch->title }} logo"> --}}
-            {{-- <div class="card-image" style="background-image: url('/images/{{ $lunch->image }}');"></div> --}}
-            {{-- <div class="card-body">
-              <p class="card-text">{{ $lunch->title }}</p>
-              <a href="#" class="btn btn-primary">{{ $lunch->price }} $</a>
-            </div> --}}
           </div>
         </div>
-      {{-- </div> --}}
       @endforeach
 
-
     </div>
-
+    
     <div class="row">
       <div class="col-sm-12">
         <div class="field is-grouped is-grouped-centered">

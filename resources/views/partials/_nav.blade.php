@@ -1,7 +1,6 @@
 <nav class="navbar is-danger" role="navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="{{ route('index') }}">
-      {{-- <img src="" alt="Lunch Deals Logo" width="112" height="28"> --}}
       Dienos Pietūs
     </a>
     <div class="navbar-burger burger" data-target="navbar-danger">

@@ -1,18 +1,10 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
 @import "variables";
-// @import "mystyles";
 @import "bootstrap";
-
 @import './node_modules/bulma/bulma.sass';
-// $breadcrumb-item-separator-color: $red;
-
-// Bootstrap
-// @import "~bootstrap-sass/assets/stylesheets/bootstrap";
-
 
 .table-logo {
   width: 100px;
@@ -22,14 +14,6 @@
   max-width: 100%;
   height: 300px;
 }
-
-// .card-image {
-//   height: 300px;
-//   width: 100%;
-//   background-size: contain;
-//   background-repeat: no-repeat;
-//   background-position: center;
-// }
 
 .has-margin-top {
   margin-top: 40px;
@@ -67,10 +51,6 @@ a:hover {
 .panel a:not([href]):not([tabindex]) {
   color: inherit;
 }
-
-// span.left {
-//   margin-right: 5px;
-// }
 
 .button .icon:first-child:last-child {
   margin-right: 0;
