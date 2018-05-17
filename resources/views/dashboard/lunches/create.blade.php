@@ -256,7 +256,7 @@
 
         var auto_content = '<div class="lunch-deals">';
             auto_content += weekdayfield;
-            auto_content += '{{ Form::hidden('count_deals', 1, ['id' => 'count-deals']) }}</div>';
+            auto_content += '{{ Form::hidden('count_deals', 0, ['id' => 'count-deals']) }}</div>';
 
         if ($('.manual-lunch-container').hasClass('is-hidden') != true) {
           $('.manual-lunch-container').addClass('is-hidden');
@@ -274,7 +274,7 @@
           if ($('.automatic-lunch-container .lunch-deals').length == 0) {
             $('.automatic-lunch-container .auto-lunch-cont').append(auto_content);
             $('.manual-lunch-container .lunch-deals').remove();
-            x = 1;
+            x = 0;
           }
         }
       });
@@ -414,6 +414,7 @@
                       $('.fetch-results .price-xpath').removeClass('new-price-xpath');
                       count++;
                       x++;
+                      
                       $('.lunch-deals #count-deals').val(x);
                     } else {
 
