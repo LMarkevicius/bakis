@@ -323,7 +323,7 @@
             modal += '<h2>Senas Pasiūlymas</h2>'
 
             modal += '<div class="field"><label class="label">Pavadinimas</label><div class="control is-expanded has-icons-left"><input type="text" value="' + lunch_title + '" class="input field-title" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div>';
-            modal += '<div class="field"><label class="label">Kaina</label><div class="control is-expanded has-icons-left"><input type="number" step="0.01" value="' + lunch_price + '" class="input field-price" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
+            modal += '<div class="field"><label class="label">Kaina</label><div class="control is-expanded has-icons-left"><input type="number" step="0.01" value="' + lunch_price + '" class="input field-price" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-money-bill-alt"></i></span></div></div>';
             modal += '<div class="field"><label class="label">Savaitės diena</label><div class="control is-expanded has-icons-left"><input type="text" value="' + lunch_weekday + '" class="input" readonly="readonly" /><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
             modal += '<input type="hidden" name="lunch_id" value="' + lunch_id + '" />';
 
@@ -331,7 +331,7 @@
             modal += '<h2>Naujas Pasiūlymas</h2>';
 
             modal += '<div class="field"><label name="title" class="label">Pavadinimas</label><div class="control is-expanded has-icons-left"><input type="text" name="title" value="' + msg['new_lunchdeal']['title'] + '" class="input field-title" placeholder="Lietiniai su varške" /><span class="icon is-small is-left"><i class="fas fa-utensils"></i></span></div></div>';
-            modal += '<div class="field"><label name="price" class="label">Kaina</label><div class="control is-expanded has-icons-left"><input type="number" name="price" step="0.01" value="' + msg['new_lunchdeal']['price'] + '" class="input field-price" placeholder="3.99" /><span class="icon is-small is-left"><i class="fas fa-dollar-sign"></i></span></div></div>';
+            modal += '<div class="field"><label name="price" class="label">Kaina</label><div class="control is-expanded has-icons-left"><input type="number" name="price" step="0.01" value="' + msg['new_lunchdeal']['price'] + '" class="input field-price" placeholder="3.99" /><span class="icon is-small is-left"><i class="fas fa-money-bill-alt"></i></span></div></div>';
             modal += "<input type='hidden' name='image' value='" + msg['new_lunchdeal']['image'] + "' />";
             modal += '<div class="field"><label name="weekday" class="label">Savaitės diena</label><div class="control has-icons-left"><div class="select">{{ Form::select('weekday', ["Pirmadienis" => "Pirmadienis", "Antradienis" => "Antradienis", "Trečiadienis" => "Trečiadienis", "Ketvirtadienis" => "Ketvirtadienis", "Penktadienis" => "Penktadienis"], strftime('%A') == "Šeštadienis" || strftime('%A') == "Sekmadienis" ? "Pirmadienis" : strftime('%A')) }}</div><span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span></div></div>';
 

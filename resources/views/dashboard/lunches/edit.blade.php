@@ -68,7 +68,7 @@
               <div class="control is-expanded has-icons-left">
                 {{ Form::number('price', null, ['class' => 'input', 'step' => '0.01', 'placeholder' => '3.99']) }}
                 <span class="icon is-small is-left">
-                  <i class="fas fa-dollar-sign"></i>
+                  <i class="fas fa-money-bill-alt"></i>
                 </span>
               </div>
             </div>

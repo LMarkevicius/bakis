@@ -263,3 +263,124 @@
 #51 / Already exists / 581
 #52 / Match / 582
 #53 / Match / 583
+2018-05-20 22:38:00**
+#1 / Error / 500
+2018-05-20 22:38:13**
+#1 / Error / 500
+2018-05-20 22:39:52**
+#1 / Error / 500
+#2 / Error / 501
+#3 / Error / 502
+#4 / Error / 503
+#5 / Error / 504
+#6 / Error / 505
+#7 / Error / 506
+#8 / Error / 507
+#9 / Error / 508
+#10 / Error / 509
+#11 / Error / 510
+#12 / Error / 511
+#13 / Error / 512
+#14 / Error / 513
+#15 / Error / 514
+#16 / Error / 515
+#17 / Error / 516
+#18 / Error / 517
+#19 / Error / 518
+#20 / Error / 519
+#21 / Error / 520
+#22 / Error / 527
+#23 / Error / 528
+#24 / Error / 529
+#25 / Error / 530
+#26 / Error / 531
+#27 / Error / 532
+#28 / Error / 533
+#29 / Error / 534
+#30 / Updated / 538
+#31 / Match / 540
+#32 / Updated / 541
+#33 / Updated / 542
+#34 / Already exists / 552
+#35 / Already exists / 559
+#36 / Match / 560
+#37 / Updated / 561
+#38 / Updated / 562
+#39 / Updated / 563
+#40 / Days doesn't match / 564
+#41 / Already exists / 565
+#42 / Already exists / 566
+#43 / Already exists / 567
+#44 / Already exists / 568
+#45 / Already exists / 569
+#46 / Already exists / 570
+#47 / Already exists / 571
+#48 / Already exists / 572
+#49 / Already exists / 579
+#50 / Already exists / 580
+#51 / Already exists / 581
+#52 / Match / 582
+#53 / Already exists / 583
+#54 / Already exists / 592
+#55 / Already exists / 593
+#56 / Already exists / 594
+#57 / Already exists / 595
+2018-05-21 02:46:27**
+#1 / Updated / 500
+#2 / Updated / 501
+#3 / Days doesn't match / 502
+#4 / Days doesn't match / 503
+#5 / Match / 504
+#6 / Days doesn't match / 505
+#7 / Days doesn't match / 506
+#8 / Days doesn't match / 507
+#9 / Days doesn't match / 508
+#10 / Days doesn't match / 509
+#11 / Days doesn't match / 510
+#12 / Days doesn't match / 511
+#13 / Match / 512
+#14 / Days doesn't match / 513
+#15 / Days doesn't match / 514
+#16 / Days doesn't match / 515
+#17 / Match / 516
+#18 / Days doesn't match / 517
+#19 / Days doesn't match / 518
+#20 / Days doesn't match / 519
+#21 / Days doesn't match / 520
+#22 / Already exists / 527
+#23 / Already exists / 528
+#24 / Already exists / 529
+#25 / Already exists / 530
+#26 / Already exists / 531
+#27 / Already exists / 532
+#28 / Already exists / 533
+#29 / Already exists / 534
+#30 / Match / 538
+#31 / Match / 540
+#32 / Match / 541
+#33 / Match / 542
+#34 / Already exists / 552
+#35 / Already exists / 559
+#36 / Match / 560
+#37 / Match / 561
+#38 / Match / 562
+#39 / Match / 563
+#40 / Already exists / 564
+#41 / Already exists / 565
+#42 / Already exists / 566
+#43 / Already exists / 567
+#44 / Already exists / 568
+#45 / Already exists / 569
+#46 / Already exists / 570
+#47 / Already exists / 571
+#48 / Already exists / 572
+#49 / Days doesn't match / 579
+#50 / Days doesn't match / 580
+#51 / Days doesn't match / 581
+#52 / Days doesn't match / 582
+#53 / Already exists / 583
+#54 / Already exists / 592
+#55 / Already exists / 593
+#56 / Already exists / 594
+#57 / Already exists / 595
+#58 / Updated / 596
